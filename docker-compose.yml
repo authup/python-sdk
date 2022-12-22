@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  authup:
+    image: ghcr.io/tada5hi/authup-server:latest
+    volumes:
+      - C:\Users\micha\projects\python\authup-py\writable:/usr/src/app/writable
+    ports:
+      - "3010:3010"
