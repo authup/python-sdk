@@ -1,1 +1,1 @@
-from .schemas import User, UserPermission, Token
+from .schemas import Token, User, UserPermission

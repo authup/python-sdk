@@ -1,17 +1,12 @@
-from pydantic import BaseSettings, Field
-from httpx import AsyncClient, Client
+from pydantic import BaseSettings, Field, root_validator
 
 
 class Settings(BaseSettings):
-    robot_id: str = Field(..., env="ROBOT_ID")
-    robot_secret: str = Field(..., env="ROBOT_SECRET")
-    url: str = Field(..., env="URL")
-    username: str = Field(..., env="USERNAME")
-    password: str = Field(..., env="PASSWORD")
-
-    class Config:
-        env_prefix = "AUTHUP_"
-        env_file = ".env"
+    url: str = Field(..., env="authup_url")
+    username: str = Field(None, env="authup_username")
+    password: str = Field(None, env="authup_password")
+    robot_id: str = Field(None, env="authup_robot_id")
+    robot_secret: str = Field(None, env="authup_robot_secret")
 
     @property
     def token_url(self):
@@ -21,10 +16,33 @@ class Settings(BaseSettings):
     def user_url(self):
         return f"{self.url}/users"
 
+    @root_validator
+    def validate_settings(cls, values):
+        if values.get("username") and not values.get("password"):
+            raise ValueError("Password is required when username is provided")
+
+        if values.get("password") and not values.get("username"):
+            raise ValueError("Username is required when password is provided")
+
+        if values.get("robot_id") and not values.get("robot_secret"):
+            raise ValueError("Robot secret is required when robot id is provided")
+
+        if values.get("robot_secret") and not values.get("robot_id"):
+            raise ValueError("Robot id is required when robot secret is provided")
+
+        if values.get("username") and values.get("password"):
+            return values
+        elif values.get("robot_id") and values.get("robot_secret"):
+            return values
+        else:
+            raise ValueError(
+                "Either username and password or robot_id and robot_secret must be provided"
+            )
+
 
 class Authup:
-    def __init__(self, settings: Settings):
-        self.settings = settings
+    def __init__(self, settings: Settings = None):
+        self.settings = settings if settings else Settings()
 
     def get_token(self):
         pass

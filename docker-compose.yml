@@ -3,7 +3,16 @@ version: "3.8"
 services:
   authup:
     image: ghcr.io/tada5hi/authup-server:latest
+    container_name: federated-auth
     volumes:
-      - C:\Users\micha\projects\python\authup-py\writable:/usr/src/app/writable
+      - ./service_data/auth:/usr/src/app/writable
     ports:
-      - "3010:3010"
+      - '3010:3010'
+    environment:
+      PORT: 3010
+      ADMIN_USER: admin
+      ADMIN_PASSWORD: start123
+      NODE_ENV: test
+      PUBLIC_URL: http://auth:3010/
+    command:
+      - start
