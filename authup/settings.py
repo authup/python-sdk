@@ -1,11 +1,20 @@
+import os
 import enum
 
-from pydantic import BaseSettings, Field, root_validator, SecretStr
+from pydantic import BaseModel, root_validator, SecretStr
 
 
 class CredentialTypes(enum.Enum):
     user = "user"
     robot = "robot"
+
+
+class EnvVars(enum.Enum):
+    url = "URL"
+    username = "USERNAME"
+    password = "PASSWORD"
+    robot_id = "ROBOT_ID"
+    robot_secret = "ROBOT_SECRET"
 
 
 def validate_check_credentials(
@@ -35,12 +44,12 @@ def validate_check_credentials(
         return CredentialTypes.robot
 
 
-class Settings(BaseSettings):
-    url: str = Field(..., env="authup_url")
-    username: str | None = Field(None, env="authup_username")
-    password: SecretStr | None = Field(None, env="authup_password")
-    robot_id: str | None = Field(None, env="authup_robot_id")
-    robot_secret: SecretStr | None = Field(None, env="authup_robot_secret")
+class Settings(BaseModel):
+    url: str
+    username: str | None
+    password: SecretStr | None
+    robot_id: str | None
+    robot_secret: SecretStr | None
 
     @property
     def token_url(self):
@@ -59,3 +68,10 @@ class Settings(BaseSettings):
             values.get("robot_secret"),
         )
         return values
+
+    @classmethod
+    def from_env(cls, prefix: str = "AUTHUP") -> "Settings":
+        settings_dict = {}
+        for env_var in EnvVars:
+            settings_dict[env_var.name] = os.getenv(f"{prefix}_{env_var.value}")
+        return cls(**settings_dict)

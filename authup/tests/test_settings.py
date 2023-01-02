@@ -60,13 +60,13 @@ def test_settings_from_env():
         },
     ):
         with pytest.raises(ValidationError):
-            Settings()
+            Settings.from_env()
 
     with mock.patch.dict(
         os.environ, {"AUTHUP_URL": "https://authup.org", "AUTHUP_USERNAME": "test"}
     ):
         with pytest.raises(ValidationError):
-            Settings()
+            Settings.from_env()
 
     with mock.patch.dict(
         os.environ,
@@ -82,19 +82,19 @@ def test_settings_from_env():
         print(os.getenv("authup_password"))
         print(os.getenv("authup_username"))
 
-        settings = Settings()
+        settings = Settings.from_env()
         assert settings.url == "https://authup.org"
 
     with mock.patch.dict(
         os.environ, {"AUTHUP_URL": "https://authup.org", "AUTHUP_ROBOT_ID": "test"}
     ):
         with pytest.raises(ValidationError):
-            Settings()
+            Settings.from_env()
     with mock.patch.dict(
         os.environ, {"AUTHUP_URL": "https://authup.org", "AUTHUP_ROBOT_SECRET": "test"}
     ):
         with pytest.raises(ValidationError):
-            Settings()
+            Settings.from_env()
     with mock.patch.dict(
         os.environ,
         {
@@ -108,7 +108,7 @@ def test_settings_from_env():
         print("username", os.getenv("AUTHUP_USERNAME"))
         print("url", os.getenv("AUTHUP_URL"))
 
-        Settings()
+        Settings.from_env()
 
 
 def test_urls():
