@@ -1,7 +1,7 @@
-import os
 import enum
+import os
 
-from pydantic import BaseModel, root_validator, SecretStr
+from pydantic import BaseModel, SecretStr, root_validator
 
 
 class CredentialTypes(enum.Enum):

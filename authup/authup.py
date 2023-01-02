@@ -1,10 +1,7 @@
 import datetime
-from logging import info, warning
 
-from authup.settings import Settings, validate_check_credentials, CredentialTypes
+from authup.settings import CredentialTypes, Settings, validate_check_credentials
 from authup.token import TokenResponse, get_token, get_token_async
-
-from pydantic import SecretStr
 
 
 class Authup:

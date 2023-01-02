@@ -1,4 +1,5 @@
 from httpx import Auth
+
 from authup.plugins.base import AuthupPluginBase
 
 

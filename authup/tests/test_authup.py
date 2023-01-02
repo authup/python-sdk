@@ -1,11 +1,11 @@
-import os
 import datetime
+import os
 
 import pytest
+from dotenv import find_dotenv, load_dotenv
 
 from authup import Authup
 from authup.settings import Settings
-from dotenv import load_dotenv, find_dotenv
 
 
 def test_init():
@@ -61,7 +61,6 @@ async def test_get_token():
     load_dotenv(find_dotenv())
     authup_url = os.getenv("AUTHUP_URL")
     print(authup_url)
-    token_url = authup_url + "/token"
 
     # test with username and password
     username = os.getenv("AUTHUP_USERNAME")

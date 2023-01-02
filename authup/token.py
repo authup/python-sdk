@@ -1,7 +1,7 @@
 import httpx
 
 from authup.schemas import TokenResponse
-from authup.settings import validate_check_credentials, CredentialTypes
+from authup.settings import CredentialTypes, validate_check_credentials
 
 
 def get_token(
