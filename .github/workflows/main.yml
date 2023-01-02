@@ -15,37 +15,37 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3.9
 
-  steps:
-    - uses: actions/checkout@v3
-    - name: Setup python
-      uses: actions/setup-python@v4
-      with:
-          python-version: 3.11
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+            python-version: 3.11
 
-    - name: Install Poetry
-      uses: snok/install-poetry@v1
-      #----------------------------------------------
-      #       load cached venv if cache exists
-      #----------------------------------------------
-    - name: Load cached venv
-      id: cached-poetry-dependencies
-      uses: actions/cache@v3
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      #----------------------------------------------
-    - name: Install dependencies
-      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --no-interaction --no-root --with=dev --all-extras
-      #----------------------------------------------
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        #----------------------------------------------
+        #       load cached venv if cache exists
+        #----------------------------------------------
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+        #----------------------------------------------
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root --with=dev --all-extras
+        #----------------------------------------------
 
-    - name: Run tests with coverage
-      run: |
-        poetry run coverage -m pytest
-        poetry run coverage xml
+      - name: Run tests with coverage
+        run: |
+          poetry run coverage -m pytest
+          poetry run coverage xml
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        fail_ci_if_error: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true
 
