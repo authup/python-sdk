@@ -4,11 +4,6 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
-def to_camel(string: str) -> str:
-    split = string.split("_")
-    return split[0] + "".join(word.capitalize() for word in split[1:])
-
-
 class UserPermission(BaseModel):
     id: str
     negation: bool
@@ -35,16 +30,11 @@ class User(BaseModel):
     status_message: Optional[str] = None
 
 
-class Token(BaseModel):
-    exp: int
-    iat: int
-    iss: str
-    remote_address: str
-    sub: str
-    sub_kind: str
-
-    class Config:
-        alias_generator = to_camel
+class TokenResponse(BaseModel):
+    token_type: str
+    expires_in: int
+    access_token: str
+    refresh_token: Optional[str] = None
 
 
 class UserResponse(BaseModel):

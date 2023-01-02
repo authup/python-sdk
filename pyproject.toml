@@ -10,15 +10,22 @@ httpx = "^0.23.1"
 pydantic = "^1.10.4"
 fastapi = {version="^0.88.0", optional=true}
 requests = {version="^2.26.0", optional=true}
+flask = {version="^2.0.2", optional=true}
+
 [tool.poetry.extras]
 fastapi = ["fastapi"]
 requests = ["requests"]
+flask = ["flask"]
+
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.201"
 pytest = "^7.2.0"
 black = "^22.12.0"
 coverage = "^7.0.1"
+python-dotenv = "^0.21.0"
+pytest-dotenv = "^0.5.2"
+pytest-asyncio = "^0.20.3"
 
 
 [tool.ruff]
