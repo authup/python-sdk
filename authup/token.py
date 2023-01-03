@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import httpx
 
 from authup.schemas import TokenIntrospectionResponse, TokenResponse

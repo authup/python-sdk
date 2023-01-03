@@ -4,9 +4,9 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
-class UserPermission(BaseModel):
-    id: str | None
+class Permission(BaseModel):
     inverse: bool
+    name: str
     power: int
     condition: Optional[str] = None
     target: Optional[str] = None
@@ -25,7 +25,7 @@ class User(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     name_locked: bool
-    permissions: Optional[List[UserPermission]] = None
+    permissions: Optional[List[Permission]] = None
     status: Optional[str] = None
     status_message: Optional[str] = None
 
@@ -51,7 +51,7 @@ class TokenIntrospectionResponse(BaseModel):
     email: str
     email_verified: bool
     updated_at: int
-    permissions: Optional[List[UserPermission]] = None
+    permissions: Optional[List[Permission]] = None
 
 
 class TokenResponse(BaseModel):

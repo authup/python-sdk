@@ -1,9 +1,9 @@
-from authup.schemas import TokenIntrospectionResponse, UserPermission
+from authup.schemas import TokenIntrospectionResponse, Permission
 
 
 def check_permissions(
     token_introspection: TokenIntrospectionResponse,
-    required_permissions: list[UserPermission],
+    required_permissions: list[Permission],
 ) -> bool:
     """
     Check if a token has the required permissions
@@ -21,8 +21,8 @@ def check_permissions(
 
 
 def _check_permissions(
-    token_permissions: list[UserPermission],
-    required_permissions: list[UserPermission],
+    token_permissions: list[Permission],
+    required_permissions: list[Permission],
 ) -> bool:
     """
     Compare the required permissions with the token permissions, taking inverse and power into account
@@ -31,16 +31,16 @@ def _check_permissions(
     :return:
     """
 
-    token_perm_dict = {p.target: p for p in token_permissions}
+    token_perm_dict = {p.name: p for p in token_permissions}
 
     for required_permission in required_permissions:
         # the required permission is not in the token permissions
-        if required_permission.target not in token_perm_dict:
+        if required_permission.name not in token_perm_dict:
             return False
 
         # check for inverse and compare power
-        token_permission = token_perm_dict[required_permission.target]
-        if token_permission.inverse:
+        token_permission = token_perm_dict[required_permission.name]
+        if required_permission.inverse:
             if token_permission.power >= required_permission.power:
                 return False
         else:

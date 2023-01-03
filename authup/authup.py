@@ -1,18 +1,21 @@
 import datetime
 
+import httpx
+
+from authup.schemas import User
 from authup.settings import CredentialTypes, Settings, validate_check_credentials
 from authup.token import TokenResponse, get_token, get_token_async
 
 
 class Authup:
     def __init__(
-        self,
-        url: str = None,
-        username: str = None,
-        password: str = None,
-        robot_id: str = None,
-        robot_secret: str = None,
-        settings: Settings = None,
+            self,
+            url: str = None,
+            username: str = None,
+            password: str = None,
+            robot_id: str = None,
+            robot_secret: str = None,
+            settings: Settings = None,
     ):
         if settings:
             self.settings = settings
@@ -100,11 +103,20 @@ class Authup:
         self._check_token()
         return {"Authorization": f"Bearer {self.token.access_token}"}
 
-    def get_user(self, token: str):
-        pass
+    def get_user(self, token: str) -> User:
+        url = self.settings.user_url + "/@me"
+        headers = {"Authorization": f"Bearer {token}"}
+        response = httpx.get(url, headers=headers)
+        response.raise_for_status()
+        return User.parse_raw(response.content)
 
-    async def get_user_async(self, token: str):
-        pass
+    async def get_user_async(self, token: str) -> User:
+        url = self.settings.user_url + "/@me"
+        headers = {"Authorization": f"Bearer {token}"}
+        async with httpx.AsyncClient() as client:
+            response = await client.get(url, headers=headers)
+            response.raise_for_status()
+            return User.parse_raw(response.content)
 
     def _check_token(self):
         if not self.token or self._is_expired():

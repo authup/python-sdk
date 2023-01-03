@@ -9,6 +9,15 @@ from authup import Authup
 from authup.settings import Settings
 
 
+@pytest.fixture
+def authup_instance():
+    authup = Authup(
+        url=os.getenv("AUTHUP_URL"),
+        username=os.getenv("AUTHUP_USERNAME"),
+        password=os.getenv("AUTHUP_PASSWORD"),
+    )
+    return authup
+
 def test_init():
     authup = Authup(
         url="https://authup.org",
@@ -98,28 +107,36 @@ async def test_get_token():
     assert token.access_token
 
 
-def test_headers():
-    authup = Authup(
-        url=os.getenv("AUTHUP_URL"),
-        username=os.getenv("AUTHUP_USERNAME"),
-        password=os.getenv("AUTHUP_PASSWORD"),
-    )
-
-    headers = authup.get_authorization_header()
+def test_headers(authup_instance):
+    headers = authup_instance.get_authorization_header()
     assert headers
 
-    print(f"Token expires at {authup.token_expires_at}")
+    print(f"Token expires at {authup_instance.token_expires_at}")
     time.sleep(1)
 
-    authup.token_expires_at = datetime.datetime.now() - datetime.timedelta(hours=1)
-    print(f"Token expires at {authup.token_expires_at}")
-    headers = authup.get_authorization_header()
+    authup_instance.token_expires_at = datetime.datetime.now() - datetime.timedelta(hours=1)
+    print(f"Token expires at {authup_instance.token_expires_at}")
+    headers = authup_instance.get_authorization_header()
 
-    print(f"Token expires at {authup.token_expires_at}")
+    print(f"Token expires at {authup_instance.token_expires_at}")
 
     assert headers
-    assert authup.token_expires_at > datetime.datetime.now()
+    assert authup_instance.token_expires_at > datetime.datetime.now()
 
-    token = authup.get_token()
+    token = authup_instance.get_token()
     assert token
     assert token.access_token
+
+
+def test_get_user(authup_instance):
+    token = authup_instance.get_token()
+    user = authup_instance.get_user(token.access_token)
+    assert user
+    print(user)
+
+
+@pytest.mark.asyncio
+async def test_get_user_async(authup_instance):
+    token = await authup_instance.get_token_async()
+    user = await authup_instance.get_user_async(token.access_token)
+    assert user
