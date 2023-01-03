@@ -1,6 +1,6 @@
 import httpx
 
-from authup.schemas import TokenResponse
+from authup.schemas import TokenIntrospectionResponse, TokenResponse
 from authup.settings import CredentialTypes, validate_check_credentials
 
 
@@ -63,6 +63,34 @@ async def get_token_async(
 
     r.raise_for_status()
     return TokenResponse.parse_raw(r.content)
+
+
+async def introspect_token_async(
+    token_introspect_url: str,
+    token: str,
+    headers: dict = None,
+) -> TokenIntrospectionResponse:
+    """
+    Validate a token by sending it to the token url
+    :param token_introspect_url:
+    :param token:
+    :param headers:
+    :return:
+    """
+
+    if not token_introspect_url:
+        raise ValueError("No token url provided")
+    if not token:
+        raise ValueError("No token provided")
+
+    async with httpx.AsyncClient() as client:
+        r = await client.post(
+            token_introspect_url, headers=headers, data={"token": token}
+        )
+
+    r.raise_for_status()
+
+    return TokenIntrospectionResponse.parse_raw(r.content)
 
 
 def _make_token_data(

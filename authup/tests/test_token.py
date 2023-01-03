@@ -4,6 +4,7 @@ import pytest
 from dotenv import find_dotenv, load_dotenv
 
 from authup import get_token, get_token_async
+from authup.token import introspect_token_async
 
 load_dotenv(find_dotenv())
 
@@ -194,4 +195,48 @@ async def test_get_token_async():
             password=None,
             robot_id=None,
             robot_secret=None,
+        )
+
+
+@pytest.mark.asyncio
+async def test_introspect_token_async():
+    authup_url = os.getenv("AUTHUP_URL")
+    token_url = authup_url + "/token"
+    introspect_url = token_url + "/introspect"
+
+    # test with username and password
+    username = os.getenv("AUTHUP_USERNAME")
+    password = os.getenv("AUTHUP_PASSWORD")
+
+    token = await get_token_async(
+        token_url=token_url,
+        username=username,
+        password=password,
+    )
+
+    assert token.access_token
+
+    introspect_result = await introspect_token_async(
+        token_introspect_url=introspect_url,
+        token=token.access_token,
+    )
+
+    assert introspect_result
+
+    with pytest.raises(Exception):
+        introspect_result = await introspect_token_async(
+            token_introspect_url=introspect_url,
+            token="token.access_token",
+        )
+
+    with pytest.raises(ValueError):
+        await introspect_token_async(
+            token_introspect_url=None,
+            token="token.access_token",
+        )
+
+    with pytest.raises(ValueError):
+        await introspect_token_async(
+            token_introspect_url=introspect_url,
+            token=None,
         )

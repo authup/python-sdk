@@ -5,11 +5,11 @@ from pydantic import BaseModel
 
 
 class UserPermission(BaseModel):
-    id: str
-    negation: bool
+    id: str | None
+    inverse: bool
     power: int
     condition: Optional[str] = None
-    fields: Optional[List[str]] = None
+    target: Optional[str] = None
 
 
 class User(BaseModel):
@@ -28,6 +28,30 @@ class User(BaseModel):
     permissions: Optional[List[UserPermission]] = None
     status: Optional[str] = None
     status_message: Optional[str] = None
+
+
+class TokenIntrospectionResponse(BaseModel):
+    active: bool
+    client_id: str | None
+    exp: int
+    iat: int
+    iss: str
+    jti: str
+    scope: str
+    sub: str
+    kind: str
+    realm_id: str
+    realm_name: str
+    username: str | None
+    preferred_username: str
+    family_name: str | None
+    given_name: str | None
+    name: str
+    nickname: str
+    email: str
+    email_verified: bool
+    updated_at: int
+    permissions: Optional[List[UserPermission]] = None
 
 
 class TokenResponse(BaseModel):

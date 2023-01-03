@@ -7,12 +7,19 @@ The plugins are used to integrate Authup with different python frameworks and li
 
 ## Supported Python frameworks
 
-| Plugin                                               | Extra        | Sync | Async | version |
-|------------------------------------------------------|--------------|:----:|------:|---------|
-| [httpx](https://github.com/encode/httpx)             |              |  ✅   |     ✅ | 0.0.1   |
-| [requests](https://github.com/psf/requests)          | `[requests]` |  ✅   |     ❌ | 0.1.0   |
-| [FastApi](https://fastapi.tiangolo.com/)             | `[fastapi]`  |  ⏳   |     ⏳ |         |
-| [Flask](https://flask.palletsprojects.com/en/2.2.x/) | `[flask]`    |  ⏳   |     ⏳ |         |
+### Client
+| Plugin                                      | Extra        | Sync | Async |
+|---------------------------------------------|--------------|:----:|------:|
+| [httpx](https://github.com/encode/httpx)    |              |  ✅   |     ✅ |
+| [requests](https://github.com/psf/requests) | `[requests]` |  ✅   |     ❌ |
+
+### Server
+
+| Plugin                                                        | Extra       | Sync | Async | Middleware | User |
+|---------------------------------------------------------------|-------------|:----:|------:|------------|------|
+| [FastApi](https://fastapi.tiangolo.com/)                      | `[fastapi]` |  ❌   |     ✅ | ✅          | ⏳    |
+| [ASGI](https://asgi.readthedocs.io/en/latest/specs/main.html) | `[asgi]`    |  ❌   |     ✅ | ✅          | ⏳    |
+| [Flask](https://flask.palletsprojects.com/en/2.2.x/)          | `[flask]`   |  ⏳   |     ⏳ | ⏳          | ⏳    |
 
 
 ## Installation
@@ -58,7 +65,7 @@ The following plugins all expect the same arguments as the `Authup` class with t
 app as a first argument for server side libraries (e.g. FastApi, Flask).
 
 ### httpx
-For synchronously using the plugin with httpx, you can use the `AuthupHttpx` class and pass an instance to your
+For synchronously using the plugin with [httpx](https://github.com/encode/httpx) , you can use the `AuthupHttpx` class and pass an instance to your
 `httpx.Client` or a basic `httpx.Request` as the `auth` parameter:
 
 ```python
@@ -96,14 +103,14 @@ authup = AuthupHttpxAsync(
     password="password",
 )
 
-with httpx.AsyncClient(auth=authup) as client:
+async with httpx.AsyncClient(auth=authup) as client:
     response = await client.get("https://authup.org")
     print(response.status_code)
 
 ```
 
 ### requests
-Since requests is a synchronous library, the plugin is also synchronous. You can use the `AuthupRequests` class and
+Since [requests](https://github.com/psf/requests) is a synchronous library, the plugin is also synchronous. You can use the `AuthupRequests` class and
 use it with the `requests.Session` or the `requests.request` functions:
 > **Note**
 > Requires the `requests` extra to be installed. `pip install authup-py[requests]`
@@ -130,6 +137,56 @@ print(response.status_code)
 
 ```
 
+### ASGI Middleware
+
+The `AuthupASGIMiddleware` class can be used as an ASGI middleware for any ASGI framework (i.e. FastAPI, Starlette). 
+The middleware will check the incoming requests for a valid token and otherwise return a 401 response.
+
+The first argument is the ASGI application and the second argument is the URL of the authup instance.
+> **Note**
+> Requires the `asgi` extra to be installed. `pip install authup-py[asgi]`
+
+The following shows a simple example for using the middleware with a FastAPI application:
+
+> **Note**
+> Expects a running authup instance available at the given URL.
+> 
+```python
+from fastapi import FastAPI
+from authup.plugins.asgi import AuthupASGIMiddleware
+
+app = FastAPI()
+
+authup_url = "https://authup.org"  # change to your authup instance
+@app.get("/test")
+async def test():
+    return {"message": "Hello World"}
+
+# register the middleware pass the authup url as argument
+app.add_middleware(AuthupASGIMiddleware, authup_url=authup_url)
+
+```
+Now you can access the `/test` endpoint without a token and will receive a 401 response. When using a valid token, you will receive the expected response.
+
+```python
+import httpx
+from authup.plugins.httpx import AuthupHttpx
+
+# no token or invalid token raises 401
+response = httpx.get("http://localhost:8000/test") # 401
+print(response.status_code)
+
+# valid token receives the expected response
+authup = AuthupHttpx(
+    url="https://authup.org",
+    username="username",
+    password="password",
+)
+
+response = httpx.get("http://localhost:8000/test", auth=authup) # 200
+print(response.status_code)
+
+```
 
 
 ## How to develop
