@@ -1,8 +1,13 @@
 [tool.poetry]
-name = "authup-py"
+name = "authup"
 version = "0.0.1"
-description = ""
+description = "Pyton plugins for authup framework"
 authors = ["Michael Graf <michael.graf3110@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/migraf/authup-py.git"
+readme = "README.md"
+homepage = "https://authup.org"
+
 
 [tool.poetry.dependencies]
 python = "^3.9"

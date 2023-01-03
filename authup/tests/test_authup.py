@@ -1,5 +1,6 @@
 import datetime
 import os
+import time
 
 import pytest
 from dotenv import find_dotenv, load_dotenv
@@ -104,12 +105,22 @@ def test_headers():
         password=os.getenv("AUTHUP_PASSWORD"),
     )
 
-    headers = authup.authorization_header
+    headers = authup.get_authorization_header()
     assert headers
 
-    authup.token_expires_at = datetime.datetime.now() - datetime.timedelta(seconds=1)
-    headers = authup.authorization_header
+    print(f"Token expires at {authup.token_expires_at}")
+    time.sleep(1)
+
+    authup.token_expires_at = datetime.datetime.now() - datetime.timedelta(hours=1)
+    print(f"Token expires at {authup.token_expires_at}")
+    headers = authup.get_authorization_header()
+
+    print(f"Token expires at {authup.token_expires_at}")
 
     assert headers
     assert authup.token_expires_at > datetime.datetime.now()
+
+    token = authup.get_token()
+    assert token
+    assert token.access_token
 

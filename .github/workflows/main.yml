@@ -13,6 +13,17 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      authup:
+        image: "ghcr.io/tada5hi/authup-server:latest"
+        env:
+          PORT: 3010
+        mounts:
+          - type: bind
+            source: ./authup
+            target: /app
+
+
     steps:
       - uses: actions/checkout@v3
       - name: Setup python

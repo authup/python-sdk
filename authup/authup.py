@@ -96,8 +96,7 @@ class Authup:
             )
         return token
 
-    @property
-    def authorization_header(self) -> dict:
+    def get_authorization_header(self) -> dict:
         self._check_token()
         return {"Authorization": f"Bearer {self.token.access_token}"}
 
@@ -110,6 +109,7 @@ class Authup:
 
     def _check_token(self):
         if not self.token or self._is_expired():
+            print("Token expired, getting new token")
             self.token = self.get_token()
 
     def _is_expired(self) -> bool:
@@ -120,9 +120,12 @@ class Authup:
         return now > self.token_expires_at
 
     def _set_token_expires_at(self, delta: int):
-        self.token_expires_at = datetime.datetime.now() + datetime.timedelta(
-            seconds=delta
-        )
+
+        now = datetime.datetime.now()
+        print("now", now)
+
+        self.token_expires_at = now + datetime.timedelta(seconds=delta)
+        print(f"Delta {delta} Setting token expires at to {self.token_expires_at}")
 
     def __repr__(self):
         if self.settings.username:
