@@ -9,13 +9,13 @@ from authup.token import TokenResponse, get_token, get_token_async
 
 class Authup:
     def __init__(
-            self,
-            url: str = None,
-            username: str = None,
-            password: str = None,
-            robot_id: str = None,
-            robot_secret: str = None,
-            settings: Settings = None,
+        self,
+        url: str = None,
+        username: str = None,
+        password: str = None,
+        robot_id: str = None,
+        robot_secret: str = None,
+        settings: Settings = None,
     ):
         if settings:
             self.settings = settings

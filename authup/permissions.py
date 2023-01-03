@@ -1,4 +1,4 @@
-from authup.schemas import TokenIntrospectionResponse, Permission
+from authup.schemas import Permission, TokenIntrospectionResponse
 
 
 def check_permissions(

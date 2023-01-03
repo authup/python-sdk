@@ -18,6 +18,7 @@ def authup_instance():
     )
     return authup
 
+
 def test_init():
     authup = Authup(
         url="https://authup.org",
@@ -114,7 +115,9 @@ def test_headers(authup_instance):
     print(f"Token expires at {authup_instance.token_expires_at}")
     time.sleep(1)
 
-    authup_instance.token_expires_at = datetime.datetime.now() - datetime.timedelta(hours=1)
+    authup_instance.token_expires_at = datetime.datetime.now() - datetime.timedelta(
+        hours=1
+    )
     print(f"Token expires at {authup_instance.token_expires_at}")
     headers = authup_instance.get_authorization_header()
 
