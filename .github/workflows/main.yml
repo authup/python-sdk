@@ -18,6 +18,10 @@ jobs:
         image: "ghcr.io/tada5hi/authup-server:latest"
         env:
           PORT: 3010
+          ADMIN_USER: admin
+          ADMIN_PASSWORD: start123
+          NODE_ENV: test
+          PUBLIC_URL: http://authup:3010/
         mounts:
           - type: bind
             source: ./authup

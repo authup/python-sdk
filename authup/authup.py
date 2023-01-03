@@ -100,7 +100,6 @@ class Authup:
         self._check_token()
         return {"Authorization": f"Bearer {self.token.access_token}"}
 
-
     def get_user(self, token: str):
         pass
 

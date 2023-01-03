@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "authup"
-version = "0.0.1"
+version = "0.1.0"
 description = "Pyton plugins for authup framework"
 authors = ["Michael Graf <michael.graf3110@gmail.com>"]
 license = "MIT"
@@ -21,6 +21,7 @@ flask = {version="^2.0.2", optional=true}
 fastapi = ["fastapi"]
 requests = ["requests"]
 flask = ["flask"]
+all = ["fastapi", "requests", "flask"]
 
 
 [tool.poetry.group.dev.dependencies]

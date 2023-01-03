@@ -123,4 +123,3 @@ def test_headers():
     token = authup.get_token()
     assert token
     assert token.access_token
-
