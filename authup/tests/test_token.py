@@ -9,7 +9,34 @@ from authup.token import introspect_token_async
 load_dotenv(find_dotenv())
 
 
-def test_get_token():
+# @pytest.fixture
+# def authup_instance():
+#     authup = Authup(
+#         url=os.getenv("AUTHUP_URL"),
+#         username=os.getenv("AUTHUP_USERNAME"),
+#         password=os.getenv("AUTHUP_PASSWORD"),
+#     )
+#     return authup
+#
+#
+# @pytest.fixture
+# def robot_creds(authup_instance):
+#     secret = os.getenv("AUTHUP_ROBOT_SECRET")
+#
+#     auth = AuthupHttpx(
+#         url=authup_instance.settings.url,
+#         username=authup_instance.settings.username,
+#         password=authup_instance.settings.password.get_secret_value(),
+#     )
+#
+#     r = httpx.get(authup_instance.settings.url + "/robots", auth=auth)
+#
+#     robot_id = r.json()["data"][0]["id"]
+#
+#     return robot_id, secret
+
+
+def test_get_token(robot_creds):
     authup_url = os.getenv("AUTHUP_URL")
     print(authup_url)
     token_url = authup_url + "/token"
@@ -20,8 +47,6 @@ def test_get_token():
     # test with username and password
     username = os.getenv("AUTHUP_USERNAME")
     password = os.getenv("AUTHUP_PASSWORD")
-
-    print(username, password)
 
     token = get_token(
         token_url=token_url,
@@ -36,10 +61,7 @@ def test_get_token():
 
     # test with robot_id and robot_secret
 
-    robot_id = os.getenv("AUTHUP_ROBOT_ID")
-    robot_secret = os.getenv("AUTHUP_ROBOT_SECRET")
-
-    print(robot_id, robot_secret)
+    robot_id, robot_secret = robot_creds
 
     token = get_token(token_url=token_url, robot_id=robot_id, robot_secret=robot_secret)
 
@@ -103,7 +125,7 @@ def test_get_token():
 
 
 @pytest.mark.asyncio
-async def test_get_token_async():
+async def test_get_token_async(robot_creds):
     authup_url = os.getenv("AUTHUP_URL")
     print(authup_url)
     token_url = authup_url + "/token"
@@ -114,8 +136,6 @@ async def test_get_token_async():
     # test with username and password
     username = os.getenv("AUTHUP_USERNAME")
     password = os.getenv("AUTHUP_PASSWORD")
-
-    print(username, password)
 
     token = await get_token_async(
         token_url=token_url,
@@ -130,10 +150,7 @@ async def test_get_token_async():
 
     # test with robot_id and robot_secret
 
-    robot_id = os.getenv("AUTHUP_ROBOT_ID")
-    robot_secret = os.getenv("AUTHUP_ROBOT_SECRET")
-
-    print(robot_id, robot_secret)
+    robot_id, robot_secret = robot_creds
 
     token = await get_token_async(
         token_url=token_url, robot_id=robot_id, robot_secret=robot_secret
@@ -224,7 +241,7 @@ async def test_introspect_token_async():
     assert introspect_result
 
     with pytest.raises(Exception):
-        introspect_result = await introspect_token_async(
+        await introspect_token_async(
             token_introspect_url=introspect_url,
             token="token.access_token",
         )

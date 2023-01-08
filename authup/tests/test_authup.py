@@ -7,18 +7,35 @@ import pytest
 from authup import Authup
 from authup.settings import Settings
 
+# @pytest.fixture
+# def authup_instance():
+#     authup = Authup(
+#         url=os.getenv("AUTHUP_URL"),
+#         username=os.getenv("AUTHUP_USERNAME"),
+#         password=os.getenv("AUTHUP_PASSWORD"),
+#     )
+#     return authup
+#
+#
+# @pytest.fixture
+# def robot_creds(authup_instance):
+#     secret = os.getenv("AUTHUP_ROBOT_SECRET")
+#
+#     auth = AuthupHttpx(
+#         url=authup_instance.settings.url,
+#         username=authup_instance.settings.username,
+#         password=authup_instance.settings.password.get_secret_value(),
+#     )
+#
+#     r = httpx.get(authup_instance.settings.url + "/robots", auth=auth)
+#
+#
+#     robot_id = r.json()["data"][0]["id"]
+#
+#     return robot_id, secret
 
-@pytest.fixture
-def authup_instance():
-    authup = Authup(
-        url=os.getenv("AUTHUP_URL"),
-        username=os.getenv("AUTHUP_USERNAME"),
-        password=os.getenv("AUTHUP_PASSWORD"),
-    )
-    return authup
 
-
-def test_init():
+def test_init(robot_creds):
     authup = Authup(
         url="https://authup.org",
         username="test",
@@ -32,8 +49,7 @@ def test_init():
 
     username = os.getenv("AUTHUP_USERNAME")
     password = os.getenv("AUTHUP_PASSWORD")
-    robot_id = os.getenv("AUTHUP_ROBOT_ID")
-    robot_secret = os.getenv("AUTHUP_ROBOT_SECRET")
+    robot_id, robot_secret = robot_creds
 
     # test with username and password
     authup = Authup(url="https://authup.org", username=username, password=password)
@@ -67,15 +83,17 @@ def test_init():
 
 
 @pytest.mark.asyncio
-async def test_get_token():
+async def test_get_token(robot_creds):
     authup_url = os.getenv("AUTHUP_URL")
-    print(authup_url)
 
     # test with username and password
     username = os.getenv("AUTHUP_USERNAME")
     password = os.getenv("AUTHUP_PASSWORD")
-    robot_id = os.getenv("AUTHUP_ROBOT_ID")
-    robot_secret = os.getenv("AUTHUP_ROBOT_SECRET")
+
+    robot_id, robot_secret = robot_creds
+
+    # robot_id = os.getenv("AUTHUP_ROBOT_ID")
+    # robot_secret = os.getenv("AUTHUP_ROBOT_SECRET")
 
     # test sync + async with username and password
 

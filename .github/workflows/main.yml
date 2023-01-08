@@ -12,21 +12,24 @@ on:
 
 jobs:
   test:
+    env:
+      AUTHUP_URL: http://127.0.0.1:3010
+      AUTHUP_USERNAME: ${{ secrets.ADMIN_USER }}
+      AUTHUP_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      AUTHUP_ROBOT_SECRET: ${{ secrets.ROBOT_SECRET }}
     runs-on: ubuntu-latest
     services:
       authup:
         image: "ghcr.io/tada5hi/authup-server:latest"
         env:
           PORT: 3010
-          ADMIN_USER: admin
-          ADMIN_PASSWORD: start123
+          ADMIN_USER: ${{ secrets.ADMIN_USER }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          ROBOT_SECRET: ${{ secrets.ROBOT_SECRET }}
           NODE_ENV: test
           PUBLIC_URL: http://authup:3010/
-        mounts:
-          - type: bind
-            source: ./authup
-            target: /app
-
+        ports:
+          - "3010:3010"
 
     steps:
       - uses: actions/checkout@v3
