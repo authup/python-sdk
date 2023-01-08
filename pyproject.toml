@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "authup"
-version = "0.2.0"
+version = "0.3.0"
 description = "Python plugins for the Authup authentication and authorization framework"
 authors = ["Michael Graf <michael.graf3110@gmail.com>"]
 license = "MIT"
@@ -13,15 +13,16 @@ homepage = "https://authup.org"
 python = "^3.9"
 httpx = "^0.23.2"
 pydantic = "^1.10.4"
-fastapi = {version="^0.88.0", optional=true}
+fastapi = {version="^0.78.0", optional=true}
 requests = {version="^2.26.0", optional=true}
-flask = {version="^2.0.2", optional=true}
+flask = {version="^2.0.0", optional=true}
 starlette = {version="*", optional=true}
 
 [tool.poetry.extras]
 fastapi = ["fastapi"]
 requests = ["requests"]
 flask = ["flask"]
+asgi = ["starlette"]
 all = ["fastapi", "requests", "flask"]
 
 

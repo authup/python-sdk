@@ -1,4 +1,8 @@
 [![CI](https://github.com/migraf/authup-py/actions/workflows/main.yml/badge.svg)](https://github.com/migraf/authup-py/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/migraf/authup-py/branch/main/graph/badge.svg?token=qILJEFdh8I)](https://codecov.io/gh/migraf/authup-py)
+[![Maintainability](https://api.codeclimate.com/v1/badges/520401d6c07170a6e413/maintainability)](https://codeclimate.com/github/migraf/authup-py/maintainability)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 # Authup Python Plugins
 
 This repository contains python plugins for using the [Authup](https://authup.org) authentication and authorization
@@ -17,7 +21,7 @@ The plugins are used to integrate Authup with different python frameworks and li
 
 | Plugin                                                        | Extra       | Sync | Async | Middleware | User |
 |---------------------------------------------------------------|-------------|:----:|------:|------------|------|
-| [FastApi](https://fastapi.tiangolo.com/)                      | `[fastapi]` |  ❌   |     ✅ | ✅          | ⏳    |
+| [FastApi](https://fastapi.tiangolo.com/)                      | `[fastapi]` |  ❌   |     ✅ | ✅          | ✅    |
 | [ASGI](https://asgi.readthedocs.io/en/latest/specs/main.html) | `[asgi]`    |  ❌   |     ✅ | ✅          | ✅    |
 | [Flask](https://flask.palletsprojects.com/en/2.2.x/)          | `[flask]`   |  ⏳   |     ⏳ | ⏳          | ⏳    |
 
