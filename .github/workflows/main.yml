@@ -60,7 +60,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          poetry run coverage -m pytest
+          poetry run coverage run -m pytest
           poetry run coverage xml
 
       - name: Upload coverage to Codecov
