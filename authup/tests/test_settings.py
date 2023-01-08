@@ -71,9 +71,9 @@ def test_settings_from_env():
     with mock.patch.dict(
         os.environ,
         {
-            "authup_url": "https://authup.org",
-            "authup_password": "password",
-            "authup_username": "username",
+            "AUTHUP_URL": "https://authup.org",
+            "AUTHUP_PASSWORD": "password",
+            "AUTHUP_USERNAME": "username",
             "AUTHUP_ROBOT_ID": "",
             "AUTHUP_ROBOT_SECRET": "",
         },
@@ -99,8 +99,8 @@ def test_settings_from_env():
         os.environ,
         {
             "AUTHUP_URL": "https://authup.org",
-            "authup_password": "",
-            "authup_username": "",
+            "AUTHUP_PASSWORD": "",
+            "AUTHUP_USERNAME": "",
             "AUTHUP_ROBOT_ID": "test",
             "AUTHUP_ROBOT_SECRET": "test",
         },
