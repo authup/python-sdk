@@ -59,17 +59,16 @@ def test_init(robot_creds):
 async def test_get_token(robot_creds):
     authup_url = os.getenv("AUTHUP_URL")
 
-    # test with username and password
     username = os.getenv("AUTHUP_USERNAME")
     password = os.getenv("AUTHUP_PASSWORD")
 
     robot_id, robot_secret = robot_creds
 
-    # robot_id = os.getenv("AUTHUP_ROBOT_ID")
-    # robot_secret = os.getenv("AUTHUP_ROBOT_SECRET")
+    assert robot_id
+    assert robot_secret
 
+    # test with username and password
     # test sync + async with username and password
-
     authup = Authup(url=authup_url, username=username, password=password)
 
     token = authup.get_token()
