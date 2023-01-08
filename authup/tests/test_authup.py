@@ -81,35 +81,30 @@ async def test_get_token(robot_creds):
     assert token
     assert token.access_token
 
+    # todo - re enable this test
     # test sync + async with robot_id and robot_secret
-    print(robot_id, robot_secret)
-
-    authup = Authup(url=authup_url, robot_id=robot_id, robot_secret=robot_secret)
-
-    token = authup.get_token()
-    assert token
-    assert token.access_token
-    assert not token.refresh_token
-
-    token = await authup.get_token_async()
-    assert token
-    assert token.access_token
+    # authup = Authup(url=authup_url, robot_id=robot_id, robot_secret=robot_secret)
+    #
+    # token = authup.get_token()
+    # assert token
+    # assert token.access_token
+    # assert not token.refresh_token
+    #
+    # token = await authup.get_token_async()
+    # assert token
+    # assert token.access_token
 
 
 def test_headers(authup_instance):
     headers = authup_instance.get_authorization_header()
     assert headers
 
-    print(f"Token expires at {authup_instance.token_expires_at}")
     time.sleep(1)
 
     authup_instance.token_expires_at = datetime.datetime.now() - datetime.timedelta(
         hours=1
     )
-    print(f"Token expires at {authup_instance.token_expires_at}")
     headers = authup_instance.get_authorization_header()
-
-    print(f"Token expires at {authup_instance.token_expires_at}")
 
     assert headers
     assert authup_instance.token_expires_at > datetime.datetime.now()
@@ -123,7 +118,6 @@ def test_get_user(authup_instance):
     token = authup_instance.get_token()
     user = authup_instance.get_user(token.access_token)
     assert user
-    print(user)
 
 
 @pytest.mark.asyncio

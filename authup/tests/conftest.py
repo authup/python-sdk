@@ -31,4 +31,6 @@ def robot_creds(authup_instance):
 
     robot_id = r.json()["data"][0]["id"]
 
+    print(r.json())
+
     return robot_id, secret

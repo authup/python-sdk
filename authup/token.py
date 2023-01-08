@@ -29,7 +29,7 @@ def get_token(
     data = _make_token_data(username, password, robot_id, robot_secret)
 
     r = httpx.post(token_url, data=data, headers=headers)
-
+    print(r.content)
     r.raise_for_status()
     return TokenResponse.parse_raw(r.content)
 
@@ -60,8 +60,9 @@ async def get_token_async(
 
     async with httpx.AsyncClient() as client:
         r = await client.post(token_url, data=data, headers=headers)
-
+    print(r.content)
     r.raise_for_status()
+
     return TokenResponse.parse_raw(r.content)
 
 

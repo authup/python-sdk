@@ -78,9 +78,6 @@ def test_settings_from_env():
             "AUTHUP_ROBOT_SECRET": "",
         },
     ):
-        print(os.getenv("authup_url"))
-        print(os.getenv("authup_password"))
-        print(os.getenv("authup_username"))
 
         settings = Settings.from_env()
         assert settings.url == "https://authup.org"
@@ -105,8 +102,6 @@ def test_settings_from_env():
             "AUTHUP_ROBOT_SECRET": "test",
         },
     ):
-        print("username", os.getenv("AUTHUP_USERNAME"))
-        print("url", os.getenv("AUTHUP_URL"))
 
         Settings.from_env()
 

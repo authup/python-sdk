@@ -22,7 +22,6 @@ async def test_check_permissions():
         token_introspect_url=authup.settings.token_url + "/introspect",
         token=token.access_token,
     )
-    print(introspection_result)
 
     assert introspection_result
 
