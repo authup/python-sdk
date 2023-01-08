@@ -1,10 +1,14 @@
 import datetime
 
-import httpx
-
 from authup.schemas import User
 from authup.settings import CredentialTypes, Settings, validate_check_credentials
-from authup.token import TokenResponse, get_token, get_token_async
+from authup.token import (
+    TokenResponse,
+    get_token,
+    get_token_async,
+    get_user_from_token,
+    get_user_from_token_async,
+)
 
 
 class Authup:
@@ -105,18 +109,13 @@ class Authup:
 
     def get_user(self, token: str) -> User:
         url = self.settings.user_url + "/@me"
-        headers = {"Authorization": f"Bearer {token}"}
-        response = httpx.get(url, headers=headers)
-        response.raise_for_status()
-        return User.parse_raw(response.content)
+        user = get_user_from_token(url, token)
+        return user
 
     async def get_user_async(self, token: str) -> User:
         url = self.settings.user_url + "/@me"
-        headers = {"Authorization": f"Bearer {token}"}
-        async with httpx.AsyncClient() as client:
-            response = await client.get(url, headers=headers)
-            response.raise_for_status()
-            return User.parse_raw(response.content)
+        user = await get_user_from_token_async(url, token)
+        return user
 
     def _check_token(self):
         if not self.token or self._is_expired():

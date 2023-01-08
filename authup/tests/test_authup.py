@@ -3,7 +3,6 @@ import os
 import time
 
 import pytest
-from dotenv import find_dotenv, load_dotenv
 
 from authup import Authup
 from authup.settings import Settings
@@ -69,7 +68,6 @@ def test_init():
 
 @pytest.mark.asyncio
 async def test_get_token():
-    load_dotenv(find_dotenv())
     authup_url = os.getenv("AUTHUP_URL")
     print(authup_url)
 

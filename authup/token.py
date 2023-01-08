@@ -1,6 +1,6 @@
 import httpx
 
-from authup.schemas import TokenIntrospectionResponse, TokenResponse
+from authup.schemas import TokenIntrospectionResponse, TokenResponse, User
 from authup.settings import CredentialTypes, validate_check_credentials
 
 
@@ -63,6 +63,19 @@ async def get_token_async(
 
     r.raise_for_status()
     return TokenResponse.parse_raw(r.content)
+
+
+async def get_user_from_token_async(user_url: str, token: str) -> User:
+    async with httpx.AsyncClient() as client:
+        r = await client.get(url=user_url, headers={"Authorization": f"Bearer {token}"})
+    r.raise_for_status()
+    return User.parse_raw(r.content)
+
+
+def get_user_from_token(user_url: str, token: str) -> User:
+    r = httpx.get(url=user_url, headers={"Authorization": f"Bearer {token}"})
+    r.raise_for_status()
+    return User.parse_raw(r.content)
 
 
 async def introspect_token_async(

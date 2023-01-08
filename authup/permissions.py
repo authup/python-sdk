@@ -1,23 +1,23 @@
-from authup.schemas import Permission, TokenIntrospectionResponse
+from authup.schemas import Permission
 
 
 def check_permissions(
-    token_introspection: TokenIntrospectionResponse,
+    permissions: list[Permission],
     required_permissions: list[Permission],
 ) -> bool:
     """
     Check if a token has the required permissions
-    :param token_introspection:
+    :param permissions:
     :param required_permissions:
     :return:
     """
     if not required_permissions:
         return True
 
-    if not token_introspection.permissions:
+    if not permissions:
         return False
 
-    return _check_permissions(token_introspection.permissions, required_permissions)
+    return _check_permissions(permissions, required_permissions)
 
 
 def _check_permissions(

@@ -2,8 +2,7 @@ version: "3.8"
 
 services:
   authup:
-    image: ghcr.io/tada5hi/authup-server:latest
-    container_name: federated-auth
+    image: tada5hi/authup-server:next
     volumes:
       - ./service_data/auth:/usr/src/app/writable
     ports:

@@ -1,7 +1,7 @@
 [![CI](https://github.com/migraf/authup-py/actions/workflows/main.yml/badge.svg)](https://github.com/migraf/authup-py/actions/workflows/main.yml)
 # Authup Python Plugins
 
-This repository contains python plugins for using the [Authup](https//authup.org) authentication and authorization
+This repository contains python plugins for using the [Authup](https://authup.org) authentication and authorization
 framework in the python language.
 The plugins are used to integrate Authup with different python frameworks and libraries.
 
@@ -18,7 +18,7 @@ The plugins are used to integrate Authup with different python frameworks and li
 | Plugin                                                        | Extra       | Sync | Async | Middleware | User |
 |---------------------------------------------------------------|-------------|:----:|------:|------------|------|
 | [FastApi](https://fastapi.tiangolo.com/)                      | `[fastapi]` |  ❌   |     ✅ | ✅          | ⏳    |
-| [ASGI](https://asgi.readthedocs.io/en/latest/specs/main.html) | `[asgi]`    |  ❌   |     ✅ | ✅          | ⏳    |
+| [ASGI](https://asgi.readthedocs.io/en/latest/specs/main.html) | `[asgi]`    |  ❌   |     ✅ | ✅          | ✅    |
 | [Flask](https://flask.palletsprojects.com/en/2.2.x/)          | `[flask]`   |  ⏳   |     ⏳ | ⏳          | ⏳    |
 
 
@@ -140,7 +140,8 @@ print(response.status_code)
 ### ASGI Middleware
 
 The `AuthupASGIMiddleware` class can be used as an ASGI middleware for any ASGI framework (i.e. FastAPI, Starlette). 
-The middleware will check the incoming requests for a valid token and otherwise return a 401 response.
+The middleware will check the incoming requests for a valid token and otherwise return a 401 response. If you pass the
+optional `user` parameter, the middleware will inject the user object into the request scope (`r.state.user`).
 
 The first argument is the ASGI application and the second argument is the URL of the authup instance.
 > **Note**
@@ -187,6 +188,30 @@ response = httpx.get("http://localhost:8000/test", auth=authup) # 200
 print(response.status_code)
 
 ```
+
+#### Optional user injection
+Set the `user` parameter to `True` when adding the middleware to your ASGI application:
+
+```python
+from fastapi import FastAPI, Request
+from authup.plugins.asgi import AuthupASGIMiddleware
+
+app = FastAPI()
+
+authup_url = "https://authup.org"  # change to your authup instance
+@app.get("/test-user")
+async def test(request: Request):
+    return {"user": request.state.user}
+
+# register the middleware pass the authup url as argument
+app.add_middleware(AuthupASGIMiddleware, authup_url=authup_url, user=True)
+
+```
+
+Calling the `/test-user` endpoint without a token will return a 401 response. When using a valid token, the user object 
+will be injected into the request scope and you will receive the expected response containing your user.
+
+```python
 
 
 ## How to develop

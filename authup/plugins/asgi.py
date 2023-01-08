@@ -2,13 +2,14 @@ from starlette.requests import Request
 from starlette.responses import Response
 from starlette.types import ASGIApp, Receive, Scope, Send
 
-from authup.token import introspect_token_async
+from authup.token import get_user_from_token_async, introspect_token_async
 
 
 class AuthupASGIMiddleware:
-    def __init__(self, app: ASGIApp, authup_url: str) -> None:
+    def __init__(self, app: ASGIApp, authup_url: str, user: bool = False) -> None:
         self.app = app
         self.authup_url = authup_url
+        self.user = user
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if scope["type"] != "http":
@@ -27,6 +28,13 @@ class AuthupASGIMiddleware:
                 raise Exception(f"Invalid token type: {token_type}")
 
             await self.validate_token(token)
+
+            if self.user:
+                user = await get_user_from_token_async(
+                    user_url=f"{self.authup_url}/users/@me", token=token
+                )
+                request.state.user = user.dict()
+
             await self.app(scope, receive, send)
             return
 
