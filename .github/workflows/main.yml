@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       authup:
-        image: "ghcr.io/tada5hi/authup-server:latest"
+        image: "tada5hi/authup-server:latest"
         env:
           PORT: 3010
           ADMIN_USER: ${{ secrets.ADMIN_USER }}
