@@ -1,3 +1,5 @@
+import logging
+
 from authup.schemas import Permission
 
 
@@ -33,21 +35,29 @@ def _check_permissions(
 
     token_perm_dict = {p.name: p for p in token_permissions}
 
+    authorized = True
+
+    missed_permissions = []
+
     for required_permission in required_permissions:
         # the required permission is not in the token permissions
-        if required_permission.name not in token_perm_dict:
-            return False
+        token_permission = token_perm_dict.get(required_permission.name)
+        if not token_permission:
+            authorized = False
+            missed_permissions.append(required_permission)
+            continue
 
         # check for inverse and compare power
-        token_permission = token_perm_dict[required_permission.name]
         if required_permission.inverse:
             if token_permission.power >= required_permission.power:
-                return False
+                authorized = False
+                missed_permissions.append(required_permission.name)
         else:
             if token_permission.power < required_permission.power:
-                return False
+                authorized = False
+                missed_permissions.append(required_permission.name)
 
         # check condition
         # todo: implement condition check
-
-    return True
+    logging.info(f"Missed permissions: {missed_permissions}")
+    return authorized

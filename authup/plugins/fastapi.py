@@ -5,13 +5,13 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from authup.permissions import check_permissions
 from authup.schemas import Permission, User
-from authup.token import get_user_from_token_async
+from authup.token import get_user_from_token_async, introspect_token_async
 
 
 class AuthupUser:
     def __init__(self, url: str):
         self.url = url
-        self.user_url = url + "/user" + "/@me"
+        self.user_url = url + "/users" + "/@me"
 
     async def __call__(
         self, credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())
@@ -40,6 +40,11 @@ class UserPermissions(AuthupUser):
     ) -> User:
         # Get the user
         user = await super().__call__(credentials)
+        permission = await introspect_token_async(
+            token_introspect_url=self.url + "/token/introspect",
+            token=credentials.credentials,
+        )
+        user.permissions = permission.permissions
         # Check the permissions
         authorized = check_permissions(user.permissions, self.permissions)
 

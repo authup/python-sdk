@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class Permission(BaseModel):
-    inverse: bool
+    inverse: Optional[bool] = False
     name: str
     power: int
     condition: Optional[str] = None

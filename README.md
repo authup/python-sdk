@@ -147,7 +147,7 @@ The first argument is the ASGI application and the second argument is the URL of
 > **Note**
 > Requires the `asgi` extra to be installed. `pip install authup-py[asgi]`
 
-The following shows a simple example for using the middleware with a FastAPI application:
+The following shows a simple example for using the middleware with a FastAPI application but it should work with any ASGI framework.
 
 > **Note**
 > Expects a running authup instance available at the given URL.
@@ -209,9 +209,59 @@ app.add_middleware(AuthupASGIMiddleware, authup_url=authup_url, user=True)
 ```
 
 Calling the `/test-user` endpoint without a token will return a 401 response. When using a valid token, the user object 
-will be injected into the request scope and you will receive the expected response containing your user.
+will be injected into the request scope, and you will receive the expected response containing your user.
+
+### FastAPI Dependency
+The `AuthupUser` class can be used as a FastAPI dependency. 
+It will check the incoming requests for a valid token and otherwise return a 401 response. If the token is valid a user object
+will be available in the dependency call.
+
+#### Basic user dependency
+The following shows a simple example for using the dependency with a FastAPI application that will return the user
+object obtained from the token.
 
 ```python
+from fastapi import FastAPI, Depends
+from authup.plugins.fastapi import AuthupUser
+from authup import User
+
+
+app = FastAPI()
+
+user_dependency = AuthupUser(url="http://localhost:3010")
+
+@app.get("/test")
+async def user_test(user: User = Depends(user_dependency)):
+    return {"user": user.dict()}
+
+```
+
+#### Require permissions
+You can also require specific permissions for the user. The following example will only allow users with the 
+`client_add` permission and a power level of over `100`. Otherwise, a 401 response will be returned.
+
+```python
+from fastapi import FastAPI, Depends
+from authup.plugins.fastapi import UserPermissions
+from authup import User, Permission
+
+permissions = [
+        Permission(name="client_add", inverse=False, power=100),
+    ]
+
+required_permissions = UserPermissions(
+    url="http://localhost:3010",
+    permissions=permissions,
+)
+
+app = FastAPI()
+
+@app.get("/test")
+async def user_test(user: User = Depends(required_permissions)):
+    return {"user": user.dict()}
+
+```
+
 
 
 ## How to develop

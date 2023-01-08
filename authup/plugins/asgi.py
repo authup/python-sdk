@@ -19,22 +19,7 @@ class AuthupASGIMiddleware:
         request = Request(scope)
         try:
 
-            auth_header = request.headers.get("Authorization")
-            if not auth_header:
-                raise Exception("Missing Authorization header")
-
-            token_type, token = auth_header.split(" ")
-            if token_type.lower() != "bearer":
-                raise Exception(f"Invalid token type: {token_type}")
-
-            await self.validate_token(token)
-
-            if self.user:
-                user = await get_user_from_token_async(
-                    user_url=f"{self.authup_url}/users/@me", token=token
-                )
-                request.state.user = user.dict()
-
+            await self.check_request(request)
             await self.app(scope, receive, send)
             return
 
@@ -51,3 +36,20 @@ class AuthupASGIMiddleware:
         )
         if not token_introspection.active:
             raise Exception("Inactive token")
+
+    async def check_request(self, request: Request):
+        auth_header = request.headers.get("Authorization")
+        if not auth_header:
+            raise Exception("Missing Authorization header")
+
+        token_type, token = auth_header.split(" ")
+        if token_type.lower() != "bearer":
+            raise Exception(f"Invalid token type: {token_type}")
+
+        await self.validate_token(token)
+
+        if self.user:
+            user = await get_user_from_token_async(
+                user_url=f"{self.authup_url}/users/@me", token=token
+            )
+            request.state.user = user.dict()
