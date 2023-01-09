@@ -10,16 +10,11 @@ on:
       - created
 
 jobs:
-  test:
+  test-versions:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [ '3.7', '3.8', '3.9', '3.10' ]
-    env:
-      AUTHUP_URL: http://127.0.0.1:3010
-      AUTHUP_USERNAME: ${{ secrets.ADMIN_USER }}
-      AUTHUP_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-      AUTHUP_ROBOT_SECRET: ${{ secrets.ROBOT_SECRET }}
     services:
       authup:
         image: "tada5hi/authup-server:latest"
@@ -46,4 +41,9 @@ jobs:
         run: poetry install --no-interaction --no-root --with=dev --all-extras
 
       - name: Test with tox
+        env:
+          AUTHUP_URL: http://127.0.0.1:3010
+          AUTHUP_USERNAME: ${{ secrets.ADMIN_USER }}
+          AUTHUP_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          AUTHUP_ROBOT_SECRET: ${{ secrets.ROBOT_SECRET }}
         run: poetry run tox
