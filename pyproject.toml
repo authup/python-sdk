@@ -94,7 +94,10 @@ python =
     3.11: py311
 
 [testenv]
-commands = pytest
+whitelist_externals = poetry
+commands =
+    poetry install -v --with dev --all-extras
+    poetry run pytest
 """
 
 [build-system]
