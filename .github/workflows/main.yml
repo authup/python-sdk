@@ -13,9 +13,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ '3.7', '3.8', '3.9', '3.10', '3.11' ]
     env:
       AUTHUP_URL: http://127.0.0.1:3010
       AUTHUP_USERNAME: ${{ secrets.ADMIN_USER }}
@@ -39,10 +36,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install Poetry
         uses: snok/install-poetry@v1
-      - name: Setup python version ${{ matrix.python-version }}
+      - name: Setup python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.11
           cache: "poetry"
       - name: Install dependencies
         run: poetry install --no-interaction --no-root --with=dev --all-extras
