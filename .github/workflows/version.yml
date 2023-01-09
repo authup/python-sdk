@@ -1,4 +1,4 @@
-name: CI
+name: Python version
 
 on:
   push:
@@ -6,9 +6,8 @@ on:
   pull_request:
     branches: [ main ]
   release:
-    types: # This configuration does not affect the page_build event above
+    types:
       - created
-
 
 jobs:
   test:
@@ -34,7 +33,6 @@ jobs:
           ROBOT_ENABLED: true
         ports:
           - "3010:3010"
-
     steps:
       - uses: actions/checkout@v3
       - name: Install Poetry
@@ -47,14 +45,5 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-interaction --no-root --with=dev --all-extras
 
-      - name: Run tests with coverage
-        run: |
-          poetry run coverage run -m pytest
-          poetry run coverage xml
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
-
+      - name: Test with tox
+        run: poetry run tox

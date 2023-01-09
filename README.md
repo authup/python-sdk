@@ -21,9 +21,30 @@ The plugins are used to integrate Authup with different python frameworks and li
 
 | Plugin                                                        | Extra       | Sync | Async | Middleware | User |
 |---------------------------------------------------------------|-------------|:----:|------:|------------|------|
-| [FastApi](https://fastapi.tiangolo.com/)                      | `[fastapi]` |  ❌   |     ✅ | ✅          | ✅    |
+| [FastApi](https://fastapi.tiangolo.com/)                      | `[fastapi]` |  ✅   |     ✅ | ✅          | ✅    |
 | [ASGI](https://asgi.readthedocs.io/en/latest/specs/main.html) | `[asgi]`    |  ❌   |     ✅ | ✅          | ✅    |
 | [Flask](https://flask.palletsprojects.com/en/2.2.x/)          | `[flask]`   |  ⏳   |     ⏳ | ⏳          | ⏳    |
+
+Table of Contents
+=================
+
+* [Authup Python Plugins](#authup-python-plugins)
+   * [Supported Python frameworks](#supported-python-frameworks)
+      * [Client](#client)
+      * [Server](#server)
+   * [Installation](#installation)
+      * [Extra dependencies](#extra-dependencies)
+   * [How to use](#how-to-use)
+      * [httpx](#httpx)
+      * [requests](#requests)
+      * [ASGI Middleware](#asgi-middleware)
+         * [Optional user injection](#optional-user-injection)
+      * [FastAPI Dependency](#fastapi-dependency)
+         * [Basic user dependency](#basic-user-dependency)
+         * [Require permissions](#require-permissions)
+   * [How to develop](#how-to-develop)
+      * [Install](#install)
+      * [Test](#test)
 
 
 ## Installation
@@ -35,7 +56,7 @@ pip install authup-py
 ```
 
 ### Extra dependencies
-The plugin for the project's base library [httpx](https://github.com/encode/httpx) need no extra dependencies. To
+The plugin for the project's base library [httpx](https://github.com/encode/httpx) needs no extra dependencies. To
 use the additional plugins for other libraries, you need to install with the corresponding extra i.e. for `requests`:
 
 ```bash
@@ -281,7 +302,7 @@ poetry install --with dev --all-extras
 Install pre-commit hooks
 
 ```shell
-pre-commit install
+poetry run pre-commit install
 ```
 
 ### Test
