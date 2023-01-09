@@ -32,7 +32,7 @@ class User(BaseModel):
 
 class TokenIntrospectionResponse(BaseModel):
     active: bool
-    client_id: str | None
+    client_id: Optional[str] = None
     exp: int
     iat: int
     iss: str
@@ -42,10 +42,10 @@ class TokenIntrospectionResponse(BaseModel):
     kind: str
     realm_id: str
     realm_name: str
-    username: str | None
+    username: Optional[str] = None
     preferred_username: str
-    family_name: str | None
-    given_name: str | None
+    family_name: Optional[str] = None
+    given_name: Optional[str] = None
     name: str
     nickname: str
     email: str
