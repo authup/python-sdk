@@ -28,6 +28,7 @@ jobs:
           ROBOT_SECRET: ${{ secrets.ROBOT_SECRET }}
           NODE_ENV: test
           PUBLIC_URL: http://authup:3010/
+          ROBOT_ENABLED: true
         ports:
           - "3010:3010"
 

@@ -9,8 +9,6 @@ class AuthupHttpx(AuthupPluginBase, Auth):
         request.headers["Authorization"] = f"Bearer {token.access_token}"
         yield request
 
-
-class AuthupHttpxAsync(AuthupPluginBase, Auth):
     async def async_auth_flow(self, request):
         token = await self.authup.get_token_async()
         request.headers["Authorization"] = f"Bearer {token.access_token}"

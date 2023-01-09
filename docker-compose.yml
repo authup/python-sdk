@@ -13,6 +13,7 @@ services:
       ADMIN_PASSWORD: start123
       NODE_ENV: test
       PUBLIC_URL: http://auth:3010/
-      ROBOT_SECRET: zms45eboy7to1vxzkpbegqmhkchye50y1dlzrlyzc73odupsmoxdwxaozdriiv0x
+      ROBOT_ENABLED: true
+      ROBOT_SECRET: cf69x7lm61vgb60fleexjt0yvgx72xqnby6xphfxa2cvkqzidomv7x1qywpg1xa4
     command:
       - start

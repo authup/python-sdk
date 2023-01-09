@@ -3,7 +3,7 @@ import os
 import httpx
 import pytest
 
-from authup.plugins.httpx import AuthupHttpx, AuthupHttpxAsync
+from authup.plugins.httpx import AuthupHttpx
 
 
 @pytest.fixture
@@ -29,7 +29,7 @@ def test_auth_flow(auth_credentials):
 @pytest.mark.asyncio
 async def test_auth_flow_async(auth_credentials):
     authup_url, username, password = auth_credentials
-    auth = AuthupHttpxAsync(
+    auth = AuthupHttpx(
         url=authup_url,
         username=username,
         password=password,
