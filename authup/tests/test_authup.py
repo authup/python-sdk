@@ -81,18 +81,17 @@ async def test_get_token(robot_creds):
     assert token
     assert token.access_token
 
-    # todo - re enable this test
     # test sync + async with robot_id and robot_secret
-    # authup = Authup(url=authup_url, robot_id=robot_id, robot_secret=robot_secret)
-    #
-    # token = authup.get_token()
-    # assert token
-    # assert token.access_token
-    # assert not token.refresh_token
-    #
-    # token = await authup.get_token_async()
-    # assert token
-    # assert token.access_token
+    authup = Authup(url=authup_url, robot_id=robot_id, robot_secret=robot_secret)
+
+    token = authup.get_token()
+    assert token
+    assert token.access_token
+    assert not token.refresh_token
+
+    token = await authup.get_token_async()
+    assert token
+    assert token.access_token
 
 
 def test_headers(authup_instance):

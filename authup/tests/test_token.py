@@ -64,13 +64,12 @@ def test_get_token(robot_creds):
     assert robot_id
     assert robot_secret
 
-    # todo - re enable this test
-    # token = get_token(token_url=token_url, robot_id=robot_id, robot_secret=robot_secret)
-    #
-    # assert token.access_token
-    # assert token.token_type == "Bearer"
-    # assert token.expires_in > 0
-    # assert not token.refresh_token
+    token = get_token(token_url=token_url, robot_id=robot_id, robot_secret=robot_secret)
+
+    assert token.access_token
+    assert token.token_type == "Bearer"
+    assert token.expires_in > 0
+    assert not token.refresh_token
 
     # check errors for incorrect username and password / robot_id and robot_secret
 
@@ -153,15 +152,14 @@ async def test_get_token_async(robot_creds):
 
     robot_id, robot_secret = robot_creds
 
-    # todo - re enable this test
-    # token = await get_token_async(
-    #     token_url=token_url, robot_id=robot_id, robot_secret=robot_secret
-    # )
-    #
-    # assert token.access_token
-    # assert token.token_type == "Bearer"
-    # assert token.expires_in > 0
-    # assert not token.refresh_token
+    token = await get_token_async(
+        token_url=token_url, robot_id=robot_id, robot_secret=robot_secret
+    )
+
+    assert token.access_token
+    assert token.token_type == "Bearer"
+    assert token.expires_in > 0
+    assert not token.refresh_token
 
     # check errors for incorrect username and password / robot_id and robot_secret
 
