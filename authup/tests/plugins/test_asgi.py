@@ -74,7 +74,7 @@ async def test_asgi_middleware(fastapi_app, httpx_auth):
 
 
 @pytest.mark.asyncio
-def test_inject_user_middleware(fastapi_app, httpx_auth):
+async def test_inject_user_middleware(fastapi_app, httpx_auth):
     fastapi_app.add_middleware(
         AuthupASGIMiddleware, authup_url="http://localhost:3010", user=True
     )

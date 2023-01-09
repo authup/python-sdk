@@ -1,10 +1,26 @@
 from httpx import Auth
 
-from authup.plugins.base import AuthupPluginBase
+from authup import Authup
 
 
-class AuthupHttpx(AuthupPluginBase, Auth):
-    def auth_flow(self, request):
+class AuthupHttpx(Auth):
+    def __init__(
+        self,
+        url: str,
+        username: str = None,
+        password: str = None,
+        robot_id: str = None,
+        robot_secret: str = None,
+    ):
+        self.authup = Authup(
+            url=url,
+            username=username,
+            password=password,
+            robot_id=robot_id,
+            robot_secret=robot_secret,
+        )
+
+    def sync_auth_flow(self, request):
         token = self.authup.get_token()
         request.headers["Authorization"] = f"Bearer {token.access_token}"
         yield request
