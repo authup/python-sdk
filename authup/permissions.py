@@ -1,11 +1,12 @@
 import logging
+from typing import List
 
 from authup.schemas import Permission
 
 
 def check_permissions(
-    permissions: list[Permission],
-    required_permissions: list[Permission],
+    permissions: List[Permission],
+    required_permissions: List[Permission],
 ) -> bool:
     """
     Check if a token has the required permissions
@@ -23,8 +24,8 @@ def check_permissions(
 
 
 def _check_permissions(
-    token_permissions: list[Permission],
-    required_permissions: list[Permission],
+    token_permissions: List[Permission],
+    required_permissions: List[Permission],
 ) -> bool:
     """
     Compare the required permissions with the token permissions, taking inverse and power into account
