@@ -1,4 +1,5 @@
 import datetime
+from typing import Union
 
 from authup.schemas import User
 from authup.settings import CredentialTypes, Settings, validate_check_credentials
@@ -52,8 +53,8 @@ class Authup:
                     robot_secret=robot_secret,
                 )
 
-        self.token: TokenResponse | None = None
-        self.token_expires_at: datetime.datetime | None = None
+        self.token: Union[TokenResponse, None] = None
+        self.token_expires_at: Union[datetime.datetime, None] = None
 
     def get_token(self) -> TokenResponse:
         """

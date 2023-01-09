@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -30,7 +30,7 @@ class UserPermissions(AuthupUser):
     def __init__(
         self,
         url: str,
-        permissions: List[Permission] | List[str] | List[dict] | None = None,
+        permissions: Union[List[Permission], List[str], List[dict]] = None,
     ):
         super().__init__(url)
         self.permissions = permissions
