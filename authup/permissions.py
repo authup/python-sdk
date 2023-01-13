@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from authup.schemas import Permission
+from authup.schemas.token import Permission
 
 
 def check_permissions(

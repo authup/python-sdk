@@ -4,7 +4,8 @@ from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from authup.permissions import check_permissions
-from authup.schemas import Permission, User
+from authup.schemas.token import Permission
+from authup.schemas.user import User
 from authup.token import get_user_from_token_async, introspect_token_async
 
 

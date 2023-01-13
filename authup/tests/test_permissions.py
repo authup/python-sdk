@@ -4,7 +4,7 @@ import pytest
 
 from authup import Authup
 from authup.permissions import check_permissions
-from authup.schemas import Permission
+from authup.schemas.token import Permission
 from authup.token import introspect_token_async
 
 

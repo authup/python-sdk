@@ -1,6 +1,7 @@
 [![CI](https://github.com/migraf/authup-py/actions/workflows/main.yml/badge.svg)](https://github.com/migraf/authup-py/actions/workflows/main.yml)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/authup)
 [![codecov](https://codecov.io/gh/migraf/authup-py/branch/main/graph/badge.svg?token=qILJEFdh8I)](https://codecov.io/gh/migraf/authup-py)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/authup)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/authup)
 [![Maintainability](https://api.codeclimate.com/v1/badges/520401d6c07170a6e413/maintainability)](https://codeclimate.com/github/migraf/authup-py/maintainability)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 

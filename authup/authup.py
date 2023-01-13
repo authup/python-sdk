@@ -1,10 +1,10 @@
 import datetime
 from typing import Union
 
-from authup.schemas import User
+from authup.schemas.token import TokenResponse
+from authup.schemas.user import User
 from authup.settings import CredentialTypes, Settings, validate_check_credentials
 from authup.token import (
-    TokenResponse,
     get_token,
     get_token_async,
     get_user_from_token,
