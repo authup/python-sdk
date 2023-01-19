@@ -1,32 +1,34 @@
 import logging
 from typing import List
 
-from authup.schemas import Permission
+from authup.schemas.token import Permission
 
 
 def check_permissions(
     permissions: List[Permission],
     required_permissions: List[Permission],
-) -> bool:
+):
     """
     Check if a token has the required permissions
-    :param permissions:
-    :param required_permissions:
+    :param permissions: list of permissions assigned to the token
+    :param required_permissions: list of required permissions to check
     :return:
     """
     if not required_permissions:
-        return True
+        logging.debug("No required permissions")
+        pass
 
     if not permissions:
-        return False
+        raise ValueError("Token has no associated permissions.")
 
-    return _check_permissions(permissions, required_permissions)
+    # check if the token has the required permissions
+    _check_permissions(permissions, required_permissions)
 
 
 def _check_permissions(
     token_permissions: List[Permission],
     required_permissions: List[Permission],
-) -> bool:
+):
     """
     Compare the required permissions with the token permissions, taking inverse and power into account
     :param token_permissions:
@@ -61,4 +63,7 @@ def _check_permissions(
         # check condition
         # todo: implement condition check
     logging.info(f"Missed permissions: {missed_permissions}")
-    return authorized
+    if not authorized:
+        raise ValueError(
+            f"Token does not have the required permissions: {missed_permissions}"
+        )

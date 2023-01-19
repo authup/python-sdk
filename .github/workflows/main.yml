@@ -11,7 +11,7 @@ on:
 
 
 jobs:
-  test:
+  test-and-coverage:
     runs-on: ubuntu-latest
     env:
       AUTHUP_URL: http://127.0.0.1:3010

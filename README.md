@@ -1,6 +1,7 @@
 [![CI](https://github.com/migraf/authup-py/actions/workflows/main.yml/badge.svg)](https://github.com/migraf/authup-py/actions/workflows/main.yml)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/authup)
 [![codecov](https://codecov.io/gh/migraf/authup-py/branch/main/graph/badge.svg?token=qILJEFdh8I)](https://codecov.io/gh/migraf/authup-py)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/authup)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/authup)
 [![Maintainability](https://api.codeclimate.com/v1/badges/520401d6c07170a6e413/maintainability)](https://codeclimate.com/github/migraf/authup-py/maintainability)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
@@ -268,14 +269,15 @@ You can also require specific permissions for the user. The following example wi
 
 ```python
 from fastapi import FastAPI, Depends
-from authup.plugins.fastapi import UserPermissions
-from authup import User, Permission
+from authup.plugins.fastapi import AuthupUser
+from authup import User
+from authup.permissions import Permission
 
 permissions = [
         Permission(name="client_add", inverse=False, power=100),
     ]
 
-required_permissions = UserPermissions(
+required_permissions = AuthupUser(
     url="http://localhost:3010",
     permissions=permissions,
 )

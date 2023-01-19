@@ -1,6 +1,7 @@
 import httpx
 
-from authup.schemas import TokenIntrospectionResponse, TokenResponse, User
+from authup.schemas.token import TokenIntrospectionResponse, TokenResponse
+from authup.schemas.user import User
 from authup.settings import CredentialTypes, validate_check_credentials
 
 
@@ -29,7 +30,24 @@ def get_token(
     data = _make_token_data(username, password, robot_id, robot_secret)
 
     r = httpx.post(token_url, data=data, headers=headers)
-    print(r.content)
+    r.raise_for_status()
+    return TokenResponse.parse_raw(r.content)
+
+
+async def refresh_token_async(token_url: str, refresh_token: str) -> TokenResponse:
+    with httpx.AsyncClient() as client:
+        r = await client.post(
+            token_url,
+            data={"grant_type": "refresh_token", "refresh_token": refresh_token},
+        )
+    r.raise_for_status()
+    return TokenResponse.parse_raw(r.content)
+
+
+def refresh_token(token_url: str, refresh_token: str) -> TokenResponse:
+    r = httpx.post(
+        token_url, data={"grant_type": "refresh_token", "refresh_token": refresh_token}
+    )
     r.raise_for_status()
     return TokenResponse.parse_raw(r.content)
 
@@ -60,7 +78,6 @@ async def get_token_async(
 
     async with httpx.AsyncClient() as client:
         r = await client.post(token_url, data=data, headers=headers)
-    print(r.content)
     r.raise_for_status()
 
     return TokenResponse.parse_raw(r.content)
