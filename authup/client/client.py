@@ -36,4 +36,6 @@ class AuthupClient:
         if self.url.endswith("/"):
             self.url = self.url[:-1]
 
-        self.http = AsyncClient(base_url=self.url, auth=httpx_auth)
+        client = AsyncClient(base_url=self.url, auth=httpx_auth)
+        self.http = client
+        return client

@@ -1,4 +1,6 @@
+import asyncio
 import os
+import platform
 
 import httpx
 import pytest
@@ -6,6 +8,22 @@ import pytest
 from authup import Authup
 from authup.client import AuthupClient
 from authup.plugins.httpx import AuthupHttpx
+
+
+@pytest.fixture(scope="session")
+def event_loop():
+    if platform.system() == "Windows":
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+    yield loop
+    loop.close()
+
+
+def pytest_sessionfinish(session, exitstatus):
+    asyncio.get_event_loop().close()
 
 
 @pytest.fixture(scope="session", autouse=True)

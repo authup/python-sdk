@@ -4,7 +4,7 @@ import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 
-from authup.plugins.fastapi import AuthupUser, UserPermissions
+from authup.plugins.fastapi import AuthupUser
 from authup.plugins.httpx import AuthupHttpx
 from authup.schemas.token import Permission
 from authup.schemas.user import User
@@ -66,7 +66,7 @@ def test_depends_permissions(httpx_auth):
         Permission(name="test", target="test", inverse=False, power=100000),
     ]
 
-    depends_unauthorized = UserPermissions(
+    depends_unauthorized = AuthupUser(
         url="http://localhost:3010",
         permissions=permissions,
     )
@@ -75,7 +75,7 @@ def test_depends_permissions(httpx_auth):
         Permission(name="client_add", inverse=False, power=100),
     ]
 
-    depends_authorized = UserPermissions(
+    depends_authorized = AuthupUser(
         url="http://localhost:3010",
         permissions=permissions_authorized,
     )
