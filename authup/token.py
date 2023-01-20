@@ -46,7 +46,9 @@ async def refresh_token_async(token_url: str, refresh_token: str) -> TokenRespon
             token_url,
             data={"grant_type": "refresh_token", "refresh_token": refresh_token},
         )
+        print(r.content)
     r.raise_for_status()
+
     return TokenResponse.parse_raw(r.content)
 
 
@@ -167,10 +169,13 @@ def _make_token_data(
     robot_id: str = None,
     robot_secret: str = None,
 ) -> dict:
+
+    # check if we have username and password or client_id and robot_secret
     credential_type = validate_check_credentials(
         username, password, robot_id, robot_secret
     )
 
+    # create request data according to the credential type
     if credential_type == CredentialTypes.user:
         return {
             "grant_type": "password",

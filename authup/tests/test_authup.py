@@ -1,6 +1,5 @@
 import datetime
 import os
-import time
 
 import pytest
 
@@ -81,16 +80,46 @@ async def test_get_token(robot_creds):
     assert token
     assert token.access_token
 
+    token = await authup.get_token_async()
+    assert token
+    assert token.access_token
+    assert token.refresh_token
+
+    authup.token_expires_at = datetime.datetime.now() - datetime.timedelta(hours=1)
+    token = await authup.get_token_async()
+
+    assert token
+    assert token.access_token
+
+    authup.token_expires_at = datetime.datetime.now() - datetime.timedelta(hours=1)
+    token = authup.get_token()
+
+    assert token
+    assert token.access_token
+
     # test sync + async with robot_id and robot_secret
     authup = Authup(url=authup_url, robot_id=robot_id, robot_secret=robot_secret)
 
-    token = authup.get_token()
+    token = await authup.get_token_async()
     assert token
     assert token.access_token
     assert not token.refresh_token
 
+    authup.token_expires_at = datetime.datetime.now() - datetime.timedelta(hours=1)
     token = await authup.get_token_async()
+
+    assert token.access_token
+
+    authup.token = None
+
+    token = authup.get_token()
+
     assert token
+    assert token.access_token
+
+    authup.token_expires_at = datetime.datetime.now() - datetime.timedelta(hours=1)
+    token = authup.get_token()
+
     assert token.access_token
 
 
@@ -98,11 +127,10 @@ def test_headers(authup_instance):
     headers = authup_instance.get_authorization_header()
     assert headers
 
-    time.sleep(1)
-
     authup_instance.token_expires_at = datetime.datetime.now() - datetime.timedelta(
         hours=1
     )
+
     headers = authup_instance.get_authorization_header()
 
     assert headers

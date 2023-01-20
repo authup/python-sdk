@@ -78,6 +78,13 @@ def test_get_token(robot_creds):
 
     # check errors for incorrect username and password / robot_id and robot_secret
 
+    with pytest.raises(ValueError):
+        get_token(
+            token_url=None,
+            username=username,
+            password=None,
+        )
+
     # username + robot_id
     with pytest.raises(ValueError):
         get_token(
