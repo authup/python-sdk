@@ -35,7 +35,13 @@ def get_token(
 
 
 async def refresh_token_async(token_url: str, refresh_token: str) -> TokenResponse:
-    with httpx.AsyncClient() as client:
+    """
+    Use a refresh token to get a new token
+    :param token_url: the url to get the token from
+    :param refresh_token: the refresh token from a previous token
+    :return: TokenResponse with the new token
+    """
+    async with httpx.AsyncClient() as client:
         r = await client.post(
             token_url,
             data={"grant_type": "refresh_token", "refresh_token": refresh_token},
@@ -45,6 +51,12 @@ async def refresh_token_async(token_url: str, refresh_token: str) -> TokenRespon
 
 
 def refresh_token(token_url: str, refresh_token: str) -> TokenResponse:
+    """
+    Use a refresh token to get a new token
+    :param token_url: the url to get the token from
+    :param refresh_token: the refresh token from a previous token
+    :return: TokenResponse with the new token
+    """
     r = httpx.post(
         token_url, data={"grant_type": "refresh_token", "refresh_token": refresh_token}
     )
@@ -118,6 +130,31 @@ async def introspect_token_async(
         r = await client.post(
             token_introspect_url, headers=headers, data={"token": token}
         )
+
+    r.raise_for_status()
+
+    return TokenIntrospectionResponse.parse_raw(r.content)
+
+
+def introspect_token(
+    token_introspect_url: str,
+    token: str,
+    headers: dict = None,
+) -> TokenIntrospectionResponse:
+    """
+    Validate a token by sending it to the token url
+    :param token_introspect_url:
+    :param token:
+    :param headers:
+    :return:
+    """
+
+    if not token_introspect_url:
+        raise ValueError("No token url provided")
+    if not token:
+        raise ValueError("No token provided")
+
+    r = httpx.post(token_introspect_url, headers=headers, data={"token": token})
 
     r.raise_for_status()
 

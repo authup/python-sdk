@@ -124,8 +124,7 @@ class Authup:
             self.token = self.get_token()
 
     def _is_expired(self) -> bool:
-
-        if not self.token_expires_at:
+        if not self.token:
             return True
         now = datetime.datetime.now()
         return now > self.token_expires_at

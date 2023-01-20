@@ -4,7 +4,12 @@ import pytest
 from dotenv import find_dotenv, load_dotenv
 
 from authup import get_token, get_token_async
-from authup.token import introspect_token_async
+from authup.token import (
+    introspect_token,
+    introspect_token_async,
+    refresh_token,
+    refresh_token_async,
+)
 
 load_dotenv(find_dotenv())
 
@@ -257,3 +262,70 @@ async def test_introspect_token_async():
             token_introspect_url=introspect_url,
             token=None,
         )
+
+
+def test_introspect_token():
+    authup_url = os.getenv("AUTHUP_URL")
+    token_url = authup_url + "/token"
+    introspect_url = token_url + "/introspect"
+
+    # test with username and password
+    username = os.getenv("AUTHUP_USERNAME")
+    password = os.getenv("AUTHUP_PASSWORD")
+
+    token = get_token(
+        token_url=token_url,
+        username=username,
+        password=password,
+    )
+
+    assert token.access_token
+
+    introspect_result = introspect_token(
+        token_introspect_url=introspect_url,
+        token=token.access_token,
+    )
+
+    assert introspect_result
+
+    with pytest.raises(Exception):
+        introspect_token(
+            token_introspect_url=introspect_url,
+            token="token.access_token",
+        )
+
+    with pytest.raises(ValueError):
+        introspect_token(token_introspect_url=introspect_url, token=None)
+
+    with pytest.raises(ValueError):
+        introspect_token(token_introspect_url=None, token="test")
+
+
+@pytest.mark.asyncio
+async def test_refresh_token_async(authup_instance):
+    token = await authup_instance.get_token_async()
+
+    assert token.access_token
+
+    refreshed_token = await refresh_token_async(
+        authup_instance.settings.token_url, token.refresh_token
+    )
+
+    assert refreshed_token.access_token
+
+    assert refreshed_token.access_token != token.access_token
+
+
+def test_refresh_token(authup_instance):
+    authup_instance.token = None
+    token = authup_instance.get_token()
+
+    assert token.access_token
+
+    refreshed_token = refresh_token(
+        authup_instance.settings.token_url, token.refresh_token
+    )
+
+    assert refreshed_token.access_token
+
+    assert refreshed_token.access_token != token.access_token
