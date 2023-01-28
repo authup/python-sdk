@@ -4,7 +4,7 @@ import pytest
 
 from authup import Authup
 from authup.permissions import check_permissions
-from authup.schemas import Permission
+from authup.schemas.token import Permission
 from authup.token import introspect_token_async
 
 
@@ -31,28 +31,30 @@ async def test_check_permissions():
         Permission(name="client_edit", inverse=False, power=0),
     ]
 
-    assert check_permissions(introspection_result.permissions, required_permissions)
+    check_permissions(introspection_result.permissions, required_permissions)
 
     required_permissions = [
         Permission(name="client_add", inverse=False, power=10000),
     ]
 
-    assert not check_permissions(introspection_result.permissions, required_permissions)
+    with pytest.raises(Exception):
+        check_permissions(introspection_result.permissions, required_permissions)
 
     required_permissions = [
         Permission(name="client_add", inverse=True, power=0),
     ]
-
-    assert not check_permissions(introspection_result.permissions, required_permissions)
+    with pytest.raises(Exception):
+        check_permissions(introspection_result.permissions, required_permissions)
 
     required_permissions = [
         Permission(name="test_fails", inverse=False, power=10),
     ]
+    with pytest.raises(Exception):
+        check_permissions(introspection_result.permissions, required_permissions)
 
-    assert not check_permissions(introspection_result.permissions, required_permissions)
-
-    assert check_permissions(introspection_result.permissions, [])
+    check_permissions(introspection_result.permissions, [])
 
     introspection_result.permissions = []
 
-    assert not check_permissions(introspection_result.permissions, required_permissions)
+    with pytest.raises(Exception):
+        check_permissions(introspection_result.permissions, required_permissions)

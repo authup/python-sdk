@@ -1,13 +1,16 @@
 import datetime
+from typing import Union
 
-from authup.schemas import User
+from authup.schemas.token import TokenResponse
+from authup.schemas.user import User
 from authup.settings import CredentialTypes, Settings, validate_check_credentials
 from authup.token import (
-    TokenResponse,
     get_token,
     get_token_async,
     get_user_from_token,
     get_user_from_token_async,
+    refresh_token,
+    refresh_token_async,
 )
 
 
@@ -52,8 +55,8 @@ class Authup:
                     robot_secret=robot_secret,
                 )
 
-        self.token: TokenResponse | None = None
-        self.token_expires_at: datetime.datetime | None = None
+        self.token: Union[TokenResponse, None] = None
+        self.token_expires_at: Union[datetime.datetime, None] = None
 
     def get_token(self) -> TokenResponse:
         """
@@ -62,50 +65,83 @@ class Authup:
         """
 
         self.token = self._get_token()
-        self._set_token_expires_at(self.token.expires_in)
         return self.token
 
-    def _get_token(self):
-        if not self._is_expired():
-            return self.token
+    def _get_token(self) -> TokenResponse:
 
-        if self._auth_type == CredentialTypes.user:
-            token = get_token(
-                token_url=self.settings.token_url,
-                username=self.settings.username,
-                password=self.settings.password.get_secret_value(),
-            )
-        else:
+        if not self.token:
+            if self._auth_type == CredentialTypes.user:
+                token = get_token(
+                    token_url=self.settings.token_url,
+                    username=self.settings.username,
+                    password=self.settings.password.get_secret_value(),
+                )
+            else:
+                token = get_token(
+                    token_url=self.settings.token_url,
+                    robot_id=self.settings.robot_id,
+                    robot_secret=self.settings.robot_secret.get_secret_value(),
+                )
+            self._set_token_expires_at(token.expires_in)
+            return token
+
+        if self._is_expired() and self._auth_type == CredentialTypes.user:
+            token = refresh_token(self.settings.token_url, self.token.refresh_token)
+            self._set_token_expires_at(token.expires_in)
+            return token
+
+        elif self._is_expired() and self._auth_type == CredentialTypes.robot:
             token = get_token(
                 token_url=self.settings.token_url,
                 robot_id=self.settings.robot_id,
                 robot_secret=self.settings.robot_secret.get_secret_value(),
             )
-        return token
+            self._set_token_expires_at(token.expires_in)
+            return token
+
+        else:
+            return self.token
 
     async def get_token_async(self) -> TokenResponse:
         self.token = await self._get_token_async()
-        self._set_token_expires_at(self.token.expires_in)
         return self.token
 
-    async def _get_token_async(self):
-        if self._auth_type == CredentialTypes.user:
-            token = await get_token_async(
-                token_url=self.settings.token_url,
-                username=self.settings.username,
-                password=self.settings.password.get_secret_value(),
+    async def _get_token_async(self) -> TokenResponse:
+        if not self.token:
+            if self._auth_type == CredentialTypes.user:
+                token = await get_token_async(
+                    token_url=self.settings.token_url,
+                    username=self.settings.username,
+                    password=self.settings.password.get_secret_value(),
+                )
+            else:
+                token = await get_token_async(
+                    token_url=self.settings.token_url,
+                    robot_id=self.settings.robot_id,
+                    robot_secret=self.settings.robot_secret.get_secret_value(),
+                )
+            self._set_token_expires_at(token.expires_in)
+            return token
+        if self._is_expired() and self._auth_type == CredentialTypes.user:
+            token = await refresh_token_async(
+                self.settings.token_url, self.token.refresh_token
             )
-        else:
+            self._set_token_expires_at(token.expires_in)
+            return token
+
+        elif self._is_expired() and self._auth_type == CredentialTypes.robot:
             token = await get_token_async(
                 token_url=self.settings.token_url,
                 robot_id=self.settings.robot_id,
                 robot_secret=self.settings.robot_secret.get_secret_value(),
             )
-        return token
+            self._set_token_expires_at(token.expires_in)
+            return token
+        return self.token
 
     def get_authorization_header(self) -> dict:
-        self._check_token()
-        return {"Authorization": f"Bearer {self.token.access_token}"}
+        token = self.get_token()
+        return {"Authorization": f"Bearer {token.access_token}"}
 
     def get_user(self, token: str) -> User:
         url = self.settings.user_url + "/@me"
@@ -117,15 +153,7 @@ class Authup:
         user = await get_user_from_token_async(url, token)
         return user
 
-    def _check_token(self):
-        # todo use refresh token if available
-        if not self.token or self._is_expired():
-            self.token = self.get_token()
-
     def _is_expired(self) -> bool:
-
-        if not self.token_expires_at:
-            return True
         now = datetime.datetime.now()
         return now > self.token_expires_at
 

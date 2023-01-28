@@ -1,5 +1,6 @@
 import enum
 import os
+from typing import Optional
 
 from pydantic import BaseModel, SecretStr, root_validator
 
@@ -18,10 +19,10 @@ class EnvVars(enum.Enum):
 
 
 def validate_check_credentials(
-    username: str | None,
-    password: str | None,
-    robot_id: str | None,
-    robot_secret: str | None,
+    username: str = None,
+    password: str = None,
+    robot_id: str = None,
+    robot_secret: str = None,
 ) -> CredentialTypes:
     if not username and not robot_id:
         raise ValueError("No username or robot_id provided")
@@ -46,10 +47,10 @@ def validate_check_credentials(
 
 class Settings(BaseModel):
     url: str
-    username: str | None
-    password: SecretStr | None
-    robot_id: str | None
-    robot_secret: SecretStr | None
+    username: Optional[str] = None
+    password: Optional[SecretStr] = None
+    robot_id: Optional[str] = None
+    robot_secret: Optional[SecretStr] = None
 
     @property
     def token_url(self):

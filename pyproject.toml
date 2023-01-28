@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "authup"
-version = "0.3.0"
+version = "0.5.0"
 description = "Python plugins for the Authup authentication and authorization framework"
 authors = ["Michael Graf <michael.graf3110@gmail.com>"]
 license = "MIT"
@@ -13,9 +13,10 @@ homepage = "https://authup.org"
 python = "^3.7"
 httpx = "^0.23.2"
 pydantic = "^1.10.4"
-fastapi = {version="^0.87.0", optional=true}
+fastapi = { version=">= 0.87.0", optional=true}
 requests = {version="^2.26.0", optional=true}
 flask = {version="^2.0.0", optional=true}
+asgiref = "^3.6.0"
 
 
 [tool.poetry.extras]
@@ -27,7 +28,7 @@ all = ["fastapi", "requests", "flask"]
 
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.0.201"
+ruff = "^0.0.227"
 pytest = "^7.2.0"
 black = "^22.12.0"
 coverage = "^7.0.1"
@@ -74,7 +75,7 @@ exclude = [
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 # Assume Python 3.10.
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.mccabe]
 # Unlike Flake8, default to a complexity level of 10.
@@ -83,7 +84,7 @@ max-complexity = 10
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py37, py38, py39, py310, py311
+envlist = py37, py38, py39, py310
 
 [gh-actions]
 python =
@@ -91,10 +92,12 @@ python =
     3.8: py38
     3.9: py39
     3.10: py310
-    3.11: py311
 
 [testenv]
-commands = pytest
+passenv = *
+allowlist_externals = poetry
+commands =
+    poetry run pytest
 """
 
 [build-system]
