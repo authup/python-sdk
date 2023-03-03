@@ -70,3 +70,19 @@ async def test_realm_delete(realm_client):
     realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
     deleted_id = await realm_client.delete(realm.id)
     assert deleted_id == realm.id
+
+
+@pytest.mark.asyncio
+async def test_realm_open_id_configuration(realm_client):
+    realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
+    open_id_configuration = await realm_client.open_id_configuration(realm.id)
+    print(open_id_configuration)
+    assert open_id_configuration
+
+
+@pytest.mark.asyncio
+async def test_realm_open_id_configuration_jwks(realm_client):
+    realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
+    open_id_configuration_jwks = await realm_client.open_id_configuration_jwks(realm.id)
+    print(open_id_configuration_jwks)
+    assert open_id_configuration_jwks

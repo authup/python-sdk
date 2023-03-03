@@ -11,21 +11,6 @@ This repository contains python plugins for using the [Authup](https://authup.or
 framework in the python language.
 The plugins are used to integrate Authup with different python frameworks and libraries.
 
-## Supported Python frameworks
-
-### Client
-| Plugin                                      | Extra        | Sync | Async |
-|---------------------------------------------|--------------|:----:|------:|
-| [httpx](https://github.com/encode/httpx)    |              |  ✅   |     ✅ |
-| [requests](https://github.com/psf/requests) | `[requests]` |  ✅   |     ❌ |
-
-### Server
-
-| Plugin                                                        | Extra       | Sync | Async | Middleware | User |
-|---------------------------------------------------------------|-------------|:----:|------:|------------|------|
-| [FastApi](https://fastapi.tiangolo.com/)                      | `[fastapi]` |  ✅   |     ✅ | ✅          | ✅    |
-| [ASGI](https://asgi.readthedocs.io/en/latest/specs/main.html) | `[asgi]`    |  ❌   |     ✅ | ✅          | ✅    |
-| [Flask](https://flask.palletsprojects.com/en/2.2.x/)          | `[flask]`   |  ⏳   |     ⏳ | ⏳          | ⏳    |
 
 Table of Contents
 =================
@@ -47,6 +32,23 @@ Table of Contents
    * [How to develop](#how-to-develop)
       * [Install](#install)
       * [Test](#test)
+
+
+## Supported Python frameworks
+
+### Client
+| Plugin                                      | Extra        | Sync | Async |
+|---------------------------------------------|--------------|:----:|------:|
+| [httpx](https://github.com/encode/httpx)    |              |  ✅   |     ✅ |
+| [requests](https://github.com/psf/requests) | `[requests]` |  ✅   |     ❌ |
+
+### Server
+
+| Plugin                                                        | Extra       | Sync | Async | Middleware | User |
+|---------------------------------------------------------------|-------------|:----:|------:|------------|------|
+| [FastApi](https://fastapi.tiangolo.com/)                      | `[fastapi]` |  ✅   |     ✅ | ✅          | ✅    |
+| [ASGI](https://asgi.readthedocs.io/en/latest/specs/main.html) | `[asgi]`    |  ❌   |     ✅ | ✅          | ✅    |
+| [Flask](https://flask.palletsprojects.com/en/2.2.x/)          | `[flask]`   |  ⏳   |     ⏳ | ⏳          | ⏳    |
 
 
 ## Installation
@@ -122,9 +124,9 @@ It works the same way for the asynchronous httpx client:
 
 ```python
 import httpx
-from authup.plugins.httpx import AuthupHttpxAsync
+from authup.plugins.httpx import AuthupHttpx
 
-authup = AuthupHttpxAsync(
+authup = AuthupHttpx(
     url="https://authup.org",
     username="username",
     password="password",
