@@ -14,7 +14,7 @@ jobs:
   test-and-coverage:
     runs-on: ubuntu-latest
     env:
-      AUTHUP_URL: http://authup:3001
+      AUTHUP_URL: authup:3001
       AUTHUP_USERNAME: ${{ secrets.ADMIN_USER }}
       AUTHUP_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
       AUTHUP_ROBOT_SECRET: ${{ secrets.ROBOT_SECRET }}
