@@ -11,6 +11,14 @@ __pycache__/
 # C extensions
 *.so
 
+# ignore authup data files
+authup_data/db.sql
+authup_data/error.log
+authup_data/seed.json
+authup_data/swagger.json
+authup_data/swagger.yaml
+
+
 # Distribution / packaging
 .Python
 build/

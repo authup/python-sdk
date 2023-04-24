@@ -3,17 +3,9 @@ version: "3.8"
 services:
   authup:
     image: ghcr.io/authup/authup:latest
-    volumes:
-      - ./service_data/auth:/usr/src/app/writable
     ports:
-      - '3010:3010'
-    environment:
-      PORT: 3010
-      ADMIN_USER: admin
-      ADMIN_PASSWORD: start123
-      NODE_ENV: test
-      PUBLIC_URL: http://auth:3010/
-      ROBOT_ENABLED: true
-      ROBOT_SECRET: cf69x7lm61vgb60fleexjt0yvgx72xqnby6xphfxa2cvkqzidomv7x1qywpg1xa4
-    command:
-      - start
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - ./authup_data:/usr/src/app/writable
+    command: cli start
