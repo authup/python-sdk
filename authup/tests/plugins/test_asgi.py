@@ -6,15 +6,14 @@ from fastapi.testclient import TestClient
 from starlette.requests import Request
 
 from authup.plugins.asgi import AuthupASGIMiddleware
-from authup.plugins.httpx import AuthupHttpx
 
 
-@pytest.fixture
 def fastapi_app():
     app = FastAPI()
 
     @app.get("/test")
     async def test():
+        print("test route called")
         return {"message": "Hello World"}
 
     @app.get("/test-user")
@@ -24,27 +23,15 @@ def fastapi_app():
     return app
 
 
-@pytest.fixture
-def httpx_auth():
-    authup_url = os.getenv("AUTHUP_URL")
-    username = os.getenv("AUTHUP_USERNAME")
-    password = os.getenv("AUTHUP_PASSWORD")
+app = fastapi_app()
 
-    auth = AuthupHttpx(
-        url=authup_url,
-        username=username,
-        password=password,
-    )
-
-    return auth
+client = TestClient(app)
 
 
 @pytest.mark.asyncio
-async def test_asgi_middleware(fastapi_app, httpx_auth):
+async def test_asgi_middleware(httpx_auth):
 
-    fastapi_app.add_middleware(AuthupASGIMiddleware, authup_url="http://localhost:3010")
-
-    client = TestClient(fastapi_app)
+    app.add_middleware(AuthupASGIMiddleware, authup_url=os.getenv("AUTHUP_URL"))
 
     r = client.get("/test", auth=httpx_auth)
     print(r.content)
@@ -74,12 +61,10 @@ async def test_asgi_middleware(fastapi_app, httpx_auth):
 
 
 @pytest.mark.asyncio
-async def test_inject_user_middleware(fastapi_app, httpx_auth):
-    fastapi_app.add_middleware(
-        AuthupASGIMiddleware, authup_url="http://localhost:3010", user=True
+async def test_inject_user_middleware(httpx_auth):
+    app.add_middleware(
+        AuthupASGIMiddleware, authup_url=os.getenv("AUTHUP_URL"), user=True
     )
-
-    client = TestClient(fastapi_app)
 
     r = client.get("/test-user", auth=httpx_auth)
     print(r.content)

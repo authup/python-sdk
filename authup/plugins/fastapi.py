@@ -23,11 +23,13 @@ class AuthupUser:
     async def __call__(
         self, credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())
     ) -> User:
+        print("Validating token")
         try:
             # get the user from the token
             user = await get_user_from_token_async(
                 self.user_url, credentials.credentials
             )
+            print(user)
             # if permissions are set, check them
             if self.permissions:
                 permissions = await introspect_token_async(

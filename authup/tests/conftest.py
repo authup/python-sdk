@@ -10,6 +10,21 @@ from authup.client import AuthupClient
 from authup.plugins.httpx import AuthupHttpx
 
 
+@pytest.fixture
+def httpx_auth():
+    authup_url = os.getenv("AUTHUP_URL")
+    username = os.getenv("AUTHUP_USERNAME")
+    password = os.getenv("AUTHUP_PASSWORD")
+
+    auth = AuthupHttpx(
+        url=authup_url,
+        username=username,
+        password=password,
+    )
+
+    return auth
+
+
 @pytest.fixture(scope="session")
 def event_loop():
     if platform.system() == "Windows":

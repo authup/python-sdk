@@ -25,17 +25,51 @@ def httpx_auth():
     return auth
 
 
+# setup the fastapi app
+
+app = FastAPI()
+
+user_dependency = AuthupUser(url=os.getenv("AUTHUP_URL"))
+
+
+@app.get("/test")
+async def user_test(user: User = Depends(user_dependency)):
+    return {"user": user.dict()}
+
+
+permissions = [
+    Permission(name="test", target="test", inverse=False, power=100000),
+]
+
+depends_unauthorized = AuthupUser(
+    url=os.getenv("AUTHUP_URL"),
+    permissions=permissions,
+)
+
+permissions_authorized = [
+    Permission(name="client_add", inverse=False, power=100),
+]
+
+depends_authorized = AuthupUser(
+    url=os.getenv("AUTHUP_URL"),
+    permissions=permissions_authorized,
+)
+
+
+@app.get("/test-2")
+async def user_test_2(user: User = Depends(depends_unauthorized)):
+    return {"user": user.dict()}
+
+
+@app.get("/test-authorized")
+async def user_test_auth(user: User = Depends(depends_authorized)):
+    return {"user": user.dict()}
+
+
+client = TestClient(app)
+
+
 def test_depends_user(httpx_auth):
-    app = FastAPI()
-
-    user_dependency = AuthupUser(url="http://localhost:3010")
-
-    @app.get("/test")
-    async def user_test(user: User = Depends(user_dependency)):
-        return {"user": user.dict()}
-
-    client = TestClient(app)
-
     authup_url = os.getenv("AUTHUP_URL")
     username = os.getenv("AUTHUP_USERNAME")
     password = os.getenv("AUTHUP_PASSWORD")
@@ -60,38 +94,8 @@ def test_depends_user(httpx_auth):
 
 
 def test_depends_permissions(httpx_auth):
-    app = FastAPI()
-
-    permissions = [
-        Permission(name="test", target="test", inverse=False, power=100000),
-    ]
-
-    depends_unauthorized = AuthupUser(
-        url="http://localhost:3010",
-        permissions=permissions,
-    )
-
-    permissions_authorized = [
-        Permission(name="client_add", inverse=False, power=100),
-    ]
-
-    depends_authorized = AuthupUser(
-        url="http://localhost:3010",
-        permissions=permissions_authorized,
-    )
-
-    @app.get("/test")
-    async def user_test(user: User = Depends(depends_unauthorized)):
-        return {"user": user.dict()}
-
-    @app.get("/test-authorized")
-    async def user_test_auth(user: User = Depends(depends_authorized)):
-        return {"user": user.dict()}
-
-    client = TestClient(app)
-
     # insufficient permissions
-    r = client.get("/test", auth=httpx_auth)
+    r = client.get("/test-2", auth=httpx_auth)
     print(r.content)
     assert r.status_code == 401
 
