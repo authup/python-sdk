@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   authup:
-    image: tada5hi/authup-server:latest
+    image: ghcr.io/authup/authup:latest
     volumes:
       - ./service_data/auth:/usr/src/app/writable
     ports:
