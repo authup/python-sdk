@@ -21,8 +21,19 @@ jobs:
     services:
       authup:
         image: ghcr.io/authup/authup:latest
-        volumes:
-          - ${{ github.workspace }}/authup_data:/usr/src/app/writable
+        # volumes:
+        #   - ${{ github.workspace }}/authup_data:/usr/src/app/writable
+        env:
+          DB_TYPE: postgres
+          DB_HOST: postgres
+          DB_PORT: 5432
+          DB_USERNAME: authup
+          DB_PASSWORD: authup
+          DB_DATABASE: authup
+          ADMIN_USERNAME: admin
+          ADMIN_PASSWORD: start123
+          ROBOT_ENABLED: true
+          ROBOT_SECRET: start123
         ports:
           - "3001:3001"
       
@@ -34,6 +45,7 @@ jobs:
           POSTGRES_PASSWORD: authup
           POSTGRES_USER: authup
           POSTGRES_DB: authup
+        
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
