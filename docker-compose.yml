@@ -1,5 +1,6 @@
 version: "3.8"
-
+volumes:
+  authup_data:
 services:
   authup:
     image: ghcr.io/authup/authup:latest
@@ -9,3 +10,12 @@ services:
     volumes:
       - ./authup_data:/usr/src/app/writable
     command: cli start
+
+  postgres:
+    image: postgres:14
+    volumes:
+      - authup_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: authup
+      POSTGRES_USER: authup
+      POSTGRES_DB: authup

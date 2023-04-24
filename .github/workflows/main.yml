@@ -25,6 +25,22 @@ jobs:
           - ${{ github.workspace }}/authup_data:/usr/src/app/writable
         ports:
           - "3001:3001"
+      
+      postgres:
+        # Docker Hub image
+        image: postgres:14
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: authup
+          POSTGRES_USER: authup
+          POSTGRES_DB: authup
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
 
 
     steps:
