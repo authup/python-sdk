@@ -22,7 +22,7 @@ jobs:
       authup:
         image: ghcr.io/authup/authup:latest
         volumes:
-          - ./authup_data:/usr/src/app/writable
+          - ${{ github.workspace }}/authup_data:/usr/src/app/writable
         ports:
           - "3001:3001"
 
