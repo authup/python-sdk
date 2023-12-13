@@ -13,7 +13,6 @@ from authup.token import (
     refresh_token_async,
 )
 
-
 class Authup:
     def __init__(
         self,
