@@ -1,6 +1,6 @@
 import os
 
-from authup.client import AuthupClient
+from authup.domains.clients import AuthupClient
 
 
 def test_init():

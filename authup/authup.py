@@ -1,8 +1,8 @@
 import datetime
 from typing import Union
 
-from authup.schemas.token import TokenResponse
-from authup.schemas.user import User
+from authup.domains.schemas.token import TokenResponse
+from authup.domains.schemas.user import User
 from authup.settings import CredentialTypes, Settings, validate_check_credentials
 from authup.token import (
     get_token,
@@ -12,6 +12,7 @@ from authup.token import (
     refresh_token,
     refresh_token_async,
 )
+
 
 class Authup:
     def __init__(

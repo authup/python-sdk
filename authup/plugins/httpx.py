@@ -1,6 +1,6 @@
 from httpx import Auth
 
-from authup import Authup
+from authup.authup import Authup
 
 
 class AuthupHttpx(Auth):

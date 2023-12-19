@@ -1,7 +1,7 @@
 import httpx
 
-from authup.schemas.token import TokenIntrospectionResponse, TokenResponse
-from authup.schemas.user import User
+from authup.domains.schemas.token import TokenIntrospectionResponse, TokenResponse
+from authup.domains.schemas.user import User
 from authup.settings import CredentialTypes, validate_check_credentials
 
 

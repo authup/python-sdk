@@ -6,8 +6,8 @@ from fastapi.testclient import TestClient
 
 from authup.plugins.fastapi import AuthupUser
 from authup.plugins.httpx import AuthupHttpx
-from authup.schemas.token import Permission
-from authup.schemas.user import User
+from authup.domains.schemas.token import Permission
+from authup.domains.schemas import User
 
 
 @pytest.fixture

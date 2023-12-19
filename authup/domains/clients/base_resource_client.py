@@ -27,7 +27,7 @@ class ResourceClient(Generic[ResourceType, CreateSchemaType, UpdateSchemaType]):
             return url
         return self.prefix
 
-    async def get(self, id: str) -> ResourceType:
+    async def get_one(self, id: str) -> ResourceType:
         url = self._format_url(id)
         response = await self.client.get(url)
         response.raise_for_status()

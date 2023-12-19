@@ -2,9 +2,9 @@ import os
 
 import pytest
 
-from authup import Authup
+from authup.authup import Authup
 from authup.permissions import check_permissions
-from authup.schemas.token import Permission
+from authup.domains.schemas.token import Permission
 from authup.token import introspect_token_async
 
 

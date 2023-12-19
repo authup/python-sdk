@@ -5,8 +5,8 @@ import platform
 import httpx
 import pytest
 
-from authup import Authup
-from authup.client import AuthupClient
+from authup.authup import Authup
+from authup.domains.clients.client import AuthupClient
 from authup.plugins.httpx import AuthupHttpx
 
 

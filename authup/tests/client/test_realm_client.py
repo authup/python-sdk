@@ -4,8 +4,8 @@ import sys
 
 import pytest
 
-from authup.client.resource_clients.realm import RealmClient
-from authup.schemas.realm import Realm, RealmCreate, RealmUpdate
+from authup.domains.clients.resource_clients import RealmClient
+from authup.domains.schemas import Realm, RealmCreate, RealmUpdate
 
 if (
     sys.version_info[0] == 3
