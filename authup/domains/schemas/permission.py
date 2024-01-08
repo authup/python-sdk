@@ -16,8 +16,8 @@ class Permission(BaseModel):
     target: Optional[str] = None
     realm_id: Optional[str] = None
     realm: Optional[Realm] = None
-    created_at: datetime
-    updated_at: datetime
+    created_at: str = datetime.now().isoformat()
+    updated_at: str = datetime.now().isoformat()
 
 
 class PermissionEventContext(DomainEventBaseContext):
@@ -42,4 +42,5 @@ class PermissionCreate(Permission):
 
 
 class PermissionUpdate(Permission):
+    updated_at: str = datetime.now().isoformat()
     pass

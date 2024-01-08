@@ -31,7 +31,7 @@ class TokenIntrospectionResponse(BaseModel):
     nickname: str
     email: str
     email_verified: bool
-    updated_at: int
+    updated_at: str
     permissions: Optional[List[Permission]] = None
 
 

@@ -11,9 +11,9 @@ class Realm(BaseModel):
     id: Optional[str]
     name: str
     description: Optional[str] = None
-    built_in: bool
-    created_at: datetime
-    updated_at: datetime
+    built_in: bool = False
+    created_at: str = datetime.now().isoformat()
+    updated_at: str = datetime.now().isoformat()
 
 
 class RealmEventContext(DomainEventBaseContext):
@@ -26,4 +26,5 @@ class RealmCreate(Realm):
 
 
 class RealmUpdate(Realm):
+    updated_at = datetime.now().isoformat()
     pass

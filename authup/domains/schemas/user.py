@@ -28,8 +28,8 @@ class User(BaseModel):
     status_message: Optional[str] = None
     active: bool
     active_hash: Optional[str] = None
-    created_at: datetime
-    updated_at: datetime
+    created_at: str = datetime.now().isoformat()
+    updated_at: str = datetime.now().isoformat()
     realm_id: str
     realm: Realm
 
@@ -48,6 +48,7 @@ class UserCreate(User):
 
 
 class UserUpdate(User):
+    updated_at: str = datetime.now().isoformat()
     pass
 
 

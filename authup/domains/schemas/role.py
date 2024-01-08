@@ -15,8 +15,8 @@ class Role(BaseModel):
     description: Optional[str] = None
     realm_id: Optional[str] = None
     realm: Optional[Realm] = None
-    created_at: datetime
-    updated_at: datetime
+    created_at: str = datetime.now().isoformat()
+    updated_at: str = datetime.now().isoformat()
 
 
 class RoleEventContext(DomainEventBaseContext):
@@ -29,4 +29,5 @@ class RoleCreate(Realm):
 
 
 class RoleUpdate(Realm):
+    updated_at: str = datetime.now().isoformat()
     pass
