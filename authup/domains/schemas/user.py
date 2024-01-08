@@ -1,16 +1,17 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
+
+from authup.domains.constants import DomainType
 
 # from authup.domains.schemas.permission import Permission
 from authup.domains.schemas.realm import Realm
 from authup.domains.types_base import DomainEventBaseContext
-from authup.domains.constants import DomainType
 
 
 class User(BaseModel):
-    id: str
+    id: Optional[str]
     name: str
     name_locked: bool
     first_name: Optional[str] = None
@@ -38,7 +39,7 @@ class User(BaseModel):
 
 
 class UserEventContext(DomainEventBaseContext):
-    type: str  # f'{DomainType.USER}'
+    type: str = f"{DomainType.USER}"
     data: User
 
 

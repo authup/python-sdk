@@ -3,12 +3,12 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from authup.domains.types_base import DomainEventBaseContext
 from authup.domains.constants import DomainType
+from authup.domains.types_base import DomainEventBaseContext
 
 
 class Realm(BaseModel):
-    id: str
+    id: Optional[str]
     name: str
     description: Optional[str] = None
     built_in: bool
@@ -17,7 +17,7 @@ class Realm(BaseModel):
 
 
 class RealmEventContext(DomainEventBaseContext):
-    type: str  # f'{DomainType.REALM}'
+    type: str = f"{DomainType.REALM}"
     data: Realm
 
 
