@@ -28,3 +28,6 @@ class RealmCreate(Realm):
 class RealmUpdate(Realm):
     updated_at = datetime.now().isoformat()
     pass
+
+
+REALM_MASTER_NAME = "master"
