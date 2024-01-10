@@ -2,7 +2,7 @@ from starlette.requests import Request
 from starlette.responses import Response
 from starlette.types import ASGIApp, Receive, Scope, Send
 
-from authup.token import get_user_from_token_async, introspect_token_async
+from ..token import get_user_from_token_async, introspect_token_async
 
 
 class AuthupASGIMiddleware:
@@ -18,7 +18,6 @@ class AuthupASGIMiddleware:
 
         request = Request(scope)
         try:
-
             await self.check_request(request)
             await self.app(scope, receive, send)
             return

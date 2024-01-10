@@ -3,7 +3,7 @@ import os
 import httpx
 import pytest
 
-from authup.plugins.httpx import AuthupHttpx
+from ...plugins.httpx import AuthupHttpx
 
 
 @pytest.fixture

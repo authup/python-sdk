@@ -1,11 +1,10 @@
-from typing import TypeVar, Generic, List, Dict, Any, Optional
+from typing import Any, Dict, Generic, List, Optional, TypeVar
 
 from pydantic import BaseModel
 
-from authup.domains.constants import DomainEventName
+from .constants import DomainEventName
 
-
-R = TypeVar('R')
+R = TypeVar("R")
 
 
 class SingleResourceResponse(Generic[R]):
@@ -21,7 +20,7 @@ class DomainEntityWithID(BaseModel):
     id: Any
 
 
-T = TypeVar('T', bound=DomainEntityWithID)
+T = TypeVar("T", bound=DomainEntityWithID)
 
 
 class DomainAPISlim(Generic[T]):

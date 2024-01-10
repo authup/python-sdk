@@ -3,10 +3,10 @@ from typing import List, Union
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from authup.permissions import check_permissions
-from authup.domains.schemas.token import Permission
-from authup.domains.schemas.user import User
-from authup.token import get_user_from_token_async, introspect_token_async
+from ..domains.schemas.token import Permission
+from ..domains.schemas.user import User
+from ..permissions import check_permissions
+from ..token import get_user_from_token_async, introspect_token_async
 
 
 class AuthupUser:

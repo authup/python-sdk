@@ -3,9 +3,9 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from authup.domains.constants import DomainType
-from authup.domains.schemas.realm import Realm
-from authup.domains.types_base import DomainEventBaseContext
+from ..constants import DomainType
+from ..types_base import DomainEventBaseContext
+from .realm import Realm
 
 
 class Role(BaseModel):

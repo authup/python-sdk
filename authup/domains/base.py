@@ -1,7 +1,7 @@
 from typing import Any
 
-from authup.domains.clients.client import AuthupClient
-from authup.domains.types_base import BaseAPIContext
+from .clients.client import AuthupClient
+from .types_base import BaseAPIContext
 
 
 class BaseAPI:
@@ -14,9 +14,10 @@ class BaseAPI:
         if isinstance(input, AuthupClient):
             self.client = input
         else:
-            self.client = AuthupClient(input.authup_url,
-                                       input.username,
-                                       input.password,
-                                       input.robot_id,
-                                       input.robot_secret,
-                                       )
+            self.client = AuthupClient(
+                input.authup_url,
+                input.username,
+                input.password,
+                input.robot_id,
+                input.robot_secret,
+            )

@@ -3,8 +3,8 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from authup.domains.constants import DomainType
-from authup.domains.types_base import DomainEventBaseContext
+from ..constants import DomainType
+from ..types_base import DomainEventBaseContext
 
 
 class Realm(BaseModel):

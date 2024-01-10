@@ -19,7 +19,7 @@ class Name(BaseModel):
 
 class Description(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class DropAble(BaseModel):
@@ -55,12 +55,12 @@ class NameLocked(BaseModel):
 
 class FirstName(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class LastName(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class DisplayName(BaseModel):
@@ -69,47 +69,47 @@ class DisplayName(BaseModel):
 
 class Email(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Password(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Avatar(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Cover(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class ResetHash(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class ResetAt(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class ResetExpires(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Status(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class StatusMessage(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Active(BaseModel):
@@ -118,7 +118,7 @@ class Active(BaseModel):
 
 class ActivateHash(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class CreatedAt1(BaseModel):
@@ -136,7 +136,7 @@ class RealmId(BaseModel):
 
 
 class Realm1(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Properties1(BaseModel):
@@ -176,28 +176,28 @@ class Secret(BaseModel):
 
 class RedirectUri(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class GrantTypes(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Scope(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class BaseUrl(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
     description: str
 
 
 class RootUrl(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
     description: str
 
 
@@ -207,21 +207,21 @@ class IsConfidential(BaseModel):
 
 class CreatedAt2(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class UpdatedAt2(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class UserId(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class User1(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Properties2(BaseModel):
@@ -255,7 +255,7 @@ class BuiltIn(BaseModel):
 
 class RealmId2(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Properties3(BaseModel):
@@ -284,7 +284,7 @@ class ClientId(BaseModel):
 
 
 class Client1(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class ScopeId(BaseModel):
@@ -292,7 +292,7 @@ class ScopeId(BaseModel):
 
 
 class Scope2(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Properties4(BaseModel):
@@ -385,17 +385,17 @@ class PickRobotName(BaseModel):
 
 class Target(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Description5(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class RealmId5(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class CreatedAt6(BaseModel):
@@ -430,13 +430,13 @@ class Slug(BaseModel):
 class Protocol(BaseModel):
     type: str
     enum: List[str]
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class ProtocolConfig(BaseModel):
     type: str
     enum: List[Optional[str]]
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Enabled(BaseModel):
@@ -445,12 +445,12 @@ class Enabled(BaseModel):
 
 class CreatedAt7(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class UpdatedAt7(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class RealmId6(BaseModel):
@@ -495,16 +495,16 @@ class RoleId(BaseModel):
 
 
 class Role1(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class RoleRealmId(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class RoleRealm(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class ProviderId(BaseModel):
@@ -512,16 +512,16 @@ class ProviderId(BaseModel):
 
 
 class Provider(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class ProviderRealmId(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class ProviderRealm(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Properties10(BaseModel):
@@ -568,12 +568,12 @@ class NonNullableIdentityProviderRole(BaseModel):
 
 class CreatedAt10(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class UpdatedAt10(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Properties12(BaseModel):
@@ -597,7 +597,7 @@ class NonNullableIdentityProvider(BaseModel):
 
 class RealmId8(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class CreatedAt11(BaseModel):
@@ -718,7 +718,7 @@ class SubjectTypesSupported(BaseModel):
 class Items2(BaseModel):
     type: str
     enum: List[str]
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class ResponseTypeSupported(BaseModel):
@@ -765,67 +765,67 @@ class OAuth2OpenIDProviderMetadata(BaseModel):
 
 class Y(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class X(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Qi(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Q(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class P(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class N(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Kty(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class K(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class E(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Dq(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Dp(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class D(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Crv(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Kid(BaseModel):
@@ -889,12 +889,12 @@ class Power(BaseModel):
 
 class Condition(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Fields(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Negation(BaseModel):
@@ -906,16 +906,16 @@ class PermissionId(BaseModel):
 
 
 class Permission1(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class PermissionRealmId(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class PermissionRealm(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class CreatedAt15(BaseModel):
@@ -972,12 +972,12 @@ class PickRolePermissionRoleidpermissionid(BaseModel):
 
 class CreatedAt17(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class UpdatedAt17(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Properties21(BaseModel):
@@ -1048,11 +1048,11 @@ class UserId3(BaseModel):
 
 class UserRealmId(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class UserRealm(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class CreatedAt19(BaseModel):
@@ -1188,16 +1188,16 @@ class RobotId(BaseModel):
 
 
 class Robot1(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class RobotRealmId(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class RobotRealm(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Properties27(BaseModel):
@@ -1344,12 +1344,12 @@ class PickUserPermissionUseridpermissionid(BaseModel):
 
 class Value(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class RealmId13(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class CreatedAt27(BaseModel):
@@ -1438,22 +1438,22 @@ class NonNullableUserAttribute(BaseModel):
 
 class Scope5(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class CreatedAt31(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class UpdatedAt31(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class UserId9(BaseModel):
     type: str
-    x_nullable: bool = Field(..., alias='x-nullable')
+    x_nullable: bool = Field(..., alias="x-nullable")
 
 
 class Properties37(BaseModel):
@@ -1488,10 +1488,10 @@ class Definitions(BaseModel):
     Scope: Scope1
     ClientScope: ClientScope
     PickClientScope_clientidscopeid: PickClientScopeClientidscopeid = Field(
-        ..., alias='PickClientScope.clientidscopeid'
+        ..., alias="PickClientScope.clientidscopeid"
     )
     Robot: Robot
-    PickRobot_name: PickRobotName = Field(..., alias='PickRobot.name')
+    PickRobot_name: PickRobotName = Field(..., alias="PickRobot.name")
     Role: Role
     IdentityProvider: IdentityProvider
     IdentityProviderRole: IdentityProviderRole
@@ -1502,30 +1502,30 @@ class Definitions(BaseModel):
     NonNullableRealm: NonNullableRealm
     OAuth2OpenIDProviderMetadata: OAuth2OpenIDProviderMetadata
     OAuth2JsonWebKey: OAuth2JsonWebKey
-    PickRole_name: PickRoleName = Field(..., alias='PickRole.name')
+    PickRole_name: PickRoleName = Field(..., alias="PickRole.name")
     RolePermission: RolePermission
     PickRolePermission_roleidpermissionid: PickRolePermissionRoleidpermissionid = Field(
-        ..., alias='PickRolePermission.roleidpermissionid'
+        ..., alias="PickRolePermission.roleidpermissionid"
     )
-    PickScope_name: PickScopeName = Field(..., alias='PickScope.name')
+    PickScope_name: PickScopeName = Field(..., alias="PickScope.name")
     NonNullableUser: NonNullableUser
     UserRole: UserRole
     PickUserRole_roleiduserid: PickUserRoleRoleiduserid = Field(
-        ..., alias='PickUserRole.roleiduserid'
+        ..., alias="PickUserRole.roleiduserid"
     )
     OAuth2TokenGrantResponse: OAuth2TokenGrantResponse
     EndpointInfo: EndpointInfo
     RobotPermission: RobotPermission
     PickRobotPermission_robotidpermissionid: PickRobotPermissionRobotidpermissionid = (
-        Field(..., alias='PickRobotPermission.robotidpermissionid')
+        Field(..., alias="PickRobotPermission.robotidpermissionid")
     )
     RobotRole: RobotRole
     PickRobotRole_roleidrobotid: PickRobotRoleRoleidrobotid = Field(
-        ..., alias='PickRobotRole.roleidrobotid'
+        ..., alias="PickRobotRole.roleidrobotid"
     )
     UserPermission: UserPermission
     PickUserPermission_useridpermissionid: PickUserPermissionUseridpermissionid = Field(
-        ..., alias='PickUserPermission.useridpermissionid'
+        ..., alias="PickUserPermission.useridpermissionid"
     )
     RoleAttribute: RoleAttribute
     NonNullableRoleAttribute: NonNullableRoleAttribute
@@ -1541,7 +1541,7 @@ class Info(BaseModel):
 
 
 class Items3(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Schema(BaseModel):
@@ -1551,11 +1551,11 @@ class Schema(BaseModel):
 
 class Field200(BaseModel):
     description: str
-    schema_: Schema = Field(..., alias='schema')
+    schema_: Schema = Field(..., alias="schema")
 
 
 class Responses(BaseModel):
-    field_200: Field200 = Field(..., alias='200')
+    field_200: Field200 = Field(..., alias="200")
 
 
 class Get(BaseModel):
@@ -1569,24 +1569,24 @@ class Get(BaseModel):
 
 
 class Schema1(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field2001(BaseModel):
     description: str
-    schema_: Schema1 = Field(..., alias='schema')
+    schema_: Schema1 = Field(..., alias="schema")
 
 
 class Responses1(BaseModel):
-    field_200: Field2001 = Field(..., alias='200')
+    field_200: Field2001 = Field(..., alias="200")
 
 
 class Parameter(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema1 = Field(..., alias='schema')
+    schema_: Schema1 = Field(..., alias="schema")
 
 
 class Post(BaseModel):
@@ -1606,16 +1606,16 @@ class FieldClientScopes(BaseModel):
 
 class Field2002(BaseModel):
     description: str
-    schema_: Schema1 = Field(..., alias='schema')
+    schema_: Schema1 = Field(..., alias="schema")
 
 
 class Responses2(BaseModel):
-    field_200: Field2002 = Field(..., alias='200')
+    field_200: Field2002 = Field(..., alias="200")
 
 
 class Parameter1(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -1633,11 +1633,11 @@ class Get1(BaseModel):
 
 class Field2003(BaseModel):
     description: str
-    schema_: Schema1 = Field(..., alias='schema')
+    schema_: Schema1 = Field(..., alias="schema")
 
 
 class Responses3(BaseModel):
-    field_200: Field2003 = Field(..., alias='200')
+    field_200: Field2003 = Field(..., alias="200")
 
 
 class Delete(BaseModel):
@@ -1662,11 +1662,11 @@ class Schema5(BaseModel):
 
 class Field2004(BaseModel):
     description: str
-    schema_: Schema5 = Field(..., alias='schema')
+    schema_: Schema5 = Field(..., alias="schema")
 
 
 class Responses4(BaseModel):
-    field_200: Field2004 = Field(..., alias='200')
+    field_200: Field2004 = Field(..., alias="200")
 
 
 class Get2(BaseModel):
@@ -1680,24 +1680,24 @@ class Get2(BaseModel):
 
 
 class Schema6(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field2005(BaseModel):
     description: str
-    schema_: Schema6 = Field(..., alias='schema')
+    schema_: Schema6 = Field(..., alias="schema")
 
 
 class Responses5(BaseModel):
-    field_200: Field2005 = Field(..., alias='200')
+    field_200: Field2005 = Field(..., alias="200")
 
 
 class Parameter3(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema6 = Field(..., alias='schema')
+    schema_: Schema6 = Field(..., alias="schema")
 
 
 class Post1(BaseModel):
@@ -1717,16 +1717,16 @@ class FieldRobots(BaseModel):
 
 class Field2006(BaseModel):
     description: str
-    schema_: Schema6 = Field(..., alias='schema')
+    schema_: Schema6 = Field(..., alias="schema")
 
 
 class Responses6(BaseModel):
-    field_200: Field2006 = Field(..., alias='200')
+    field_200: Field2006 = Field(..., alias="200")
 
 
 class Parameter4(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -1748,11 +1748,11 @@ class FieldRobotsIdIntegrity(BaseModel):
 
 class Field2007(BaseModel):
     description: str
-    schema_: Schema6 = Field(..., alias='schema')
+    schema_: Schema6 = Field(..., alias="schema")
 
 
 class Responses7(BaseModel):
-    field_200: Field2007 = Field(..., alias='200')
+    field_200: Field2007 = Field(..., alias="200")
 
 
 class Get4(BaseModel):
@@ -1767,20 +1767,20 @@ class Get4(BaseModel):
 
 class Field2008(BaseModel):
     description: str
-    schema_: Schema6 = Field(..., alias='schema')
+    schema_: Schema6 = Field(..., alias="schema")
 
 
 class Responses8(BaseModel):
-    field_200: Field2008 = Field(..., alias='200')
+    field_200: Field2008 = Field(..., alias="200")
 
 
 class Parameter6(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema6] = Field(None, alias='schema')
+    schema_: Optional[Schema6] = Field(None, alias="schema")
 
 
 class Post2(BaseModel):
@@ -1795,16 +1795,16 @@ class Post2(BaseModel):
 
 class Field2009(BaseModel):
     description: str
-    schema_: Schema6 = Field(..., alias='schema')
+    schema_: Schema6 = Field(..., alias="schema")
 
 
 class Responses9(BaseModel):
-    field_200: Field2009 = Field(..., alias='200')
+    field_200: Field2009 = Field(..., alias="200")
 
 
 class Parameter7(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -1833,11 +1833,11 @@ class Schema13(BaseModel):
 
 class Field20010(BaseModel):
     description: str
-    schema_: Schema13 = Field(..., alias='schema')
+    schema_: Schema13 = Field(..., alias="schema")
 
 
 class Responses10(BaseModel):
-    field_200: Field20010 = Field(..., alias='200')
+    field_200: Field20010 = Field(..., alias="200")
 
 
 class Get5(BaseModel):
@@ -1851,24 +1851,24 @@ class Get5(BaseModel):
 
 
 class Schema14(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20011(BaseModel):
     description: str
-    schema_: Schema14 = Field(..., alias='schema')
+    schema_: Schema14 = Field(..., alias="schema")
 
 
 class Responses11(BaseModel):
-    field_200: Field20011 = Field(..., alias='200')
+    field_200: Field20011 = Field(..., alias="200")
 
 
 class Parameter8(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema14 = Field(..., alias='schema')
+    schema_: Schema14 = Field(..., alias="schema")
 
 
 class Post3(BaseModel):
@@ -1888,16 +1888,16 @@ class FieldIdentityProviderRoles(BaseModel):
 
 class Field20012(BaseModel):
     description: str
-    schema_: Schema14 = Field(..., alias='schema')
+    schema_: Schema14 = Field(..., alias="schema")
 
 
 class Responses12(BaseModel):
-    field_200: Field20012 = Field(..., alias='200')
+    field_200: Field20012 = Field(..., alias="200")
 
 
 class Parameter9(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -1915,20 +1915,20 @@ class Get6(BaseModel):
 
 class Field20013(BaseModel):
     description: str
-    schema_: Schema14 = Field(..., alias='schema')
+    schema_: Schema14 = Field(..., alias="schema")
 
 
 class Responses13(BaseModel):
-    field_200: Field20013 = Field(..., alias='200')
+    field_200: Field20013 = Field(..., alias="200")
 
 
 class Parameter10(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema14] = Field(None, alias='schema')
+    schema_: Optional[Schema14] = Field(None, alias="schema")
 
 
 class Post4(BaseModel):
@@ -1943,16 +1943,16 @@ class Post4(BaseModel):
 
 class Field20014(BaseModel):
     description: str
-    schema_: Schema14 = Field(..., alias='schema')
+    schema_: Schema14 = Field(..., alias="schema")
 
 
 class Responses14(BaseModel):
-    field_200: Field20014 = Field(..., alias='200')
+    field_200: Field20014 = Field(..., alias="200")
 
 
 class Parameter11(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -1981,11 +1981,11 @@ class Schema20(BaseModel):
 
 class Field20015(BaseModel):
     description: str
-    schema_: Schema20 = Field(..., alias='schema')
+    schema_: Schema20 = Field(..., alias="schema")
 
 
 class Responses15(BaseModel):
-    field_200: Field20015 = Field(..., alias='200')
+    field_200: Field20015 = Field(..., alias="200")
 
 
 class Get7(BaseModel):
@@ -1999,24 +1999,24 @@ class Get7(BaseModel):
 
 
 class Schema21(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20016(BaseModel):
     description: str
-    schema_: Schema21 = Field(..., alias='schema')
+    schema_: Schema21 = Field(..., alias="schema")
 
 
 class Responses16(BaseModel):
-    field_200: Field20016 = Field(..., alias='200')
+    field_200: Field20016 = Field(..., alias="200")
 
 
 class Parameter12(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema21 = Field(..., alias='schema')
+    schema_: Schema21 = Field(..., alias="schema")
 
 
 class Post5(BaseModel):
@@ -2036,16 +2036,16 @@ class FieldIdentityProviders(BaseModel):
 
 class Field20017(BaseModel):
     description: str
-    schema_: Schema21 = Field(..., alias='schema')
+    schema_: Schema21 = Field(..., alias="schema")
 
 
 class Responses17(BaseModel):
-    field_200: Field20017 = Field(..., alias='200')
+    field_200: Field20017 = Field(..., alias="200")
 
 
 class Parameter13(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2063,20 +2063,20 @@ class Get8(BaseModel):
 
 class Field20018(BaseModel):
     description: str
-    schema_: Schema21 = Field(..., alias='schema')
+    schema_: Schema21 = Field(..., alias="schema")
 
 
 class Responses18(BaseModel):
-    field_200: Field20018 = Field(..., alias='200')
+    field_200: Field20018 = Field(..., alias="200")
 
 
 class Parameter14(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema21] = Field(None, alias='schema')
+    schema_: Optional[Schema21] = Field(None, alias="schema")
 
 
 class Post6(BaseModel):
@@ -2091,16 +2091,16 @@ class Post6(BaseModel):
 
 class Field20019(BaseModel):
     description: str
-    schema_: Schema21 = Field(..., alias='schema')
+    schema_: Schema21 = Field(..., alias="schema")
 
 
 class Responses19(BaseModel):
-    field_200: Field20019 = Field(..., alias='200')
+    field_200: Field20019 = Field(..., alias="200")
 
 
 class Parameter15(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2129,11 +2129,11 @@ class Schema27(BaseModel):
 
 class Field20020(BaseModel):
     description: str
-    schema_: Schema27 = Field(..., alias='schema')
+    schema_: Schema27 = Field(..., alias="schema")
 
 
 class Responses20(BaseModel):
-    field_200: Field20020 = Field(..., alias='200')
+    field_200: Field20020 = Field(..., alias="200")
 
 
 class Get9(BaseModel):
@@ -2153,23 +2153,23 @@ class Schema28(BaseModel):
 
 class Field20021(BaseModel):
     description: str
-    schema_: Schema28 = Field(..., alias='schema')
+    schema_: Schema28 = Field(..., alias="schema")
 
 
 class Responses21(BaseModel):
-    field_200: Field20021 = Field(..., alias='200')
+    field_200: Field20021 = Field(..., alias="200")
 
 
 class Schema29(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Parameter16(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema29 = Field(..., alias='schema')
+    schema_: Schema29 = Field(..., alias="schema")
 
 
 class Post7(BaseModel):
@@ -2189,16 +2189,16 @@ class FieldPermissions(BaseModel):
 
 class Field20022(BaseModel):
     description: str
-    schema_: Schema29 = Field(..., alias='schema')
+    schema_: Schema29 = Field(..., alias="schema")
 
 
 class Responses22(BaseModel):
-    field_200: Field20022 = Field(..., alias='200')
+    field_200: Field20022 = Field(..., alias="200")
 
 
 class Parameter17(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2216,20 +2216,20 @@ class Get10(BaseModel):
 
 class Field20023(BaseModel):
     description: str
-    schema_: Schema29 = Field(..., alias='schema')
+    schema_: Schema29 = Field(..., alias="schema")
 
 
 class Responses23(BaseModel):
-    field_200: Field20023 = Field(..., alias='200')
+    field_200: Field20023 = Field(..., alias="200")
 
 
 class Parameter18(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema29] = Field(None, alias='schema')
+    schema_: Optional[Schema29] = Field(None, alias="schema")
 
 
 class Post8(BaseModel):
@@ -2244,16 +2244,16 @@ class Post8(BaseModel):
 
 class Field20024(BaseModel):
     description: str
-    schema_: Schema29 = Field(..., alias='schema')
+    schema_: Schema29 = Field(..., alias="schema")
 
 
 class Responses24(BaseModel):
-    field_200: Field20024 = Field(..., alias='200')
+    field_200: Field20024 = Field(..., alias="200")
 
 
 class Parameter19(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2282,11 +2282,11 @@ class Schema34(BaseModel):
 
 class Field20025(BaseModel):
     description: str
-    schema_: Schema34 = Field(..., alias='schema')
+    schema_: Schema34 = Field(..., alias="schema")
 
 
 class Responses25(BaseModel):
-    field_200: Field20025 = Field(..., alias='200')
+    field_200: Field20025 = Field(..., alias="200")
 
 
 class Get11(BaseModel):
@@ -2300,24 +2300,24 @@ class Get11(BaseModel):
 
 
 class Schema35(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20026(BaseModel):
     description: str
-    schema_: Schema35 = Field(..., alias='schema')
+    schema_: Schema35 = Field(..., alias="schema")
 
 
 class Responses26(BaseModel):
-    field_200: Field20026 = Field(..., alias='200')
+    field_200: Field20026 = Field(..., alias="200")
 
 
 class Parameter20(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema35 = Field(..., alias='schema')
+    schema_: Schema35 = Field(..., alias="schema")
 
 
 class Post9(BaseModel):
@@ -2337,16 +2337,16 @@ class FieldRealms(BaseModel):
 
 class Field20027(BaseModel):
     description: str
-    schema_: Schema35 = Field(..., alias='schema')
+    schema_: Schema35 = Field(..., alias="schema")
 
 
 class Responses27(BaseModel):
-    field_200: Field20027 = Field(..., alias='200')
+    field_200: Field20027 = Field(..., alias="200")
 
 
 class Parameter21(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2364,20 +2364,20 @@ class Get12(BaseModel):
 
 class Field20028(BaseModel):
     description: str
-    schema_: Schema35 = Field(..., alias='schema')
+    schema_: Schema35 = Field(..., alias="schema")
 
 
 class Responses28(BaseModel):
-    field_200: Field20028 = Field(..., alias='200')
+    field_200: Field20028 = Field(..., alias="200")
 
 
 class Parameter22(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema35] = Field(None, alias='schema')
+    schema_: Optional[Schema35] = Field(None, alias="schema")
 
 
 class Post10(BaseModel):
@@ -2392,16 +2392,16 @@ class Post10(BaseModel):
 
 class Field20029(BaseModel):
     description: str
-    schema_: Schema35 = Field(..., alias='schema')
+    schema_: Schema35 = Field(..., alias="schema")
 
 
 class Responses29(BaseModel):
-    field_200: Field20029 = Field(..., alias='200')
+    field_200: Field20029 = Field(..., alias="200")
 
 
 class Parameter23(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2425,11 +2425,11 @@ class FieldRealmsId(BaseModel):
 
 class Field20030(BaseModel):
     description: str
-    schema_: Schema35 = Field(..., alias='schema')
+    schema_: Schema35 = Field(..., alias="schema")
 
 
 class Responses30(BaseModel):
-    field_200: Field20030 = Field(..., alias='200')
+    field_200: Field20030 = Field(..., alias="200")
 
 
 class Get13(BaseModel):
@@ -2453,11 +2453,11 @@ class Schema42(BaseModel):
 
 class Field20031(BaseModel):
     description: str
-    schema_: Schema42 = Field(..., alias='schema')
+    schema_: Schema42 = Field(..., alias="schema")
 
 
 class Responses31(BaseModel):
-    field_200: Field20031 = Field(..., alias='200')
+    field_200: Field20031 = Field(..., alias="200")
 
 
 class Get14(BaseModel):
@@ -2481,11 +2481,11 @@ class Schema43(BaseModel):
 
 class Field20032(BaseModel):
     description: str
-    schema_: Schema43 = Field(..., alias='schema')
+    schema_: Schema43 = Field(..., alias="schema")
 
 
 class Responses32(BaseModel):
-    field_200: Field20032 = Field(..., alias='200')
+    field_200: Field20032 = Field(..., alias="200")
 
 
 class Get15(BaseModel):
@@ -2499,24 +2499,24 @@ class Get15(BaseModel):
 
 
 class Schema44(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20033(BaseModel):
     description: str
-    schema_: Schema44 = Field(..., alias='schema')
+    schema_: Schema44 = Field(..., alias="schema")
 
 
 class Responses33(BaseModel):
-    field_200: Field20033 = Field(..., alias='200')
+    field_200: Field20033 = Field(..., alias="200")
 
 
 class Parameter26(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema44 = Field(..., alias='schema')
+    schema_: Schema44 = Field(..., alias="schema")
 
 
 class Post11(BaseModel):
@@ -2536,16 +2536,16 @@ class FieldRoles(BaseModel):
 
 class Field20034(BaseModel):
     description: str
-    schema_: Schema44 = Field(..., alias='schema')
+    schema_: Schema44 = Field(..., alias="schema")
 
 
 class Responses34(BaseModel):
-    field_200: Field20034 = Field(..., alias='200')
+    field_200: Field20034 = Field(..., alias="200")
 
 
 class Parameter27(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2563,20 +2563,20 @@ class Get16(BaseModel):
 
 class Field20035(BaseModel):
     description: str
-    schema_: Schema44 = Field(..., alias='schema')
+    schema_: Schema44 = Field(..., alias="schema")
 
 
 class Responses35(BaseModel):
-    field_200: Field20035 = Field(..., alias='200')
+    field_200: Field20035 = Field(..., alias="200")
 
 
 class Parameter28(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema44] = Field(None, alias='schema')
+    schema_: Optional[Schema44] = Field(None, alias="schema")
 
 
 class Post12(BaseModel):
@@ -2591,16 +2591,16 @@ class Post12(BaseModel):
 
 class Field20036(BaseModel):
     description: str
-    schema_: Schema44 = Field(..., alias='schema')
+    schema_: Schema44 = Field(..., alias="schema")
 
 
 class Responses36(BaseModel):
-    field_200: Field20036 = Field(..., alias='200')
+    field_200: Field20036 = Field(..., alias="200")
 
 
 class Parameter29(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2629,11 +2629,11 @@ class Schema50(BaseModel):
 
 class Field20037(BaseModel):
     description: str
-    schema_: Schema50 = Field(..., alias='schema')
+    schema_: Schema50 = Field(..., alias="schema")
 
 
 class Responses37(BaseModel):
-    field_200: Field20037 = Field(..., alias='200')
+    field_200: Field20037 = Field(..., alias="200")
 
 
 class Get17(BaseModel):
@@ -2647,24 +2647,24 @@ class Get17(BaseModel):
 
 
 class Schema51(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20038(BaseModel):
     description: str
-    schema_: Schema51 = Field(..., alias='schema')
+    schema_: Schema51 = Field(..., alias="schema")
 
 
 class Responses38(BaseModel):
-    field_200: Field20038 = Field(..., alias='200')
+    field_200: Field20038 = Field(..., alias="200")
 
 
 class Parameter30(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema51 = Field(..., alias='schema')
+    schema_: Schema51 = Field(..., alias="schema")
 
 
 class Post13(BaseModel):
@@ -2684,16 +2684,16 @@ class FieldRolePermissions(BaseModel):
 
 class Field20039(BaseModel):
     description: str
-    schema_: Schema51 = Field(..., alias='schema')
+    schema_: Schema51 = Field(..., alias="schema")
 
 
 class Responses39(BaseModel):
-    field_200: Field20039 = Field(..., alias='200')
+    field_200: Field20039 = Field(..., alias="200")
 
 
 class Parameter31(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2711,11 +2711,11 @@ class Get18(BaseModel):
 
 class Field20040(BaseModel):
     description: str
-    schema_: Schema51 = Field(..., alias='schema')
+    schema_: Schema51 = Field(..., alias="schema")
 
 
 class Responses40(BaseModel):
-    field_200: Field20040 = Field(..., alias='200')
+    field_200: Field20040 = Field(..., alias="200")
 
 
 class Delete7(BaseModel):
@@ -2740,11 +2740,11 @@ class Schema55(BaseModel):
 
 class Field20041(BaseModel):
     description: str
-    schema_: Schema55 = Field(..., alias='schema')
+    schema_: Schema55 = Field(..., alias="schema")
 
 
 class Responses41(BaseModel):
-    field_200: Field20041 = Field(..., alias='200')
+    field_200: Field20041 = Field(..., alias="200")
 
 
 class Get19(BaseModel):
@@ -2758,24 +2758,24 @@ class Get19(BaseModel):
 
 
 class Schema56(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20042(BaseModel):
     description: str
-    schema_: Schema56 = Field(..., alias='schema')
+    schema_: Schema56 = Field(..., alias="schema")
 
 
 class Responses42(BaseModel):
-    field_200: Field20042 = Field(..., alias='200')
+    field_200: Field20042 = Field(..., alias="200")
 
 
 class Parameter33(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema56 = Field(..., alias='schema')
+    schema_: Schema56 = Field(..., alias="schema")
 
 
 class Post14(BaseModel):
@@ -2795,16 +2795,16 @@ class FieldScopes(BaseModel):
 
 class Field20043(BaseModel):
     description: str
-    schema_: Schema56 = Field(..., alias='schema')
+    schema_: Schema56 = Field(..., alias="schema")
 
 
 class Responses43(BaseModel):
-    field_200: Field20043 = Field(..., alias='200')
+    field_200: Field20043 = Field(..., alias="200")
 
 
 class Parameter34(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2822,20 +2822,20 @@ class Get20(BaseModel):
 
 class Field20044(BaseModel):
     description: str
-    schema_: Schema56 = Field(..., alias='schema')
+    schema_: Schema56 = Field(..., alias="schema")
 
 
 class Responses44(BaseModel):
-    field_200: Field20044 = Field(..., alias='200')
+    field_200: Field20044 = Field(..., alias="200")
 
 
 class Parameter35(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema56] = Field(None, alias='schema')
+    schema_: Optional[Schema56] = Field(None, alias="schema")
 
 
 class Post15(BaseModel):
@@ -2850,16 +2850,16 @@ class Post15(BaseModel):
 
 class Field20045(BaseModel):
     description: str
-    schema_: Schema56 = Field(..., alias='schema')
+    schema_: Schema56 = Field(..., alias="schema")
 
 
 class Responses45(BaseModel):
-    field_200: Field20045 = Field(..., alias='200')
+    field_200: Field20045 = Field(..., alias="200")
 
 
 class Parameter36(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2888,11 +2888,11 @@ class Schema62(BaseModel):
 
 class Field20046(BaseModel):
     description: str
-    schema_: Schema62 = Field(..., alias='schema')
+    schema_: Schema62 = Field(..., alias="schema")
 
 
 class Responses46(BaseModel):
-    field_200: Field20046 = Field(..., alias='200')
+    field_200: Field20046 = Field(..., alias="200")
 
 
 class Get21(BaseModel):
@@ -2906,24 +2906,24 @@ class Get21(BaseModel):
 
 
 class Schema63(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20047(BaseModel):
     description: str
-    schema_: Schema63 = Field(..., alias='schema')
+    schema_: Schema63 = Field(..., alias="schema")
 
 
 class Responses47(BaseModel):
-    field_200: Field20047 = Field(..., alias='200')
+    field_200: Field20047 = Field(..., alias="200")
 
 
 class Parameter37(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema63 = Field(..., alias='schema')
+    schema_: Schema63 = Field(..., alias="schema")
 
 
 class Post16(BaseModel):
@@ -2943,16 +2943,16 @@ class FieldUsers(BaseModel):
 
 class Field20048(BaseModel):
     description: str
-    schema_: Schema63 = Field(..., alias='schema')
+    schema_: Schema63 = Field(..., alias="schema")
 
 
 class Responses48(BaseModel):
-    field_200: Field20048 = Field(..., alias='200')
+    field_200: Field20048 = Field(..., alias="200")
 
 
 class Parameter38(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -2970,20 +2970,20 @@ class Get22(BaseModel):
 
 class Field20049(BaseModel):
     description: str
-    schema_: Schema63 = Field(..., alias='schema')
+    schema_: Schema63 = Field(..., alias="schema")
 
 
 class Responses49(BaseModel):
-    field_200: Field20049 = Field(..., alias='200')
+    field_200: Field20049 = Field(..., alias="200")
 
 
 class Parameter39(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema63] = Field(None, alias='schema')
+    schema_: Optional[Schema63] = Field(None, alias="schema")
 
 
 class Post17(BaseModel):
@@ -2998,16 +2998,16 @@ class Post17(BaseModel):
 
 class Field20050(BaseModel):
     description: str
-    schema_: Schema63 = Field(..., alias='schema')
+    schema_: Schema63 = Field(..., alias="schema")
 
 
 class Responses50(BaseModel):
-    field_200: Field20050 = Field(..., alias='200')
+    field_200: Field20050 = Field(..., alias="200")
 
 
 class Parameter40(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -3036,11 +3036,11 @@ class Schema69(BaseModel):
 
 class Field20051(BaseModel):
     description: str
-    schema_: Schema69 = Field(..., alias='schema')
+    schema_: Schema69 = Field(..., alias="schema")
 
 
 class Responses51(BaseModel):
-    field_200: Field20051 = Field(..., alias='200')
+    field_200: Field20051 = Field(..., alias="200")
 
 
 class Get23(BaseModel):
@@ -3054,24 +3054,24 @@ class Get23(BaseModel):
 
 
 class Schema70(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20052(BaseModel):
     description: str
-    schema_: Schema70 = Field(..., alias='schema')
+    schema_: Schema70 = Field(..., alias="schema")
 
 
 class Responses52(BaseModel):
-    field_200: Field20052 = Field(..., alias='200')
+    field_200: Field20052 = Field(..., alias="200")
 
 
 class Parameter41(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema70 = Field(..., alias='schema')
+    schema_: Schema70 = Field(..., alias="schema")
 
 
 class Post18(BaseModel):
@@ -3091,16 +3091,16 @@ class FieldUserRoles(BaseModel):
 
 class Field20053(BaseModel):
     description: str
-    schema_: Schema70 = Field(..., alias='schema')
+    schema_: Schema70 = Field(..., alias="schema")
 
 
 class Responses53(BaseModel):
-    field_200: Field20053 = Field(..., alias='200')
+    field_200: Field20053 = Field(..., alias="200")
 
 
 class Parameter42(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -3118,11 +3118,11 @@ class Get24(BaseModel):
 
 class Field20054(BaseModel):
     description: str
-    schema_: Schema70 = Field(..., alias='schema')
+    schema_: Schema70 = Field(..., alias="schema")
 
 
 class Responses54(BaseModel):
-    field_200: Field20054 = Field(..., alias='200')
+    field_200: Field20054 = Field(..., alias="200")
 
 
 class Delete10(BaseModel):
@@ -3148,11 +3148,11 @@ class Schema74(BaseModel):
 
 class Field20055(BaseModel):
     description: str
-    schema_: Schema74 = Field(..., alias='schema')
+    schema_: Schema74 = Field(..., alias="schema")
 
 
 class Responses55(BaseModel):
-    field_200: Field20055 = Field(..., alias='200')
+    field_200: Field20055 = Field(..., alias="200")
 
 
 class Get25(BaseModel):
@@ -3173,11 +3173,11 @@ class Schema75(BaseModel):
 
 class Field20056(BaseModel):
     description: str
-    schema_: Schema75 = Field(..., alias='schema')
+    schema_: Schema75 = Field(..., alias="schema")
 
 
 class Responses56(BaseModel):
-    field_200: Field20056 = Field(..., alias='200')
+    field_200: Field20056 = Field(..., alias="200")
 
 
 class Post19(BaseModel):
@@ -3202,11 +3202,11 @@ class Schema76(BaseModel):
 
 class Field20057(BaseModel):
     description: str
-    schema_: Schema76 = Field(..., alias='schema')
+    schema_: Schema76 = Field(..., alias="schema")
 
 
 class Responses57(BaseModel):
-    field_200: Field20057 = Field(..., alias='200')
+    field_200: Field20057 = Field(..., alias="200")
 
 
 class Post20(BaseModel):
@@ -3224,16 +3224,16 @@ class FieldToken(BaseModel):
 
 
 class Schema77(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20058(BaseModel):
     description: str
-    schema_: Schema77 = Field(..., alias='schema')
+    schema_: Schema77 = Field(..., alias="schema")
 
 
 class Responses58(BaseModel):
-    field_200: Field20058 = Field(..., alias='200')
+    field_200: Field20058 = Field(..., alias="200")
 
 
 class Get26(BaseModel):
@@ -3255,7 +3255,7 @@ class Field204(BaseModel):
 
 
 class Responses59(BaseModel):
-    field_204: Field204 = Field(..., alias='204')
+    field_204: Field204 = Field(..., alias="204")
 
 
 class Post21(BaseModel):
@@ -3279,11 +3279,11 @@ class Schema78(BaseModel):
 
 class Field20059(BaseModel):
     description: str
-    schema_: Schema78 = Field(..., alias='schema')
+    schema_: Schema78 = Field(..., alias="schema")
 
 
 class Responses60(BaseModel):
-    field_200: Field20059 = Field(..., alias='200')
+    field_200: Field20059 = Field(..., alias="200")
 
 
 class Get27(BaseModel):
@@ -3307,11 +3307,11 @@ class Schema79(BaseModel):
 
 class Field20060(BaseModel):
     description: str
-    schema_: Schema79 = Field(..., alias='schema')
+    schema_: Schema79 = Field(..., alias="schema")
 
 
 class Responses61(BaseModel):
-    field_200: Field20060 = Field(..., alias='200')
+    field_200: Field20060 = Field(..., alias="200")
 
 
 class Get28(BaseModel):
@@ -3329,16 +3329,16 @@ class FieldJwks(BaseModel):
 
 
 class Schema80(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20061(BaseModel):
     description: str
-    schema_: Schema80 = Field(..., alias='schema')
+    schema_: Schema80 = Field(..., alias="schema")
 
 
 class Responses62(BaseModel):
-    field_200: Field20061 = Field(..., alias='200')
+    field_200: Field20061 = Field(..., alias="200")
 
 
 class Get29(BaseModel):
@@ -3356,7 +3356,7 @@ class FieldJwksId(BaseModel):
 
 
 class Responses63(BaseModel):
-    field_204: Field204 = Field(..., alias='204')
+    field_204: Field204 = Field(..., alias="204")
 
 
 class Post22(BaseModel):
@@ -3374,7 +3374,7 @@ class FieldActivate(BaseModel):
 
 
 class Responses64(BaseModel):
-    field_204: Field204 = Field(..., alias='204')
+    field_204: Field204 = Field(..., alias="204")
 
 
 class Post23(BaseModel):
@@ -3392,7 +3392,7 @@ class FieldRegister(BaseModel):
 
 
 class Responses65(BaseModel):
-    field_204: Field204 = Field(..., alias='204')
+    field_204: Field204 = Field(..., alias="204")
 
 
 class Post24(BaseModel):
@@ -3410,7 +3410,7 @@ class FieldPasswordForgot(BaseModel):
 
 
 class Responses66(BaseModel):
-    field_204: Field204 = Field(..., alias='204')
+    field_204: Field204 = Field(..., alias="204")
 
 
 class Post25(BaseModel):
@@ -3434,11 +3434,11 @@ class Schema81(BaseModel):
 
 class Field20062(BaseModel):
     description: str
-    schema_: Schema81 = Field(..., alias='schema')
+    schema_: Schema81 = Field(..., alias="schema")
 
 
 class Responses67(BaseModel):
-    field_200: Field20062 = Field(..., alias='200')
+    field_200: Field20062 = Field(..., alias="200")
 
 
 class Get30(BaseModel):
@@ -3452,24 +3452,24 @@ class Get30(BaseModel):
 
 
 class Schema82(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20063(BaseModel):
     description: str
-    schema_: Schema82 = Field(..., alias='schema')
+    schema_: Schema82 = Field(..., alias="schema")
 
 
 class Responses68(BaseModel):
-    field_200: Field20063 = Field(..., alias='200')
+    field_200: Field20063 = Field(..., alias="200")
 
 
 class Parameter45(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema82 = Field(..., alias='schema')
+    schema_: Schema82 = Field(..., alias="schema")
 
 
 class Post26(BaseModel):
@@ -3489,16 +3489,16 @@ class FieldRobotPermissions(BaseModel):
 
 class Field20064(BaseModel):
     description: str
-    schema_: Schema82 = Field(..., alias='schema')
+    schema_: Schema82 = Field(..., alias="schema")
 
 
 class Responses69(BaseModel):
-    field_200: Field20064 = Field(..., alias='200')
+    field_200: Field20064 = Field(..., alias="200")
 
 
 class Parameter46(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -3516,11 +3516,11 @@ class Get31(BaseModel):
 
 class Field20065(BaseModel):
     description: str
-    schema_: Schema82 = Field(..., alias='schema')
+    schema_: Schema82 = Field(..., alias="schema")
 
 
 class Responses70(BaseModel):
-    field_200: Field20065 = Field(..., alias='200')
+    field_200: Field20065 = Field(..., alias="200")
 
 
 class Delete11(BaseModel):
@@ -3545,11 +3545,11 @@ class Schema86(BaseModel):
 
 class Field20066(BaseModel):
     description: str
-    schema_: Schema86 = Field(..., alias='schema')
+    schema_: Schema86 = Field(..., alias="schema")
 
 
 class Responses71(BaseModel):
-    field_200: Field20066 = Field(..., alias='200')
+    field_200: Field20066 = Field(..., alias="200")
 
 
 class Get32(BaseModel):
@@ -3563,24 +3563,24 @@ class Get32(BaseModel):
 
 
 class Schema87(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20067(BaseModel):
     description: str
-    schema_: Schema87 = Field(..., alias='schema')
+    schema_: Schema87 = Field(..., alias="schema")
 
 
 class Responses72(BaseModel):
-    field_200: Field20067 = Field(..., alias='200')
+    field_200: Field20067 = Field(..., alias="200")
 
 
 class Parameter48(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema87 = Field(..., alias='schema')
+    schema_: Schema87 = Field(..., alias="schema")
 
 
 class Post27(BaseModel):
@@ -3600,16 +3600,16 @@ class FieldRobotRoles(BaseModel):
 
 class Field20068(BaseModel):
     description: str
-    schema_: Schema87 = Field(..., alias='schema')
+    schema_: Schema87 = Field(..., alias="schema")
 
 
 class Responses73(BaseModel):
-    field_200: Field20068 = Field(..., alias='200')
+    field_200: Field20068 = Field(..., alias="200")
 
 
 class Parameter49(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -3627,11 +3627,11 @@ class Get33(BaseModel):
 
 class Field20069(BaseModel):
     description: str
-    schema_: Schema87 = Field(..., alias='schema')
+    schema_: Schema87 = Field(..., alias="schema")
 
 
 class Responses74(BaseModel):
-    field_200: Field20069 = Field(..., alias='200')
+    field_200: Field20069 = Field(..., alias="200")
 
 
 class Delete12(BaseModel):
@@ -3656,11 +3656,11 @@ class Schema91(BaseModel):
 
 class Field20070(BaseModel):
     description: str
-    schema_: Schema91 = Field(..., alias='schema')
+    schema_: Schema91 = Field(..., alias="schema")
 
 
 class Responses75(BaseModel):
-    field_200: Field20070 = Field(..., alias='200')
+    field_200: Field20070 = Field(..., alias="200")
 
 
 class Get34(BaseModel):
@@ -3674,24 +3674,24 @@ class Get34(BaseModel):
 
 
 class Schema92(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20071(BaseModel):
     description: str
-    schema_: Schema92 = Field(..., alias='schema')
+    schema_: Schema92 = Field(..., alias="schema")
 
 
 class Responses76(BaseModel):
-    field_200: Field20071 = Field(..., alias='200')
+    field_200: Field20071 = Field(..., alias="200")
 
 
 class Parameter51(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema92 = Field(..., alias='schema')
+    schema_: Schema92 = Field(..., alias="schema")
 
 
 class Post28(BaseModel):
@@ -3711,16 +3711,16 @@ class FieldUserPermissions(BaseModel):
 
 class Field20072(BaseModel):
     description: str
-    schema_: Schema92 = Field(..., alias='schema')
+    schema_: Schema92 = Field(..., alias="schema")
 
 
 class Responses77(BaseModel):
-    field_200: Field20072 = Field(..., alias='200')
+    field_200: Field20072 = Field(..., alias="200")
 
 
 class Parameter52(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -3738,11 +3738,11 @@ class Get35(BaseModel):
 
 class Field20073(BaseModel):
     description: str
-    schema_: Schema92 = Field(..., alias='schema')
+    schema_: Schema92 = Field(..., alias="schema")
 
 
 class Responses78(BaseModel):
-    field_200: Field20073 = Field(..., alias='200')
+    field_200: Field20073 = Field(..., alias="200")
 
 
 class Delete13(BaseModel):
@@ -3767,11 +3767,11 @@ class Schema96(BaseModel):
 
 class Field20074(BaseModel):
     description: str
-    schema_: Schema96 = Field(..., alias='schema')
+    schema_: Schema96 = Field(..., alias="schema")
 
 
 class Responses79(BaseModel):
-    field_200: Field20074 = Field(..., alias='200')
+    field_200: Field20074 = Field(..., alias="200")
 
 
 class Get36(BaseModel):
@@ -3785,24 +3785,24 @@ class Get36(BaseModel):
 
 
 class Schema97(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20075(BaseModel):
     description: str
-    schema_: Schema97 = Field(..., alias='schema')
+    schema_: Schema97 = Field(..., alias="schema")
 
 
 class Responses80(BaseModel):
-    field_200: Field20075 = Field(..., alias='200')
+    field_200: Field20075 = Field(..., alias="200")
 
 
 class Parameter54(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema97 = Field(..., alias='schema')
+    schema_: Schema97 = Field(..., alias="schema")
 
 
 class Post29(BaseModel):
@@ -3822,16 +3822,16 @@ class FieldRoleAttributes(BaseModel):
 
 class Field20076(BaseModel):
     description: str
-    schema_: Schema97 = Field(..., alias='schema')
+    schema_: Schema97 = Field(..., alias="schema")
 
 
 class Responses81(BaseModel):
-    field_200: Field20076 = Field(..., alias='200')
+    field_200: Field20076 = Field(..., alias="200")
 
 
 class Parameter55(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -3849,20 +3849,20 @@ class Get37(BaseModel):
 
 class Field20077(BaseModel):
     description: str
-    schema_: Schema97 = Field(..., alias='schema')
+    schema_: Schema97 = Field(..., alias="schema")
 
 
 class Responses82(BaseModel):
-    field_200: Field20077 = Field(..., alias='200')
+    field_200: Field20077 = Field(..., alias="200")
 
 
 class Parameter56(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema97] = Field(None, alias='schema')
+    schema_: Optional[Schema97] = Field(None, alias="schema")
 
 
 class Post30(BaseModel):
@@ -3877,16 +3877,16 @@ class Post30(BaseModel):
 
 class Field20078(BaseModel):
     description: str
-    schema_: Schema97 = Field(..., alias='schema')
+    schema_: Schema97 = Field(..., alias="schema")
 
 
 class Responses83(BaseModel):
-    field_200: Field20078 = Field(..., alias='200')
+    field_200: Field20078 = Field(..., alias="200")
 
 
 class Parameter57(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -3915,11 +3915,11 @@ class Schema103(BaseModel):
 
 class Field20079(BaseModel):
     description: str
-    schema_: Schema103 = Field(..., alias='schema')
+    schema_: Schema103 = Field(..., alias="schema")
 
 
 class Responses84(BaseModel):
-    field_200: Field20079 = Field(..., alias='200')
+    field_200: Field20079 = Field(..., alias="200")
 
 
 class Get38(BaseModel):
@@ -3933,24 +3933,24 @@ class Get38(BaseModel):
 
 
 class Schema104(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20080(BaseModel):
     description: str
-    schema_: Schema104 = Field(..., alias='schema')
+    schema_: Schema104 = Field(..., alias="schema")
 
 
 class Responses85(BaseModel):
-    field_200: Field20080 = Field(..., alias='200')
+    field_200: Field20080 = Field(..., alias="200")
 
 
 class Parameter58(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema104 = Field(..., alias='schema')
+    schema_: Schema104 = Field(..., alias="schema")
 
 
 class Post31(BaseModel):
@@ -3970,16 +3970,16 @@ class FieldUserAttributes(BaseModel):
 
 class Field20081(BaseModel):
     description: str
-    schema_: Schema104 = Field(..., alias='schema')
+    schema_: Schema104 = Field(..., alias="schema")
 
 
 class Responses86(BaseModel):
-    field_200: Field20081 = Field(..., alias='200')
+    field_200: Field20081 = Field(..., alias="200")
 
 
 class Parameter59(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -3997,20 +3997,20 @@ class Get39(BaseModel):
 
 class Field20082(BaseModel):
     description: str
-    schema_: Schema104 = Field(..., alias='schema')
+    schema_: Schema104 = Field(..., alias="schema")
 
 
 class Responses87(BaseModel):
-    field_200: Field20082 = Field(..., alias='200')
+    field_200: Field20082 = Field(..., alias="200")
 
 
 class Parameter60(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema104] = Field(None, alias='schema')
+    schema_: Optional[Schema104] = Field(None, alias="schema")
 
 
 class Post32(BaseModel):
@@ -4025,16 +4025,16 @@ class Post32(BaseModel):
 
 class Field20083(BaseModel):
     description: str
-    schema_: Schema104 = Field(..., alias='schema')
+    schema_: Schema104 = Field(..., alias="schema")
 
 
 class Responses88(BaseModel):
-    field_200: Field20083 = Field(..., alias='200')
+    field_200: Field20083 = Field(..., alias="200")
 
 
 class Parameter61(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -4063,11 +4063,11 @@ class Schema110(BaseModel):
 
 class Field20084(BaseModel):
     description: str
-    schema_: Schema110 = Field(..., alias='schema')
+    schema_: Schema110 = Field(..., alias="schema")
 
 
 class Responses89(BaseModel):
-    field_200: Field20084 = Field(..., alias='200')
+    field_200: Field20084 = Field(..., alias="200")
 
 
 class Get40(BaseModel):
@@ -4081,24 +4081,24 @@ class Get40(BaseModel):
 
 
 class Schema111(BaseModel):
-    field_ref: str = Field(..., alias='$ref')
+    field_ref: str = Field(..., alias="$ref")
 
 
 class Field20085(BaseModel):
     description: str
-    schema_: Schema111 = Field(..., alias='schema')
+    schema_: Schema111 = Field(..., alias="schema")
 
 
 class Responses90(BaseModel):
-    field_200: Field20085 = Field(..., alias='200')
+    field_200: Field20085 = Field(..., alias="200")
 
 
 class Parameter62(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
-    schema_: Schema111 = Field(..., alias='schema')
+    schema_: Schema111 = Field(..., alias="schema")
 
 
 class Post33(BaseModel):
@@ -4118,16 +4118,16 @@ class FieldClients(BaseModel):
 
 class Field20086(BaseModel):
     description: str
-    schema_: Schema111 = Field(..., alias='schema')
+    schema_: Schema111 = Field(..., alias="schema")
 
 
 class Responses91(BaseModel):
-    field_200: Field20086 = Field(..., alias='200')
+    field_200: Field20086 = Field(..., alias="200")
 
 
 class Parameter63(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -4145,20 +4145,20 @@ class Get41(BaseModel):
 
 class Field20087(BaseModel):
     description: str
-    schema_: Schema111 = Field(..., alias='schema')
+    schema_: Schema111 = Field(..., alias="schema")
 
 
 class Responses92(BaseModel):
-    field_200: Field20087 = Field(..., alias='200')
+    field_200: Field20087 = Field(..., alias="200")
 
 
 class Parameter64(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: Optional[str] = None
-    schema_: Optional[Schema111] = Field(None, alias='schema')
+    schema_: Optional[Schema111] = Field(None, alias="schema")
 
 
 class Post34(BaseModel):
@@ -4173,16 +4173,16 @@ class Post34(BaseModel):
 
 class Field20088(BaseModel):
     description: str
-    schema_: Schema111 = Field(..., alias='schema')
+    schema_: Schema111 = Field(..., alias="schema")
 
 
 class Responses93(BaseModel):
-    field_200: Field20088 = Field(..., alias='200')
+    field_200: Field20088 = Field(..., alias="200")
 
 
 class Parameter65(BaseModel):
     description: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
     name: str
     required: bool
     type: str
@@ -4205,88 +4205,88 @@ class FieldClientsId(BaseModel):
 
 
 class Paths(BaseModel):
-    field_client_scopes: FieldClientScopes = Field(..., alias='/client-scopes')
+    field_client_scopes: FieldClientScopes = Field(..., alias="/client-scopes")
     field_client_scopes__id_: FieldClientScopesId = Field(
-        ..., alias='/client-scopes/{id}'
+        ..., alias="/client-scopes/{id}"
     )
-    field_robots: FieldRobots = Field(..., alias='/robots')
+    field_robots: FieldRobots = Field(..., alias="/robots")
     field_robots__id__integrity: FieldRobotsIdIntegrity = Field(
-        ..., alias='/robots/{id}/integrity'
+        ..., alias="/robots/{id}/integrity"
     )
-    field_robots__id_: FieldRobotsId = Field(..., alias='/robots/{id}')
+    field_robots__id_: FieldRobotsId = Field(..., alias="/robots/{id}")
     field_identity_provider_roles: FieldIdentityProviderRoles = Field(
-        ..., alias='/identity-provider-roles'
+        ..., alias="/identity-provider-roles"
     )
     field_identity_provider_roles__id_: FieldIdentityProviderRolesId = Field(
-        ..., alias='/identity-provider-roles/{id}'
+        ..., alias="/identity-provider-roles/{id}"
     )
     field_identity_providers: FieldIdentityProviders = Field(
-        ..., alias='/identity-providers'
+        ..., alias="/identity-providers"
     )
     field_identity_providers__id_: FieldIdentityProvidersId = Field(
-        ..., alias='/identity-providers/{id}'
+        ..., alias="/identity-providers/{id}"
     )
-    field_permissions: FieldPermissions = Field(..., alias='/permissions')
-    field_permissions__id_: FieldPermissionsId = Field(..., alias='/permissions/{id}')
-    field_realms: FieldRealms = Field(..., alias='/realms')
-    field_realms__id_: FieldRealmsId = Field(..., alias='/realms/{id}')
+    field_permissions: FieldPermissions = Field(..., alias="/permissions")
+    field_permissions__id_: FieldPermissionsId = Field(..., alias="/permissions/{id}")
+    field_realms: FieldRealms = Field(..., alias="/realms")
+    field_realms__id_: FieldRealmsId = Field(..., alias="/realms/{id}")
     field_realms__id___well_known_openid_configuration: FieldRealmsIdWellKnownOpenidConfiguration = Field(
-        ..., alias='/realms/{id}/.well-known/openid-configuration'
+        ..., alias="/realms/{id}/.well-known/openid-configuration"
     )
-    field_realms__id__jwks: FieldRealmsIdJwks = Field(..., alias='/realms/{id}/jwks')
-    field_roles: FieldRoles = Field(..., alias='/roles')
-    field_roles__id_: FieldRolesId = Field(..., alias='/roles/{id}')
-    field_role_permissions: FieldRolePermissions = Field(..., alias='/role-permissions')
+    field_realms__id__jwks: FieldRealmsIdJwks = Field(..., alias="/realms/{id}/jwks")
+    field_roles: FieldRoles = Field(..., alias="/roles")
+    field_roles__id_: FieldRolesId = Field(..., alias="/roles/{id}")
+    field_role_permissions: FieldRolePermissions = Field(..., alias="/role-permissions")
     field_role_permissions__id_: FieldRolePermissionsId = Field(
-        ..., alias='/role-permissions/{id}'
+        ..., alias="/role-permissions/{id}"
     )
-    field_scopes: FieldScopes = Field(..., alias='/scopes')
-    field_scopes__id_: FieldScopesId = Field(..., alias='/scopes/{id}')
-    field_users: FieldUsers = Field(..., alias='/users')
-    field_users__id_: FieldUsersId = Field(..., alias='/users/{id}')
-    field_user_roles: FieldUserRoles = Field(..., alias='/user-roles')
-    field_user_roles__id_: FieldUserRolesId = Field(..., alias='/user-roles/{id}')
-    field_token_introspect: FieldTokenIntrospect = Field(..., alias='/token/introspect')
-    field_token: FieldToken = Field(..., alias='/token')
-    field_: FieldModel = Field(..., alias='/')
-    field_authorize: FieldAuthorize = Field(..., alias='/authorize')
+    field_scopes: FieldScopes = Field(..., alias="/scopes")
+    field_scopes__id_: FieldScopesId = Field(..., alias="/scopes/{id}")
+    field_users: FieldUsers = Field(..., alias="/users")
+    field_users__id_: FieldUsersId = Field(..., alias="/users/{id}")
+    field_user_roles: FieldUserRoles = Field(..., alias="/user-roles")
+    field_user_roles__id_: FieldUserRolesId = Field(..., alias="/user-roles/{id}")
+    field_token_introspect: FieldTokenIntrospect = Field(..., alias="/token/introspect")
+    field_token: FieldToken = Field(..., alias="/token")
+    field_: FieldModel = Field(..., alias="/")
+    field_authorize: FieldAuthorize = Field(..., alias="/authorize")
     field__well_known_openid_configuration: FieldWellKnownOpenidConfiguration = Field(
-        ..., alias='/.well-known/openid-configuration'
+        ..., alias="/.well-known/openid-configuration"
     )
-    field_jwks: FieldJwks = Field(..., alias='/jwks')
-    field_jwks__id_: FieldJwksId = Field(..., alias='/jwks/{id}')
-    field_activate: FieldActivate = Field(..., alias='/activate')
-    field_register: FieldRegister = Field(..., alias='/register')
-    field_password_forgot: FieldPasswordForgot = Field(..., alias='/password-forgot')
-    field_password_reset: FieldPasswordReset = Field(..., alias='/password-reset')
+    field_jwks: FieldJwks = Field(..., alias="/jwks")
+    field_jwks__id_: FieldJwksId = Field(..., alias="/jwks/{id}")
+    field_activate: FieldActivate = Field(..., alias="/activate")
+    field_register: FieldRegister = Field(..., alias="/register")
+    field_password_forgot: FieldPasswordForgot = Field(..., alias="/password-forgot")
+    field_password_reset: FieldPasswordReset = Field(..., alias="/password-reset")
     field_robot_permissions: FieldRobotPermissions = Field(
-        ..., alias='/robot-permissions'
+        ..., alias="/robot-permissions"
     )
     field_robot_permissions__id_: FieldRobotPermissionsId = Field(
-        ..., alias='/robot-permissions/{id}'
+        ..., alias="/robot-permissions/{id}"
     )
-    field_robot_roles: FieldRobotRoles = Field(..., alias='/robot-roles')
-    field_robot_roles__id_: FieldRobotRolesId = Field(..., alias='/robot-roles/{id}')
-    field_user_permissions: FieldUserPermissions = Field(..., alias='/user-permissions')
+    field_robot_roles: FieldRobotRoles = Field(..., alias="/robot-roles")
+    field_robot_roles__id_: FieldRobotRolesId = Field(..., alias="/robot-roles/{id}")
+    field_user_permissions: FieldUserPermissions = Field(..., alias="/user-permissions")
     field_user_permissions__id_: FieldUserPermissionsId = Field(
-        ..., alias='/user-permissions/{id}'
+        ..., alias="/user-permissions/{id}"
     )
-    field_role_attributes: FieldRoleAttributes = Field(..., alias='/role-attributes')
+    field_role_attributes: FieldRoleAttributes = Field(..., alias="/role-attributes")
     field_role_attributes__id_: FieldRoleAttributesId = Field(
-        ..., alias='/role-attributes/{id}'
+        ..., alias="/role-attributes/{id}"
     )
-    field_user_attributes: FieldUserAttributes = Field(..., alias='/user-attributes')
+    field_user_attributes: FieldUserAttributes = Field(..., alias="/user-attributes")
     field_user_attributes__id_: FieldUserAttributesId = Field(
-        ..., alias='/user-attributes/{id}'
+        ..., alias="/user-attributes/{id}"
     )
-    field_clients: FieldClients = Field(..., alias='/clients')
-    field_clients__id_: FieldClientsId = Field(..., alias='/clients/{id}')
+    field_clients: FieldClients = Field(..., alias="/clients")
+    field_clients__id_: FieldClientsId = Field(..., alias="/clients/{id}")
 
 
 class Bearer(BaseModel):
     name: str
     type: str
-    in_: str = Field(..., alias='in')
+    in_: str = Field(..., alias="in")
 
 
 class Oauth2Implicit(BaseModel):

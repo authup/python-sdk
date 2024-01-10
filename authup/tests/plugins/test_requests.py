@@ -2,7 +2,7 @@ import os
 
 import requests
 
-from authup.plugins.requests import AuthupRequests
+from ...plugins.requests import AuthupRequests
 
 
 def test_requests_auth():

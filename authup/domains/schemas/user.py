@@ -3,11 +3,11 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from authup.domains.constants import DomainType
+from ..constants import DomainType
+from ..types_base import DomainEventBaseContext
 
-# from authup.domains.schemas.permission import Permission
-from authup.domains.schemas.realm import Realm
-from authup.domains.types_base import DomainEventBaseContext
+# from .permission import Permission
+from .realm import Realm
 
 
 class User(BaseModel):

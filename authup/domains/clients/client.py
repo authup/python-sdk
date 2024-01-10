@@ -1,6 +1,6 @@
 from httpx import AsyncClient
 
-from authup.plugins.httpx import AuthupHttpx
+from ...plugins.httpx import AuthupHttpx
 
 
 class AuthupClient:

@@ -1,5 +1,5 @@
-from authup.domains.clients.base_resource_client import ResourceClient
-from authup.domains.schemas.user import User, UserCreate, UserUpdate
+from ...schemas.user import User, UserCreate, UserUpdate
+from ..base_resource_client import ResourceClient
 
 
 class UserClient(ResourceClient[User, UserCreate, UserUpdate]):

@@ -4,8 +4,8 @@ import sys
 
 import pytest
 
-from authup.domains.clients.resource_clients.permission import PermissionClient
-from authup.domains.schemas.permission import (
+from ....domains.clients.resource_clients.permission import PermissionClient
+from ....domains.schemas.permission import (
     Permission,
     PermissionCreate,
     PermissionUpdate,
@@ -47,8 +47,7 @@ async def test_permission_get_one(permission_client):
 
 @pytest.mark.asyncio
 async def test_permission_create(permission_client):
-    permission_name = os.urandom(8).hex()
-    test_permission = PermissionCreate(name=permission_name)
+    test_permission = PermissionCreate(name=os.urandom(8).hex())
     permission = await permission_client.create(test_permission)
     assert permission
     assert isinstance(permission, Permission)
@@ -62,8 +61,9 @@ async def test_permission_create(permission_client):
 
 @pytest.mark.asyncio
 async def test_permission_update(permission_client):
-    permission_name = os.urandom(8).hex()
-    permission = await permission_client.create(PermissionCreate(name=permission_name))
+    permission = await permission_client.create(
+        PermissionCreate(name=os.urandom(8).hex())
+    )
 
     updated_name = os.urandom(8).hex()
     test_permission_updated = PermissionUpdate(name=updated_name)
@@ -85,8 +85,9 @@ async def test_permission_update(permission_client):
 
 @pytest.mark.asyncio
 async def test_permission_delete(permission_client):
-    permission_id = os.urandom(8).hex()
-    permission = await permission_client.create(PermissionCreate(name=permission_id))
+    permission = await permission_client.create(
+        PermissionCreate(name=os.urandom(8).hex())
+    )
     deleted_id = await permission_client.delete(permission.id)
     print(f"\nPermission generated: id={permission.id}")
     print(f"Delete permission with id={deleted_id}")
