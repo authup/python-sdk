@@ -53,6 +53,18 @@ class Settings(BaseModel):
     robot_secret: Optional[SecretStr] = None
 
     @property
+    def permission_url(self):
+        return f"{self.url}/permissions"
+
+    @property
+    def realm_url(self):
+        return f"{self.url}/realms"
+
+    @property
+    def robot_url(self):
+        return f"{self.url}/robots"
+
+    @property
     def token_url(self):
         return f"{self.url}/token"
 
