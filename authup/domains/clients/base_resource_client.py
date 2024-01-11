@@ -27,32 +27,37 @@ class ResourceClient(Generic[ResourceType, CreateSchemaType, UpdateSchemaType]):
             return url
         return self.prefix
 
-    async def get_one(self, id: str) -> ResourceType:
+    async def get_one(self, id: str, suffix: str = "") -> ResourceType:
         url = self._format_url(id)
-        response = await self.client.get(url)
+        response = await self.client.get(url + suffix)
+        # print(response.text)
         response.raise_for_status()
         return self.model.parse_raw(response.text)
 
-    async def get_many(self) -> List[ResourceType]:
+    async def get_many(self, suffix: str = "") -> List[ResourceType]:
         url = self._format_url()
-        response = await self.client.get(url)
+        response = await self.client.get(url + suffix)
+        # print(response.text)
         response.raise_for_status()
         return [self.model(**item) for item in response.json()["data"]]
 
     async def create(self, data: CreateSchemaType) -> ResourceType:
         url = self._format_url()
         response = await self.client.post(url, json=data.dict())
+        # print(response.text)
         response.raise_for_status()
         return self.model.parse_raw(response.content)
 
     async def update(self, id: str, data: UpdateSchemaType) -> ResourceType:
         url = self._format_url(id)
         response = await self.client.post(url, json=data.dict())
+        # print(response.text)
         response.raise_for_status()
         return self.model(**response.json())
 
     async def delete(self, id: str) -> str:
         url = self._format_url(id)
         response = await self.client.delete(url)
+        # print(response.text)
         response.raise_for_status()
         return id
