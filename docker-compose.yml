@@ -6,10 +6,15 @@ services:
     image: ghcr.io/authup/authup:latest
     ports:
       - "3000:3000"
-      - "3001:3001"
-    volumes:
-      - ./authup_data:/usr/src/app/writable
-    command: cli start
+#    environment:
+#      DB_TYPE: postgres
+#      DB_HOST: postgres
+#      DB_USERNAME: authup
+#      DB_PASSWORD: authup
+#      DB_DATABASE: authup
+    pull_policy: always
+    depends_on:
+      - postgres
 
   postgres:
     image: postgres:14
@@ -19,3 +24,4 @@ services:
       POSTGRES_PASSWORD: authup
       POSTGRES_USER: authup
       POSTGRES_DB: authup
+    pull_policy: always
