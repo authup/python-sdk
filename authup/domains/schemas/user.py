@@ -11,9 +11,9 @@ from .realm import Realm
 
 
 class User(BaseModel):
-    id: Optional[str]
+    id: str
     name: str
-    name_locked: bool
+    name_locked: bool = False
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     display_name: str
@@ -26,12 +26,12 @@ class User(BaseModel):
     reset_expires: Optional[str] = None
     status: Optional[str] = None
     status_message: Optional[str] = None
-    active: bool
+    active: bool = False
     active_hash: Optional[str] = None
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
     realm_id: str
-    realm: Realm
+    realm: Optional[Realm]
 
     # TODO: token, permission?
     # token: Optional[str] = None
@@ -44,10 +44,14 @@ class UserEventContext(DomainEventBaseContext):
 
 
 class UserCreate(User):
+    id: Optional[str]
+    realm_id: Optional[str]
     pass
 
 
 class UserUpdate(User):
+    id: Optional[str]
+    realm_id: Optional[str]
     updated_at: str = datetime.now().isoformat()
     pass
 

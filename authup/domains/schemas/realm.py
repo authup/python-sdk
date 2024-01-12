@@ -8,7 +8,7 @@ from ..types_base import DomainEventBaseContext
 
 
 class Realm(BaseModel):
-    id: Optional[str]
+    id: str
     name: str
     description: Optional[str] = None
     built_in: bool = False
@@ -22,10 +22,12 @@ class RealmEventContext(DomainEventBaseContext):
 
 
 class RealmCreate(Realm):
+    id: Optional[str]
     pass
 
 
 class RealmUpdate(Realm):
+    id: Optional[str]
     updated_at = datetime.now().isoformat()
     pass
 

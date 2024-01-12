@@ -10,20 +10,20 @@ from .user import User
 
 
 class Client(BaseModel):
-    id: Optional[str]
+    id: str
     name: str
     description: Optional[str]
-    secret: str
+    secret: Optional[str]
     redirect_url: Optional[str]
     grant_types: Optional[str]
     scope: Optional[str]
     base_url: Optional[str]
     root_url: Optional[str]
-    is_confidential: bool
+    is_confidential: bool = False
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
     realm_id = str
-    realm: Realm
+    realm: Optional[Realm]
     user_id: Optional[str]
     user: Optional[User]
 
@@ -31,3 +31,14 @@ class Client(BaseModel):
 class ClientEventContext(DomainEventBaseContext):
     type: str = f"{DomainType.CLIENT}"
     data: Client
+
+
+class ClientCreate(Client):
+    id: Optional[str]
+    pass
+
+
+class ClientUpdate(Client):
+    id: Optional[str]
+    updated_at = datetime.now().isoformat()
+    pass

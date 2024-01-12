@@ -10,13 +10,13 @@ from .realm import Realm
 
 
 class Permission(BaseModel):
-    id: Optional[str]
-    built_in: bool = False
+    id: str
     name: str
+    built_in: bool = False
     description: Optional[str] = None
     target: Optional[str] = None
-    realm_id: Optional[str] = None
-    realm: Optional[Realm] = None
+    realm_id: Optional[str]
+    realm: Optional[Realm]
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
 
@@ -39,10 +39,12 @@ class PermissionRelation(BaseModel):
 
 
 class PermissionCreate(Permission):
+    id: Optional[str]
     pass
 
 
 class PermissionUpdate(Permission):
+    id: Optional[str]
     updated_at: str = datetime.now().isoformat()
     pass
 

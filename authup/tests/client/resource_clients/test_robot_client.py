@@ -42,11 +42,13 @@ async def test_robot_get_one(robot_client, realm_client):
     robot = await robot_client.create(
         RobotCreate(name=os.urandom(8).hex(), secret="test", realm_id=realm.id)
     )
-    test_robot = await robot_client.get_one(robot.id)  # , '?include=realm')
+    test_robot = await robot_client.get_one(robot.id)  # , '?include=user,realm,secret')
     assert robot
     assert isinstance(robot, Robot)
     assert robot.id == test_robot.id
     assert robot.name == test_robot.name
+
+    await realm_client.delete(realm.id)
 
 
 @pytest.mark.asyncio
@@ -62,6 +64,8 @@ async def test_robot_create(robot_client, realm_client):
     print(
         f"\nDatetime:\n\tCreated: {test_robot.created_at}\n\tUpdated: {test_robot.updated_at}"
     )
+
+    await realm_client.delete(realm.id)
 
 
 @pytest.mark.asyncio
@@ -85,6 +89,8 @@ async def test_robot_update(robot_client, realm_client):
         f"\nDatetime:\n\tCreated: {test_robot_updated.created_at}\n\tUpdated: {test_robot_updated.updated_at}"
     )
 
+    await realm_client.delete(realm.id)
+
 
 @pytest.mark.asyncio
 async def test_robot_delete(robot_client, realm_client):
@@ -101,12 +107,4 @@ async def test_robot_delete(robot_client, realm_client):
     assert deleted_id == robot.id
     assert deleted_id not in [r.id for r in await robot_client.get_many()]
 
-
-# @pytest.mark.asyncio
-# async def test_robot_integrity(robot_client, realm_client):
-#     realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
-#     robot = await robot_client.create(RobotCreate(name=os.urandom(8).hex(),
-#                                                   secret='test',
-#                                                   realm_id=realm.id))
-#     test_integrity = await robot_client.integrity(robot.id)
-#     print('int:', test_integrity)
+    await realm_client.delete(realm.id)

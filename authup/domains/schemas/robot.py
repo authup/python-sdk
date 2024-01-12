@@ -29,13 +29,11 @@ class RobotEventContext(DomainEventBaseContext):
 
 class RobotCreate(Robot):
     id: Optional[str]
-    realm_id: Optional[str]
     pass
 
 
 class RobotUpdate(Robot):
     id: Optional[str]
-    realm_id: Optional[str]
     updated_at: str = datetime.now().isoformat()
     pass
 

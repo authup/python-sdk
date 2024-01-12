@@ -9,11 +9,11 @@ from .realm import Realm
 
 
 class Role(BaseModel):
-    id: Optional[str]
+    id: str
     name: str
     target: Optional[str] = None
     description: Optional[str] = None
-    realm_id: Optional[str] = None
+    realm_id: Optional[str]
     realm: Optional[Realm] = None
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
@@ -24,10 +24,12 @@ class RoleEventContext(DomainEventBaseContext):
     data: Role
 
 
-class RoleCreate(Realm):
+class RoleCreate(Role):
+    id: Optional[str]
     pass
 
 
-class RoleUpdate(Realm):
+class RoleUpdate(Role):
+    id: Optional[str]
     updated_at: str = datetime.now().isoformat()
     pass

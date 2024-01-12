@@ -38,6 +38,8 @@ async def test_realm_get_one(realm_client):
     assert realm.id == test_realm.id
     assert realm.name == test_realm.name
 
+    await realm_client.delete(realm.id)
+
 
 @pytest.mark.asyncio
 async def test_realm_create(realm_client):
@@ -51,6 +53,8 @@ async def test_realm_create(realm_client):
     print(
         f"\nDatetime:\n\tCreated: {test_realm.created_at}\n\tUpdated: {test_realm.updated_at}"
     )
+
+    await realm_client.delete(realm.id)
 
 
 @pytest.mark.asyncio
@@ -69,6 +73,8 @@ async def test_realm_update(realm_client):
     print(
         f"\nDatetime:\n\tCreated: {test_realm_updated.created_at}\n\tUpdated: {test_realm_updated.updated_at}"
     )
+
+    await realm_client.delete(realm.id)
 
 
 @pytest.mark.asyncio
