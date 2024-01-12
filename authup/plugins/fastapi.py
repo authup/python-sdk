@@ -3,8 +3,8 @@ from typing import List, Union
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from ..domains.schemas.token import Permission
-from ..domains.schemas.user import User
+from ..domains.token.types import Permission
+from ..domains.user.types import User
 from ..permissions import check_permissions
 from ..token import get_user_from_token_async, introspect_token_async
 

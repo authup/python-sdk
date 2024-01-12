@@ -4,10 +4,10 @@ import sys
 
 import pytest
 
-from ....domains.clients.resource_clients.realm import RealmClient
-from ....domains.clients.resource_clients.user import UserClient
-from ....domains.schemas.realm import Realm, RealmCreate
-from ....domains.schemas.user import User, UserCreate, UserUpdate
+from ....domains.realm.api import RealmClient
+from ....domains.realm.types import Realm, RealmCreate
+from ....domains.user.api import UserClient
+from ....domains.user.types import User, UserCreate, UserUpdate
 
 if (
     sys.version_info[0] == 3

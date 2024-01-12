@@ -4,8 +4,8 @@ import sys
 
 import pytest
 
-from ....domains.clients.resource_clients.client import ClientClient
-from ....domains.schemas.client import Client, ClientCreate, ClientUpdate
+from ....domains.client.api import ClientClient
+from ....domains.client.types import Client, ClientCreate, ClientUpdate
 
 if (
     sys.version_info[0] == 3

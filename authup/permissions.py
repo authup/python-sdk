@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from .domains.schemas.token import Permission
+from .domains.token.types import Permission
 
 
 def check_permissions(

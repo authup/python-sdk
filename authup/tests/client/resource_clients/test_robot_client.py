@@ -4,10 +4,10 @@ import sys
 
 import pytest
 
-from ....domains.clients.resource_clients.realm import RealmClient
-from ....domains.clients.resource_clients.robot import RobotClient
-from ....domains.schemas.realm import Realm, RealmCreate
-from ....domains.schemas.robot import Robot, RobotCreate, RobotUpdate
+from ....domains.realm.api import RealmClient
+from ....domains.realm.types import Realm, RealmCreate
+from ....domains.robot.api import RobotClient
+from ....domains.robot.types import Robot, RobotCreate, RobotUpdate
 
 if (
     sys.version_info[0] == 3

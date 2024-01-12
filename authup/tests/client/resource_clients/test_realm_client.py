@@ -4,8 +4,8 @@ import sys
 
 import pytest
 
-from ....domains.clients.resource_clients.realm import RealmClient
-from ....domains.schemas.realm import Realm, RealmCreate, RealmUpdate
+from ....domains.realm.api import RealmClient
+from ....domains.realm.types import Realm, RealmCreate, RealmUpdate
 
 if (
     sys.version_info[0] == 3

@@ -4,8 +4,8 @@ import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 
-from ...domains.schemas.token import Permission
-from ...domains.schemas.user import User
+from ...domains.token.types import Permission
+from ...domains.user.types import User
 from ...plugins.fastapi import AuthupUser
 from ...plugins.httpx import AuthupHttpx
 

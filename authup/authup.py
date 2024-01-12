@@ -1,8 +1,8 @@
 import datetime
 from typing import Union
 
-from .domains.schemas.token import TokenResponse
-from .domains.schemas.user import User
+from .domains.token.types import TokenResponse
+from .domains.user.types import User
 from .settings import CredentialTypes, Settings, validate_check_credentials
 from .token import (
     get_token,

@@ -3,14 +3,14 @@ import sys
 
 import pytest
 
-from ....domains.clients.resource_clients.permission import PermissionClient
-from ....domains.clients.resource_clients.realm import RealmClient
-from ....domains.schemas.permission import (
+from ....domains.permission.api import PermissionClient
+from ....domains.permission.types import (
     Permission,
     PermissionCreate,
     PermissionUpdate,
 )
-from ....domains.schemas.realm import Realm
+from ....domains.realm.api import RealmClient
+from ....domains.realm.types import Realm
 
 if (
     sys.version_info[0] == 3

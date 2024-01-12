@@ -6,7 +6,7 @@ import httpx
 import pytest
 
 from ..authup import Authup
-from ..domains.clients.client import AuthupClient
+from ..domains.base_api import AuthupClient
 from ..plugins.httpx import AuthupHttpx
 
 

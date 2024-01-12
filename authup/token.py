@@ -1,7 +1,7 @@
 import httpx
 
-from .domains.schemas.token import TokenIntrospectionResponse, TokenResponse
-from .domains.schemas.user import User
+from .domains.token.types import TokenIntrospectionResponse, TokenResponse
+from .domains.user.types import User
 from .settings import CredentialTypes, validate_check_credentials
 
 

@@ -4,10 +4,10 @@ import sys
 
 import pytest
 
-from ....domains.clients.resource_clients.realm import RealmClient
-from ....domains.clients.resource_clients.role import RoleClient
-from ....domains.schemas.realm import Realm, RealmCreate
-from ....domains.schemas.role import Role, RoleCreate, RoleUpdate
+from ....domains.realm.api import RealmClient
+from ....domains.realm.types import Realm, RealmCreate
+from ....domains.role.api import RoleClient
+from ....domains.role.types import Role, RoleCreate, RoleUpdate
 
 if (
     sys.version_info[0] == 3

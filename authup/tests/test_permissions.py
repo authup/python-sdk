@@ -3,7 +3,7 @@ import os
 import pytest
 
 from ..authup import Authup
-from ..domains.schemas.token import Permission
+from ..domains.token.types import Permission
 from ..permissions import check_permissions
 from ..token import introspect_token_async
 
