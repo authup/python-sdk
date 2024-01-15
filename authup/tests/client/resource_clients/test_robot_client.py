@@ -108,3 +108,16 @@ async def test_robot_delete(robot_client, realm_client):
     assert deleted_id not in [r.id for r in await robot_client.get_many()]
 
     await realm_client.delete(realm.id)
+
+
+@pytest.mark.asyncio
+async def test_robot_integrity(robot_client, realm_client):
+    realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
+    robot = await robot_client.create(
+        RobotCreate(name=os.urandom(8).hex(), secret="test", realm_id=realm.id)
+    )
+    robot_integrity = await robot_client.integrity(robot.id)
+
+    assert robot_integrity == 202
+
+    await realm_client.delete(realm.id)
