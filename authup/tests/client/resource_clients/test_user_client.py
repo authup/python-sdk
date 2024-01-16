@@ -4,9 +4,9 @@ import sys
 
 import pytest
 
-from ....domains.realm.api import RealmClient
+from ....domains.realm.api import RealmAPI
 from ....domains.realm.types import Realm, RealmCreate
-from ....domains.user.api import UserClient
+from ....domains.user.api import UserAPI
 from ....domains.user.types import User, UserCreate, UserUpdate
 
 if (
@@ -19,12 +19,12 @@ if (
 
 @pytest.fixture
 def user_client(authup_client):
-    return UserClient(User, authup_client.http, prefix="users")
+    return UserAPI(User, authup_client.http, prefix="users")
 
 
 @pytest.fixture
 def realm_client(authup_client):
-    return RealmClient(Realm, authup_client.http, prefix="realms")
+    return RealmAPI(Realm, authup_client.http, prefix="realms")
 
 
 @pytest.mark.asyncio

@@ -4,9 +4,9 @@ import sys
 
 import pytest
 
-from ....domains.realm.api import RealmClient
+from ....domains.realm.api import RealmAPI
 from ....domains.realm.types import Realm, RealmCreate
-from ....domains.robot.api import RobotClient
+from ....domains.robot.api import RobotAPI
 from ....domains.robot.types import Robot, RobotCreate, RobotUpdate
 
 if (
@@ -19,12 +19,12 @@ if (
 
 @pytest.fixture
 def robot_client(authup_client):
-    return RobotClient(Robot, authup_client.http, prefix="robots")
+    return RobotAPI(Robot, authup_client.http, prefix="robots")
 
 
 @pytest.fixture
 def realm_client(authup_client):
-    return RealmClient(Realm, authup_client.http, prefix="realms")
+    return RealmAPI(Realm, authup_client.http, prefix="realms")
 
 
 @pytest.mark.asyncio

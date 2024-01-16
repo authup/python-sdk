@@ -3,13 +3,13 @@ import sys
 
 import pytest
 
-from ....domains.permission.api import PermissionClient
+from ....domains.permission.api import PermissionAPI
 from ....domains.permission.types import (
     Permission,
     PermissionCreate,
     PermissionUpdate,
 )
-from ....domains.realm.api import RealmClient
+from ....domains.realm.api import RealmAPI
 from ....domains.realm.types import Realm
 
 if (
@@ -22,12 +22,12 @@ if (
 
 @pytest.fixture
 def permission_client(authup_client):
-    return PermissionClient(Permission, authup_client.http, prefix="permissions")
+    return PermissionAPI(Permission, authup_client.http, prefix="permissions")
 
 
 @pytest.fixture
 def realm_client(authup_client):
-    return RealmClient(Realm, authup_client.http, prefix="realms")
+    return RealmAPI(Realm, authup_client.http, prefix="realms")
 
 
 @pytest.mark.asyncio

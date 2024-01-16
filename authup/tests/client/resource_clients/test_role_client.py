@@ -4,9 +4,9 @@ import sys
 
 import pytest
 
-from ....domains.realm.api import RealmClient
+from ....domains.realm.api import RealmAPI
 from ....domains.realm.types import Realm, RealmCreate
-from ....domains.role.api import RoleClient
+from ....domains.role.api import RoleAPI
 from ....domains.role.types import Role, RoleCreate, RoleUpdate
 
 if (
@@ -19,12 +19,12 @@ if (
 
 @pytest.fixture
 def role_client(authup_client):
-    return RoleClient(Role, authup_client.http, prefix="roles")
+    return RoleAPI(Role, authup_client.http, prefix="roles")
 
 
 @pytest.fixture
 def realm_client(authup_client):
-    return RealmClient(Realm, authup_client.http, prefix="realms")
+    return RealmAPI(Realm, authup_client.http, prefix="realms")
 
 
 @pytest.mark.asyncio

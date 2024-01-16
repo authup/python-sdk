@@ -4,7 +4,7 @@ import sys
 
 import pytest
 
-from ....domains.client.api import ClientClient
+from ....domains.client.api import ClientAPI
 from ....domains.client.types import Client, ClientCreate, ClientUpdate
 
 if (
@@ -17,7 +17,7 @@ if (
 
 @pytest.fixture
 def client_client(authup_client):
-    return ClientClient(Client, authup_client.http, prefix="clients")
+    return ClientAPI(Client, authup_client.http, prefix="clients")
 
 
 @pytest.mark.asyncio
