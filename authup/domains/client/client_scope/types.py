@@ -11,10 +11,10 @@ from ...types_base import DomainEventBaseContext
 class ClientScope(BaseModel):
     id: str
     default: bool = False
-    client_id = str
-    client: Client
-    scope_id = str
-    scope = Scope
+    client_id: str
+    client: Optional[Client]
+    scope_id: str
+    scope: Optional[Scope]
 
 
 class ClientScopeEventContext(DomainEventBaseContext):
