@@ -12,7 +12,7 @@ from ..types import IdentityProvider
 
 class IdentityProviderRole(BaseModel):
     id: str
-    external_id: Optional[str]
+    external_id: str
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
     role_id: str

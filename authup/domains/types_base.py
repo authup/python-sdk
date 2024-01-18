@@ -2,8 +2,6 @@ from typing import Any, Dict, Generic, List, Optional, TypeVar
 
 from pydantic import BaseModel
 
-from .constants import DomainEventName
-
 R = TypeVar("R")
 
 
@@ -47,5 +45,5 @@ class BaseAPIContext(BaseModel):
 
 
 class DomainEventBaseContext(BaseModel):
-    event: DomainEventName
+    event: str  # DomainEventName
     type: str

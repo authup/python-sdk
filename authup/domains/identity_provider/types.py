@@ -4,6 +4,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+from ..client.types import Client
 from ..constants import DomainType
 from ..realm.types import Realm
 from ..types_base import DomainEventBaseContext
@@ -30,13 +31,15 @@ class IdentityProvider(BaseModel):
     id: str
     name: str
     slug: str
-    protocol: Optional[str] = f"{IdentityProviderProtocol.OAUTH2}"
-    preset: Optional[str] = f"{IdentityProviderPreset.GITHUB}"
+    protocol: Optional[str] = IdentityProviderProtocol.OAUTH2.value
+    preset: Optional[str] = IdentityProviderPreset.GITHUB.value
     enabled: bool = False
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
     realm_id: str
     realm: Optional[Realm]
+    client_id: Optional[str]
+    client: Optional[Client]
 
 
 class IdentityProviderEventContext(DomainEventBaseContext):
