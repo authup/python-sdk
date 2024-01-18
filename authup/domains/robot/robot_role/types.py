@@ -32,7 +32,3 @@ class RobotRoleEventContext(DomainEventBaseContext):
 class RobotRoleCreate(RobotRole):
     id: Optional[str]
     pass
-
-
-class RobotRoleUpdate(RobotRole):
-    raise Exception("No Update function available for RobotRole object.")

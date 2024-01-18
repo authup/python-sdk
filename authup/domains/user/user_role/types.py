@@ -32,7 +32,3 @@ class UserRoleEventContext(DomainEventBaseContext):
 class UserRoleCreate(UserRole):
     id: Optional[str]
     pass
-
-
-class UserRoleUpdate(UserRole):
-    raise Exception("No Update function available for UserRole object.")

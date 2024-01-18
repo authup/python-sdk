@@ -26,7 +26,3 @@ class RobotPermissionEventContext(DomainEventBaseContext):
 class RobotPermissionCreate(RobotPermission):
     id: Optional[str]
     pass
-
-
-class RobotPermissionUpdate(RobotPermission):
-    raise Exception("No Update function available for RobotPermission object.")

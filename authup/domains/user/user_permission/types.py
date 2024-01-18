@@ -26,7 +26,3 @@ class UserPermissionEventContext(DomainEventBaseContext):
 class UserPermissionCreate(UserPermission):
     id: Optional[str]
     pass
-
-
-class UserPermissionUpdate(UserPermission):
-    raise Exception("No Update function available for UserPermission object.")

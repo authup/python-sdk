@@ -26,7 +26,3 @@ class RolePermissionEventContext(DomainEventBaseContext):
 class RolePermissionCreate(RolePermission):
     id: Optional[str]
     pass
-
-
-class RolePermissionUpdate(RolePermission):
-    raise Exception("No Update function available for RolePermission object.")

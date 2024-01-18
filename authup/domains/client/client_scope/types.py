@@ -25,7 +25,3 @@ class ClientScopeEventContext(DomainEventBaseContext):
 class ClientScopeCreate(ClientScope):
     id: Optional[str]
     pass
-
-
-class ClientScopeUpdate(ClientScope):
-    raise Exception("No Update function available for ClientScope object.")
