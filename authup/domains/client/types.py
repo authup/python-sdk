@@ -29,7 +29,7 @@ class Client(BaseModel):
 
 
 class ClientEventContext(DomainEventBaseContext):
-    type: str = f"{DomainType.CLIENT}"
+    type: str = DomainType.CLIENT.value
     data: Client
 
 

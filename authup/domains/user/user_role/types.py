@@ -25,7 +25,7 @@ class UserRole(BaseModel):
 
 
 class UserRoleEventContext(DomainEventBaseContext):
-    type: str = DomainType.USER_ROLE
+    type: str = DomainType.USER_ROLE.value
     data: UserRole
 
 

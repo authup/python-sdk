@@ -22,7 +22,7 @@ class RoleAttribute(BaseModel):
 
 
 class RoleAttributeEventContext(DomainEventBaseContext):
-    type: str = DomainType.ROLE_ATTRIBUTE
+    type: str = DomainType.ROLE_ATTRIBUTE.value
     data: RoleAttribute
 
 

@@ -20,7 +20,7 @@ class Role(BaseModel):
 
 
 class RoleEventContext(DomainEventBaseContext):
-    type: str = f"{DomainType.ROLE}"
+    type: str = DomainType.ROLE.value
     data: Role
 
 

@@ -22,7 +22,7 @@ class Permission(BaseModel):
 
 
 class PermissionEventContext(DomainEventBaseContext):
-    type: str = f"{DomainType.PERMISSION}"
+    type: str = DomainType.PERMISSION.value
     data: Permission
 
 

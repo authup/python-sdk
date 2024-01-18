@@ -22,7 +22,7 @@ class UserAttribute(BaseModel):
 
 
 class UserAttributeEventContext(DomainEventBaseContext):
-    type: str = DomainType.USER_ATTRIBUTE
+    type: str = DomainType.USER_ATTRIBUTE.value
     data: UserAttribute
 
 

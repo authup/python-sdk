@@ -12,21 +12,21 @@ from ..types import IdentityProvider
 
 class IdentityProviderRole(BaseModel):
     id: str
-    external_id: str
+    external_id: Optional[str]
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
     role_id: str
-    role: Role
+    role: Optional[Role]
     role_realm_id: Optional[str]
     role_realm: Optional[Realm]
     provider_id: str
-    provider: IdentityProvider
+    provider: Optional[IdentityProvider]
     provider_realm_id: Optional[str]
     provider_realm: Optional[Realm]
 
 
 class IdentityProviderRoleEventContext(DomainEventBaseContext):
-    type: str = DomainType.IDENTITY_PROVIDER_ROLE
+    type: str = DomainType.IDENTITY_PROVIDER_ROLE.value
     data: IdentityProviderRole
 
 

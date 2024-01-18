@@ -19,7 +19,7 @@ class RobotPermission(PermissionRelation):
 
 
 class RobotPermissionEventContext(DomainEventBaseContext):
-    type: str = DomainType.ROBOT_PERMISSION
+    type: str = DomainType.ROBOT_PERMISSION.value
     data: RobotPermission
 
 

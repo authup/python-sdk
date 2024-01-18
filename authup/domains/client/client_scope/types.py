@@ -18,7 +18,7 @@ class ClientScope(BaseModel):
 
 
 class ClientScopeEventContext(DomainEventBaseContext):
-    type: str = f"{DomainType.CLIENT_SCOPE}"
+    type: str = DomainType.CLIENT_SCOPE.value
     data: ClientScope
 
 

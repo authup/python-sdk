@@ -25,7 +25,7 @@ class RobotRole(BaseModel):
 
 
 class RobotRoleEventContext(DomainEventBaseContext):
-    type: str = DomainType.ROBOT_ROLE
+    type: str = DomainType.ROBOT_ROLE.value
     data: RobotRole
 
 

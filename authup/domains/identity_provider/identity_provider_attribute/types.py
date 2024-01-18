@@ -19,5 +19,5 @@ class IdentityProviderAttribute(BaseModel):
 
 
 class IdentityProviderAttributeEventContext(DomainEventBaseContext):
-    type: str = DomainType.IDENTITY_PROVIDER_ATTRIBUTE
+    type: str = DomainType.IDENTITY_PROVIDER_ATTRIBUTE.value
     data: IdentityProviderAttribute

@@ -19,7 +19,7 @@ class UserPermission(PermissionRelation):
 
 
 class UserPermissionEventContext(DomainEventBaseContext):
-    type: str = DomainType.USER_PERMISSION
+    type: str = DomainType.USER_PERMISSION.value
     data: UserPermission
 
 

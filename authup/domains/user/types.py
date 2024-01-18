@@ -39,7 +39,7 @@ class User(BaseModel):
 
 
 class UserEventContext(DomainEventBaseContext):
-    type: str = f"{DomainType.USER}"
+    type: str = DomainType.USER.value
     data: User
 
 

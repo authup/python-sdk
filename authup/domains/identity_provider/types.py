@@ -30,17 +30,17 @@ class IdentityProvider(BaseModel):
     id: str
     name: str
     slug: str
-    protocol: Optional[Enum] = IdentityProviderProtocol
-    preset: Optional[Enum] = IdentityProviderPreset
+    protocol: Optional[str] = f"{IdentityProviderProtocol.OAUTH2}"
+    preset: Optional[str] = f"{IdentityProviderPreset.GITHUB}"
     enabled: bool = False
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
     realm_id: str
-    realm: Realm
+    realm: Optional[Realm]
 
 
 class IdentityProviderEventContext(DomainEventBaseContext):
-    type: str = DomainType.IDENTITY_PROVIDER
+    type: str = DomainType.IDENTITY_PROVIDER.value
     data: IdentityProvider
 
 

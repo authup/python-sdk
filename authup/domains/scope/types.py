@@ -29,7 +29,7 @@ class Scope(BaseModel):
 
 
 class ScopeEventContext(DomainEventBaseContext):
-    type: str = DomainType.SCOPE
+    type: str = DomainType.SCOPE.value
     data: Scope
 
 

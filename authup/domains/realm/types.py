@@ -17,7 +17,7 @@ class Realm(BaseModel):
 
 
 class RealmEventContext(DomainEventBaseContext):
-    type: str = f"{DomainType.REALM}"
+    type: str = DomainType.REALM.value
     data: Realm
 
 

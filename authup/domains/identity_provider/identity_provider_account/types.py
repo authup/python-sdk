@@ -22,5 +22,5 @@ class IdentityProviderAccount(BaseModel):
 
 
 class IdentityProviderAccountEventContext(DomainEventBaseContext):
-    type: str = DomainType.IDENTITY_PROVIDER_ACCOUNT
+    type: str = DomainType.IDENTITY_PROVIDER_ACCOUNT.value
     data: IdentityProviderAccount

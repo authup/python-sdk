@@ -23,7 +23,7 @@ class Robot(BaseModel):
 
 
 class RobotEventContext(DomainEventBaseContext):
-    type: str = f"{DomainType.ROBOT}"
+    type: str = DomainType.ROBOT.value
     data: Robot
 
 
