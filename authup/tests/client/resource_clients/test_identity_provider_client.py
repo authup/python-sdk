@@ -314,7 +314,9 @@ async def test_identity_provider_role_update(
 
 
 @pytest.mark.asyncio
-async def test_client_delete(identity_provider_client, realm_client, client_client):
+async def test_identity_provider_delete(
+    identity_provider_client, realm_client, client_client
+):
     realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
     client = await client_client.create(ClientCreate(name=os.urandom(8).hex()))
     identity_provider = await identity_provider_client.create(
@@ -326,10 +328,10 @@ async def test_client_delete(identity_provider_client, realm_client, client_clie
         )
     )
     deleted_id = await identity_provider_client.delete(identity_provider.id)
-    print(f"\nClient generated: id={identity_provider.id}")
-    print(f"Delete client with id={deleted_id}")
+    print(f"\nIdentityProvider generated: id={identity_provider.id}")
+    print(f"Delete identity provider with id={deleted_id}")
     print(
-        f"Deleted id in list of current clients: "
+        f"Deleted id in list of current identity providers: "
         f"{deleted_id in [ip.id for ip in await identity_provider_client.get_many()]}"
     )
     assert deleted_id == identity_provider.id
@@ -340,7 +342,7 @@ async def test_client_delete(identity_provider_client, realm_client, client_clie
 
 
 @pytest.mark.asyncio
-async def test_client_scope_delete(
+async def test_identity_provider_role_delete(
     identity_provider_role_client,
     identity_provider_client,
     realm_client,
@@ -369,10 +371,10 @@ async def test_client_scope_delete(
     )
 
     deleted_id = await identity_provider_role_client.delete(identity_provider_role.id)
-    print(f"\nClientScope generated: id={identity_provider_role.id}")
-    print(f"Delete client scope with id={deleted_id}")
+    print(f"\nIdentityProviderRole generated: id={identity_provider_role.id}")
+    print(f"Delete identity provider role with id={deleted_id}")
     print(
-        f"Deleted id in list of current client scopes: "
+        f"Deleted id in list of current identity provider roles: "
         f"{deleted_id in [ipr.id for ipr in await identity_provider_role_client.get_many()]}"
     )
     assert deleted_id == identity_provider_role.id
