@@ -14,10 +14,10 @@ class RobotRole(BaseModel):
     id: str
     robot_id: str
     role_id: str
-    role: Role
-    role_realm_id: str
-    role_realm: Realm
-    robot: Robot
+    role: Optional[Role]
+    role_realm_id: Optional[str]
+    role_realm: Optional[Realm]
+    robot: Optional[Robot]
     robot_realm_id: Optional[str]
     robot_realm: Optional[Realm]
     created_at: str = datetime.now().isoformat()

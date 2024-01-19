@@ -13,7 +13,7 @@ class RobotPermission(PermissionRelation):
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
     robot_id: str
-    robot: Robot
+    robot: Optional[Robot]
     robot_realm_id: Optional[str]
     robot_realm: Optional[Realm]
 

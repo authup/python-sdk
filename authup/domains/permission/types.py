@@ -30,10 +30,10 @@ class PermissionRelation(BaseModel):
     power: int
     condition: Optional[str] = None
     fields: Optional[str] = None
-    negation: bool
+    negation: bool = False
     target: Optional[str] = None
     permission_id: str
-    permission: Permission
+    permission: Optional[Permission]
     permission_realm_id: Optional[str] = None
     permission_realm: Optional[Realm] = None
 
