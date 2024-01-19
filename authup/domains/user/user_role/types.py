@@ -13,11 +13,11 @@ from ..types import User
 class UserRole(BaseModel):
     id: str
     role_id: str
-    role: Role
+    role: Optional[Role]
     role_realm_id: Optional[str]
     role_realm: Optional[Realm]
     user_id: str
-    user: User
+    user: Optional[User]
     user_realm_id: Optional[str]
     user_realm: Optional[Realm]
     created_at: str = datetime.now().isoformat()

@@ -13,7 +13,7 @@ class UserPermission(PermissionRelation):
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
     user_id: str
-    user: User
+    user: Optional[User]
     user_realm_id: Optional[str]
     user_realm: Optional[Realm]
 

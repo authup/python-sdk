@@ -14,9 +14,9 @@ class UserAttribute(BaseModel):
     name: str
     value: Optional[str]
     user_id: str
-    user: User
+    user: Optional[User]
     realm_id: str
-    realm: Realm
+    realm: Optional[Realm]
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
 
