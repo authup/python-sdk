@@ -36,20 +36,34 @@ def scope_client(authup_client):
 
 @pytest.mark.asyncio
 async def test_client_get_many(client_client):
+    client = await client_client.create(ClientCreate(name=os.urandom(8).hex()))
+    await client_client.get_one(client.id)
+
     clients = await client_client.get_many()
     assert clients
     assert isinstance(clients[0], Client)
 
     print(f"\n{[c.id for c in await client_client.get_many()]}")
 
+    await client_client.delete(client.id)
+
 
 @pytest.mark.asyncio
-async def test_client_scope_get_many(client_scope_client):
+async def test_client_scope_get_many(client_scope_client, client_client, scope_client):
+    client = await client_client.create(ClientCreate(name=os.urandom(8).hex()))
+    scope = await scope_client.create(ScopeCreate(name=os.urandom(8).hex()))
+    await client_scope_client.create(
+        ClientScopeCreate(client_id=client.id, scope_id=scope.id)
+    )
+
     client_scopes = await client_scope_client.get_many()
     assert client_scopes
     assert isinstance(client_scopes[0], ClientScope)
 
     print(f"\n{[cs.id for cs in await client_scope_client.get_many()]}")
+
+    await client_client.delete(client.id)
+    await scope_client.delete(scope.id)
 
 
 @pytest.mark.asyncio

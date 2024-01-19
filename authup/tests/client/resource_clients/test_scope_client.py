@@ -22,11 +22,15 @@ def scope_client(authup_client):
 
 @pytest.mark.asyncio
 async def test_scope_get_many(scope_client):
+    scope = await scope_client.create(ScopeCreate(name=os.urandom(8).hex()))
+
     scopes = await scope_client.get_many()
     assert scopes
     assert isinstance(scopes[0], Scope)
 
     print(f"\n{[s.id for s in await scope_client.get_many()]}")
+
+    await scope_client.delete(scope.id)
 
 
 @pytest.mark.asyncio

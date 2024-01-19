@@ -63,21 +63,67 @@ def client_client(authup_client):
 
 
 @pytest.mark.asyncio
-async def test_identity_provider_get_many(identity_provider_client):
+async def test_identity_provider_get_many(
+    identity_provider_client, realm_client, client_client
+):
+    realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
+    client = await client_client.create(ClientCreate(name=os.urandom(8).hex()))
+    await identity_provider_client.create(
+        IdentityProviderCreate(
+            name=os.urandom(8).hex(),
+            slug=os.urandom(8).hex(),
+            realm_id=realm.id,
+            client_id=client.id,
+        )
+    )
+
     identity_providers = await identity_provider_client.get_many()
     assert identity_providers
     assert isinstance(identity_providers[0], IdentityProvider)
 
     print(f"\n{[ip.id for ip in await identity_provider_client.get_many()]}")
 
+    await realm_client.delete(realm.id)
+    await client_client.delete(client.id)
+
 
 @pytest.mark.asyncio
-async def test_identity_provider_role_get_many(identity_provider_role_client):
+async def test_identity_provider_role_get_many(
+    identity_provider_role_client,
+    identity_provider_client,
+    realm_client,
+    client_client,
+    role_client,
+):
+    realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
+    client = await client_client.create(ClientCreate(name=os.urandom(8).hex()))
+    identity_provider = await identity_provider_client.create(
+        IdentityProviderCreate(
+            name=os.urandom(8).hex(),
+            slug=os.urandom(8).hex(),
+            realm_id=realm.id,
+            client_id=client.id,
+        )
+    )
+    role = await role_client.create(
+        RoleCreate(name=os.urandom(8).hex(), realm_id=realm.id)
+    )
+    await identity_provider_role_client.create(
+        IdentityProviderRoleCreate(
+            external_id=os.urandom(8).hex(),
+            role_id=role.id,
+            provider_id=identity_provider.id,
+        )
+    )
+
     identity_provider_roles = await identity_provider_role_client.get_many()
     assert identity_provider_roles
     assert isinstance(identity_provider_roles[0], IdentityProviderRole)
 
     print(f"\n{[ipr.id for ipr in await identity_provider_role_client.get_many()]}")
+
+    await realm_client.delete(realm.id)
+    await client_client.delete(client.id)
 
 
 @pytest.mark.asyncio

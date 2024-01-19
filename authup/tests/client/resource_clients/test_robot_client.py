@@ -61,30 +61,65 @@ def role_client(authup_client):
 
 
 @pytest.mark.asyncio
-async def test_robot_get_many(robot_client):
+async def test_robot_get_many(robot_client, realm_client):
+    realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
+    await robot_client.create(
+        RobotCreate(name=os.urandom(8).hex(), secret="test", realm_id=realm.id)
+    )
+
     robots = await robot_client.get_many()
     assert robots
     assert isinstance(robots[0], Robot)
 
     print(f"\n{[r.id for r in await robot_client.get_many()]}")
 
+    await realm_client.delete(realm.id)
+
 
 @pytest.mark.asyncio
-async def test_robot_permission_get_many(robot_permission_client):
+async def test_robot_permission_get_many(
+    robot_permission_client, robot_client, realm_client, permission_client
+):
+    realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
+    robot = await robot_client.create(
+        RobotCreate(name=os.urandom(8).hex(), secret="test", realm_id=realm.id)
+    )
+    permission = await permission_client.create(
+        PermissionCreate(name="test_robot_permission")
+    )
+    await robot_permission_client.create(
+        RobotPermissionCreate(robot_id=robot.id, power=999, permission_id=permission.id)
+    )
+
     robot_permissions = await robot_permission_client.get_many()
     assert robot_permissions
     assert isinstance(robot_permissions[0], RobotPermission)
 
     print(f"\n{[rp.id for rp in await robot_permission_client.get_many()]}")
 
+    await realm_client.delete(realm.id)
+    await permission_client.delete(permission.id)
+
 
 @pytest.mark.asyncio
-async def test_robot_role_get_many(robot_role_client):
+async def test_robot_role_get_many(
+    robot_role_client, robot_client, realm_client, role_client
+):
+    realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
+    robot = await robot_client.create(
+        RobotCreate(name=os.urandom(8).hex(), secret="test", realm_id=realm.id)
+    )
+    role = await role_client.create(RoleCreate(name="test_robot_role"))
+    await robot_role_client.create(RobotRoleCreate(robot_id=robot.id, role_id=role.id))
+
     robot_roles = await robot_role_client.get_many()
     assert robot_roles
     assert isinstance(robot_roles[0], RobotRole)
 
     print(f"\n{[rr.id for rr in await robot_role_client.get_many()]}")
+
+    await realm_client.delete(realm.id)
+    await role_client.delete(role.id)
 
 
 @pytest.mark.asyncio

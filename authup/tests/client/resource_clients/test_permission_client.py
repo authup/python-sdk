@@ -32,13 +32,17 @@ def realm_client(authup_client):
 
 @pytest.mark.asyncio
 async def test_permission_get_many(permission_client):
+    permission = await permission_client.create(
+        PermissionCreate(name="test_permission")
+    )
+
     permissions = await permission_client.get_many()
     assert permissions
     assert isinstance(permissions[0], Permission)
 
     print(f"\n{[(p.name, p.id) for p in await permission_client.get_many()]}")
-    # for id in [p.id for p in await permission_client.get_many() if p.name.startswith('test')]:
-    #     await permission_client.delete(id)
+
+    await permission_client.delete(permission.id)
 
 
 @pytest.mark.asyncio

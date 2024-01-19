@@ -21,11 +21,15 @@ def role_client(authup_client):
 
 @pytest.mark.asyncio
 async def test_role_get_many(role_client):
+    role = await role_client.create(RoleCreate(name="test_role"))
+
     roles = await role_client.get_many()
     assert roles
     assert isinstance(roles[0], Role)
 
     print(f"\n{[r.id for r in await role_client.get_many()]}")
+
+    await role_client.delete(role.id)
 
 
 @pytest.mark.asyncio

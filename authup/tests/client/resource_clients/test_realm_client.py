@@ -22,11 +22,15 @@ def realm_client(authup_client):
 
 @pytest.mark.asyncio
 async def test_realm_get_many(realm_client):
+    realm = await realm_client.create(RealmCreate(name=os.urandom(8).hex()))
+
     realms = await realm_client.get_many()
     assert realms
     assert isinstance(realms[0], Realm)
 
     print(f"\n{[r.id for r in await realm_client.get_many()]}")
+
+    await realm_client.delete(realm.id)
 
 
 @pytest.mark.asyncio
