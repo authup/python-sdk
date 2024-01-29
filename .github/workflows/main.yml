@@ -35,7 +35,7 @@ jobs:
 
       - name: Run tests
         env:
-            AUTHUP_URL: http://authup:3000/
+            AUTHUP_URL: http://localhost:3000
             AUTHUP_USERNAME: admin
             AUTHUP_PASSWORD: start123
             AUTHUP_ROBOT_SECRET: start123
