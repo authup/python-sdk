@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from starlette.requests import Request
 
-from authup.plugins.asgi import AuthupASGIMiddleware
+from ...plugins.asgi import AuthupASGIMiddleware
 
 
 def fastapi_app():
@@ -30,7 +30,6 @@ client = TestClient(app)
 
 @pytest.mark.asyncio
 async def test_asgi_middleware(httpx_auth):
-
     app.add_middleware(AuthupASGIMiddleware, authup_url=os.getenv("AUTHUP_URL"))
 
     r = client.get("/test", auth=httpx_auth)

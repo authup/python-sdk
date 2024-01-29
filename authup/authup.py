@@ -1,10 +1,10 @@
 import datetime
 from typing import Union
 
-from authup.schemas.token import TokenResponse
-from authup.schemas.user import User
-from authup.settings import CredentialTypes, Settings, validate_check_credentials
-from authup.token import (
+from .domains.token.types import TokenResponse
+from .domains.user.types import User
+from .settings import CredentialTypes, Settings, validate_check_credentials
+from .token import (
     get_token,
     get_token_async,
     get_user_from_token,
@@ -68,7 +68,6 @@ class Authup:
         return self.token
 
     def _get_token(self) -> TokenResponse:
-
         if not self.token:
             if self._auth_type == CredentialTypes.user:
                 token = get_token(

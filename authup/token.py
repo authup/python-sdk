@@ -1,8 +1,8 @@
 import httpx
 
-from authup.schemas.token import TokenIntrospectionResponse, TokenResponse
-from authup.schemas.user import User
-from authup.settings import CredentialTypes, validate_check_credentials
+from .domains.token.types import TokenIntrospectionResponse, TokenResponse
+from .domains.user.types import User
+from .settings import CredentialTypes, validate_check_credentials
 
 
 def get_token(
@@ -169,7 +169,6 @@ def _make_token_data(
     robot_id: str = None,
     robot_secret: str = None,
 ) -> dict:
-
     # check if we have username and password or client_id and robot_secret
     credential_type = validate_check_credentials(
         username, password, robot_id, robot_secret

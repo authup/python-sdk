@@ -1,6 +1,6 @@
 import requests.auth
 
-from authup import Authup
+from ..authup import Authup
 
 
 class AuthupRequests(Authup, requests.auth.AuthBase):

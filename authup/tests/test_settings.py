@@ -4,7 +4,7 @@ from unittest import mock
 import pytest
 from pydantic import ValidationError
 
-from authup.authup import Settings
+from ..authup import Settings
 
 
 def test_settings_init():
@@ -48,7 +48,6 @@ def test_settings_init():
 
 
 def test_settings_from_env():
-
     with mock.patch.dict(
         os.environ,
         {
@@ -78,7 +77,6 @@ def test_settings_from_env():
             "AUTHUP_ROBOT_SECRET": "",
         },
     ):
-
         settings = Settings.from_env()
         assert settings.url == "https://authup.org"
 
@@ -102,12 +100,10 @@ def test_settings_from_env():
             "AUTHUP_ROBOT_SECRET": "test",
         },
     ):
-
         Settings.from_env()
 
 
 def test_urls():
-
     settings = Settings(
         url="https://authup.org",
         username="test",

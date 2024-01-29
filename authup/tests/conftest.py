@@ -5,9 +5,9 @@ import platform
 import httpx
 import pytest
 
-from authup import Authup
-from authup.client import AuthupClient
-from authup.plugins.httpx import AuthupHttpx
+from ..authup import Authup
+from ..domains.base_api import AuthupClient
+from ..plugins.httpx import AuthupHttpx
 
 
 @pytest.fixture

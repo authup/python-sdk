@@ -2,10 +2,10 @@ import os
 
 import pytest
 
-from authup import Authup
-from authup.permissions import check_permissions
-from authup.schemas.token import Permission
-from authup.token import introspect_token_async
+from ..authup import Authup
+from ..domains.token.types import Permission
+from ..permissions import check_permissions
+from ..token import introspect_token_async
 
 
 @pytest.mark.asyncio

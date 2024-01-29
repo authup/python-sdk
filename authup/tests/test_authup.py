@@ -3,8 +3,8 @@ import os
 
 import pytest
 
-from authup import Authup
-from authup.settings import Settings
+from ..authup import Authup
+from ..settings import Settings
 
 
 def test_init(robot_creds):

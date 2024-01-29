@@ -3,8 +3,8 @@ import os
 import pytest
 from dotenv import find_dotenv, load_dotenv
 
-from authup import get_token, get_token_async
-from authup.token import (
+from ..authup import get_token, get_token_async
+from ..token import (
     introspect_token,
     introspect_token_async,
     refresh_token,
