@@ -17,33 +17,10 @@ jobs:
       authup:
         image: ghcr.io/authup/authup:latest
         env:
-          DB_TYPE: postgres
-          DB_HOST: postgres
-          DB_PORT: 5432
-          DB_USERNAME: authup
-          DB_PASSWORD: authup
-          DB_DATABASE: authup
           ROBOT_ENABLED: true
           ROBOT_SECRET: start123
         ports:
           - "3000:3000"
-
-      postgres:
-        # Docker Hub image
-        image: postgres:14
-        # Provide the password for postgres
-        env:
-          POSTGRES_PASSWORD: authup
-          POSTGRES_USER: authup
-          POSTGRES_DB: authup
-
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - uses: actions/checkout@v3
       - name: Install Poetry
@@ -79,10 +56,9 @@ jobs:
       authup:
         image: ghcr.io/authup/authup:latest
         env:
-            PORT: 3000
             ROBOT_SECRET: start123
             NODE_ENV: test
-            PUBLIC_URL: http://authup:3010/
+            PUBLIC_URL: http://authup:3000/
             ROBOT_ENABLED: true
         ports:
           - "3000:3000"
