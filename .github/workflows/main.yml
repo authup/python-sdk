@@ -6,23 +6,16 @@ on:
   pull_request:
     branches: [ main ]
   release:
-    types: # This configuration does not affect the page_build event above
+    types:
       - created
 
 
 jobs:
   test-and-coverage:
     runs-on: ubuntu-latest
-    env:
-      AUTHUP_URL: authup:3001
-      AUTHUP_USERNAME: ${{ secrets.ADMIN_USER }}
-      AUTHUP_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-      AUTHUP_ROBOT_SECRET: ${{ secrets.ROBOT_SECRET }}
     services:
       authup:
         image: ghcr.io/authup/authup:latest
-        # volumes:
-        #   - ${{ github.workspace }}/authup_data:/usr/src/app/writable
         env:
           DB_TYPE: postgres
           DB_HOST: postgres
@@ -30,13 +23,11 @@ jobs:
           DB_USERNAME: authup
           DB_PASSWORD: authup
           DB_DATABASE: authup
-          ADMIN_USERNAME: admin
-          ADMIN_PASSWORD: start123
           ROBOT_ENABLED: true
           ROBOT_SECRET: start123
         ports:
-          - "3001:3001"
-      
+          - "3000:3000"
+
       postgres:
         # Docker Hub image
         image: postgres:14
@@ -45,15 +36,13 @@ jobs:
           POSTGRES_PASSWORD: authup
           POSTGRES_USER: authup
           POSTGRES_DB: authup
-        
+
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
-
 
     steps:
       - uses: actions/checkout@v3
@@ -68,15 +57,18 @@ jobs:
         run: poetry install --no-interaction --no-root --with=dev --all-extras
 
       - name: Run tests with coverage
+        env:
+            AUTHUP_URL: http://authup:3000/
+            AUTHUP_ROBOT_SECRET: start123
         run: |
-          poetry run coverage run -m pytest
-          poetry run coverage xml
+            poetry run coverage run -m pytest
+            poetry run coverage xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
+            token: ${{ secrets.CODECOV_TOKEN }}
+            fail_ci_if_error: true
 
   test-versions:
     runs-on: ubuntu-latest
@@ -85,17 +77,15 @@ jobs:
         python-version: [ '3.7', '3.8', '3.9', '3.10' ]
     services:
       authup:
-        image: "tada5hi/authup-server:latest"
+        image: ghcr.io/authup/authup:latest
         env:
-          PORT: 3010
-          ADMIN_USER: ${{ secrets.ADMIN_USER }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          ROBOT_SECRET: ${{ secrets.ROBOT_SECRET }}
-          NODE_ENV: test
-          PUBLIC_URL: http://authup:3010/
-          ROBOT_ENABLED: true
+            PORT: 3000
+            ROBOT_SECRET: start123
+            NODE_ENV: test
+            PUBLIC_URL: http://authup:3010/
+            ROBOT_ENABLED: true
         ports:
-          - "3010:3010"
+          - "3000:3000"
     steps:
       - uses: actions/checkout@v3
       - name: Install Poetry
@@ -110,8 +100,6 @@ jobs:
 
       - name: Test with tox
         env:
-          AUTHUP_URL: http://127.0.0.1:3010
-          AUTHUP_USERNAME: ${{ secrets.ADMIN_USER }}
-          AUTHUP_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          AUTHUP_ROBOT_SECRET: ${{ secrets.ROBOT_SECRET }}
+            AUTHUP_URL: http://localhost:3000
+            AUTHUP_ROBOT_SECRET: start123
         run: poetry run tox
