@@ -33,9 +33,11 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-interaction --no-root --with=dev --all-extras
 
-      - name: Run tests with coverage
+      - name: Run tests
         env:
             AUTHUP_URL: http://authup:3000/
+            AUTHUP_USERNAME: admin
+            AUTHUP_PASSWORD: start123
             AUTHUP_ROBOT_SECRET: start123
         run: |
             poetry run coverage run -m pytest
@@ -77,5 +79,7 @@ jobs:
       - name: Test with tox
         env:
             AUTHUP_URL: http://localhost:3000
+            AUTHUP_USERNAME: admin
+            AUTHUP_PASSWORD: start123
             AUTHUP_ROBOT_SECRET: start123
         run: poetry run tox
