@@ -370,13 +370,16 @@ async def test_user_attribute_update(user_attribute_client, user_client, realm_c
     )
     user_attribute = await user_attribute_client.create(
         UserAttributeCreate(
-            name=os.urandom(8).hex(), user_id=user.id, realm_id=realm.id
+            name=os.urandom(8).hex(), user_id=user.id, realm_id=realm.id, value="before"
         )
     )
 
-    updated_name = os.urandom(8).hex()
+    updated_value = "after"
     test_user_attribute_updated = UserAttributeUpdate(
-        name=updated_name, user_id=user.id, realm_id=realm.id
+        name=user_attribute.name,
+        user_id=user.id,
+        realm_id=realm.id,
+        value=updated_value,
     )
     updated_user_attribute = await user_attribute_client.update(
         user_attribute.id, test_user_attribute_updated
@@ -384,10 +387,10 @@ async def test_user_attribute_update(user_attribute_client, user_client, realm_c
 
     assert updated_user_attribute
     assert isinstance(updated_user_attribute, UserAttribute)
-    assert updated_user_attribute.name == updated_name
+    assert updated_user_attribute.value == updated_value
     print(f"\nID: {user_attribute.id}")
     print(
-        f"\nName:\n\tOriginal: {user_attribute.name}\n\tUpdated: {updated_user_attribute.name}"
+        f"\nName:\n\tOriginal: {user_attribute.value}\n\tUpdated: {updated_user_attribute.value}"
     )
     print(
         f"\nDatetime:\n\tCreated: {test_user_attribute_updated.created_at}\n\t"
