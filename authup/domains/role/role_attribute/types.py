@@ -14,7 +14,7 @@ class RoleAttribute(BaseModel):
     name: str
     value: Optional[str]
     role_id = str
-    role: Role
+    role: Optional[Role]
     realm_id: Optional[str]
     role_realm: Optional[Realm]
     created_at: str = datetime.now().isoformat()

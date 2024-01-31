@@ -13,7 +13,7 @@ class RolePermission(PermissionRelation):
     created_at: str = datetime.now().isoformat()
     updated_at: str = datetime.now().isoformat()
     role_id: str
-    role: Role
+    role: Optional[Role]
     role_realm_id: Optional[str]
     role_realm: Optional[Realm]
 
