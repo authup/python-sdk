@@ -23,13 +23,11 @@ def fastapi_app():
     return app
 
 
-app = fastapi_app()
-
-client = TestClient(app)
-
-
 @pytest.mark.asyncio
 async def test_asgi_middleware(httpx_auth):
+    app = fastapi_app()
+    client = TestClient(app)
+
     app.add_middleware(AuthupASGIMiddleware, authup_url=os.getenv("AUTHUP_URL"))
 
     r = client.get("/test", auth=httpx_auth)
@@ -61,6 +59,9 @@ async def test_asgi_middleware(httpx_auth):
 
 @pytest.mark.asyncio
 async def test_inject_user_middleware(httpx_auth):
+    app = fastapi_app()
+    client = TestClient(app)
+
     app.add_middleware(
         AuthupASGIMiddleware, authup_url=os.getenv("AUTHUP_URL"), user=True
     )
