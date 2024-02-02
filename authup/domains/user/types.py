@@ -1,11 +1,10 @@
 from datetime import datetime
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel
 
 from ..constants import DomainType
-
-# from ..permission.types import Permission
+from ..permission.types import Permission
 from ..realm.types import Realm
 from ..types_base import DomainEventBaseContext
 
@@ -33,9 +32,8 @@ class User(BaseModel):
     realm_id: str
     realm: Optional[Realm]
 
-    # TODO: token, permission?
-    # token: Optional[str] = None
-    # permissions: Optional[List[Permission]] = None
+    token: Optional[str] = None
+    permissions: Optional[List[Permission]] = None
 
 
 class UserEventContext(DomainEventBaseContext):
