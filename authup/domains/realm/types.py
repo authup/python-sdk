@@ -28,7 +28,7 @@ class RealmCreate(Realm):
 
 class RealmUpdate(Realm):
     id: Optional[str]
-    updated_at = datetime.now().isoformat()
+    updated_at: str = datetime.now().isoformat()
     pass
 
 
